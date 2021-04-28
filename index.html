@@ -1,9 +1,54 @@
-<!-- index.html -->
-<html>
- <head>
-  <title>Basic Webpage</title>
- </head>
- <body>
-  <h1>Hello World!</h1>
- </body>
-<html>
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+ <meta charset="utf-8">
+ <title>DBL+ HTI</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+
+ <!-- for the visualizations-->
+ <script src="https://d3js.org/d3.v6.min.js"></script>
+
+
+
+ <!--The main css file(frontend should use this mainly) no use for it yet but might be handy to have in the github.-->
+ <link rel="stylesheet" href="main.css">
+
+
+</head>
+
+<body>
+
+<p>DBL+ HTI</p>
+
+<!-- If someone reads this please say whether we can use the paparse file, because i think
+it is beyond the scope of the course to write this ourselves, will ask this to sam next meeting-->
+<script type="text/javascript" src="papaparse.min.js"></script>
+
+<!--Buttons to upload-->
+<input type="file" id="csvUploader" accept=".csv">
+<button id="csvLader">CSV laden</button>
+<table id="tbl-data">
+
+</table>
+<script type="text/javascript">
+ //Een listener toevoegen: zorgen dat er iets gebeurt als de knop om te laden wordt ingedrukt.
+ let uploadButton = document.getElementById('csvLader').addEventListener('click', ()=> {
+
+  //De document reader uitvoeren.
+  Papa.parse(document.getElementById('csvUploader').files[0], {
+   download: true,
+   header: true,
+   complete: function(results) {
+    // In console zetten Om te kijken of het werkt
+    console.log(results);
+   }
+  });
+ });
+
+
+</script>
+
+</body>
+
+</html>
