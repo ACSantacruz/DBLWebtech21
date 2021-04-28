@@ -1,0 +1,20 @@
+table {
+
+    border-radius: 2px;
+    overflow: hidden;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+th {
+    text-align: left;
+}
+
+th,
+td {
+    padding: 5px 10px;
+}
+
+tr:nth-child(even) {
+    background: #8e8e92;
+}
