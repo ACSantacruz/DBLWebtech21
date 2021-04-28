@@ -1,9 +1,11 @@
 table {
-
-    border-radius: 2px;
+    border-collapse: collapse;
+    border-radius: 5px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
     overflow: hidden;
+    font-family: sans-serif;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 th {
@@ -16,5 +18,5 @@ td {
 }
 
 tr:nth-child(even) {
-    background: #8e8e92;
+    background: #76767a;
 }
