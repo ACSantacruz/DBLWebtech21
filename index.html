@@ -44,6 +44,20 @@ it is beyond the scope of the course to write this ourselves, will ask this to s
    complete: function(results) {
     // In console zetten Om te kijken of het werkt
     console.log(results);
+
+    //very primitive return, without having it in the console Still need to figure out a way to get it in a table.
+    var table = Papa.unparse(results);
+    d3.select('body')
+      .selectAll('p')
+      .data(table)
+      .enter()
+      .append()
+      .text(function(t) { return t; });
+
+
+
+
+
    }
   });
  });
