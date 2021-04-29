@@ -21,3 +21,24 @@ td {
 tr:nth-child(even) {
     background: #c1c1c1;
 }
+
+.logo{
+    justify-content: flex-start;
+    font-family: "Quicksand", sans-serif;
+    font-size: 20px;
+}
+
+ul{
+    font-family: "Quicksand", sans-serif;
+    font-size: 20px;
+    word-spacing: 40px;
+
+}
+
+nav{
+    display: flex;
+    justify-content: space-around;
+    min-height: 6vh;
+    vertical-align: center;
+    background-color: #c1c1c1;
+}
