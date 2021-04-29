@@ -10,7 +10,6 @@ table {
 
 th {
     text-align: left;
-    background-color: #ff1400;
 }
 
 th,
@@ -19,5 +18,5 @@ td {
 }
 
 tr:nth-child(even) {
-    background: #c1c1c1;
+    background: #76767a;
 }
