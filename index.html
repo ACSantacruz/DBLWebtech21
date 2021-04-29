@@ -24,35 +24,7 @@ it is beyond the scope of the course to write this ourselves, will ask this to s
 <script src="https://d3js.org/d3.v6.min.js"></script>
 <script type="module" src="JS/main.js"></script>
 
-<!--Buttons to upload-->
-<input type="file" id="csvUploader" accept=".csv">
-<button id="csvLader">CSV laden</button>
 
-<table id="tableData"></table>
-
-<script type="text/javascript">
- //Een listener toevoegen: zorgen dat er iets gebeurt als de knop om te laden wordt ingedrukt.
- let uploadButton = document.getElementById('csvLader').addEventListener('click', ()=> {
-
-  //De document reader uitvoeren.
-  Papa.parse(document.getElementById('csvUploader').files[0], {
-   download: true,
-   header: true,
-   complete: function(results) {
-    // In console zetten Om te kijken of het werkt
-    console.log(results);
-
-    //very primitive return, without having it in the console Still need to figure out a way to get it in a table.
-    let table = Papa.unparse(results);
-    d3.select('body')
-      .selectAll('p')
-      .data(table)
-      .enter()
-      .append()
-      .text(function(t) { return t; });
-   }
-  });
- });
 
 
 </script>
