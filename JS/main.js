@@ -1,12 +1,15 @@
 import tableMaker from "./tableMaker.js";
 
-d3.select();
-d3.selectAll();
-
-d3.select('h1').style('color', 'blue');
-
 const tableRoot = document.querySelector("#tableData");
 const tableCsv = new tableMaker(tableRoot);
+
+csvUploader.addEventListener("change", (e) => {
+    async function getData() {
+        const response = await fetch('csvUploader')
+        const data = await response.text();
+        console.log(data)
+    }
+});
 
 csvUploader.addEventListener("change", (e) => {
     Papa.parse(csvUploader.files[0], {
