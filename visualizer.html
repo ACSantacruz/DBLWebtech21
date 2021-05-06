@@ -37,18 +37,10 @@ it is beyond the scope of the course to write this ourselves, will ask this to s
 
 <!--Buttons to upload-->
 <input type="file" id="csvUploader" accept=".csv">
-<button id="csvLader">CSV laden</button>
+
 
 <table id="tableData"></table>
-<script>
-    let uploadButton = document.getElementById('csvLader').addEventListener('click', ()=> {
-        async function getData() {
-            const response = await fetch('csvUploader')
-            const data = await response.text();
-            console.log(data)
-        }
-    });
-</script>
+
 
 
 
