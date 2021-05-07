@@ -31,8 +31,9 @@
 
 <!-- If someone reads this please say whether we can use the paparse file, because i think
 it is beyond the scope of the course to write this ourselves, will ask this to sam next meeting-->
+
 <script src="https://d3js.org/d3.v6.min.js"></script>
-<script type="module" src="JS/main.js"></script>
+<script type="text/javascript" src="JS/main.js"></script>
 <script data-require="d3@3.5.3" data-semver="3.5.3" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.js"></script>
 
 <!--Buttons to upload-->
@@ -41,58 +42,6 @@ it is beyond the scope of the course to write this ourselves, will ask this to s
 <table id="table"></table>
 
 <script>
-    var reader = new FileReader();
-
-    function loadFile() {
-        var file = document.querySelector('input[type=file]').files[0];
-        reader.addEventListener("load", parseFile, false);
-        if (file) {
-            reader.readAsText(file);
-        }
-    }
-
-    function parseFile(){
-        var doesColumnExist = false;
-        var data = d3.csv.parse(reader.result, function(d){
-            doesColumnExist = d.hasOwnProperty("area");
-            return d;
-        });
-        console.log(data);
-        create_table(data);
-    }
-
-    function create_table(data) {
-        // table stats
-        var keys = d3.keys(data[0]);
-
-        var stats = d3.select("#stats")
-            .html("")
-
-        stats.append("div")
-            .text("Columns: " + keys.length)
-
-        stats.append("div")
-            .text("Rows: " + data.length)
-
-        d3.select("#table")
-            .html("")
-            .append("tr")
-            .attr("class","fixed")
-            .selectAll("th")
-            .data(keys)
-            .enter().append("th")
-            .text(function(d) { return d; });
-
-        d3.select("#table")
-            .selectAll("tr.row")
-            .data(data)
-            .enter().append("tr")
-            .attr("class", "row")
-            .selectAll("td")
-            .data(function(d) { return keys.map(function(key) { return d[key] }) ; })
-            .enter().append("td")
-            .text(function(d) { return d; });
-    }
 
 </script>
 
