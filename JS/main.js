@@ -27,6 +27,8 @@ function createTable(data) {
     const stats = d3.select("#stats")
         .html("")
 
+    let sortAscending = true;
+
     stats.append("div")
         .text("Columns: " + keys.length)
 
@@ -43,6 +45,7 @@ function createTable(data) {
         .enter().append("th")
         .text(function(d) { return d; });
 
+
     d3.select("#table")
         .selectAll("tr.row")
         .data(data)
@@ -51,8 +54,28 @@ function createTable(data) {
         .selectAll("td")
         .data(function(d) { return keys.map(function(key) { return d[key] }) ; })
         .enter().append("td")
-        .text(function(d) { return d; });
-    
+        .text(function(d) { return d; })
+
+
+    //Sorting the table
+    d3.selectAll("#table")
+        .selectAll("tr.row")
+        .data(data)
+        .sort(function(a, b) {
+                // CHANGE AREA TO WHAT YOU WANT TO BE SORTED!!!!!
+                return d3.descending(a.area, b.area);
+
+        })
+        .enter().append("tr")
+        .attr("class", "row")
+        .selectAll("td")
+        .data(function(d) { return keys.map(function(key) { return d[key] }) ; })
+        .enter().append("td")
+        .text(function(d) { return d; })
+
+
+
+
     //Showing the columns in
     console.log(keys)
 }
