@@ -1,7 +1,7 @@
-var reader = new FileReader();
+let reader = new FileReader();
 
 function loadFile() {
-    var file = document.querySelector('input[type=file]').files[0];
+    const file = document.querySelector('input[type=file]').files[0];
     reader.addEventListener("load", parseFile, false);
     if (file) {
         reader.readAsText(file);
@@ -9,19 +9,22 @@ function loadFile() {
 }
 
 function parseFile(){
-    var doesColumnExist = false;
-    var data = d3.csv.parse(reader.result, function(d){
+    let doesColumnExist = false;
+    const data = d3.csv.parse(reader.result, function(d){
         doesColumnExist = d.hasOwnProperty("area");
+
         return d;
     });
-    console.log(data);
     createTable(data);
 }
 
 function createTable(data) {
-    var keys = d3.keys(data[0]);
 
-    var stats = d3.select("#stats")
+    //The columns, say "keys" to display them
+    const keys = d3.keys(data[0]);
+
+    //The rows,
+    const stats = d3.select("#stats")
         .html("")
 
     stats.append("div")
@@ -30,6 +33,7 @@ function createTable(data) {
     stats.append("div")
         .text("Rows: " + data.length)
 
+    //the making of the table.
     d3.select("#table")
         .html("")
         .append("tr")
@@ -48,5 +52,8 @@ function createTable(data) {
         .data(function(d) { return keys.map(function(key) { return d[key] }) ; })
         .enter().append("td")
         .text(function(d) { return d; });
+    
+    //Showing the columns in
+    console.log(keys)
 }
 
