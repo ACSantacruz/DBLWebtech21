@@ -1,0 +1,500 @@
+body{
+	background-image:url(https://static8.depositphotos.com/1154062/1071/v/600/depositphotos_10712741-stock-illustration-white-crumpled-abstract-background.jpg);
+	background-size:33.32% 55%;
+}
+
+#main{
+	margin-left: 5px;
+	margin-right: 5px;
+	transition: margin-left .5s;
+	padding: 14px;
+}
+
+:root{
+	--colour_1: #c266ff;
+	--colour_2: #9900ff;
+	--colour_3: #6b00b3;
+	--grad: linear-gradient(var(--colour_3), var(--colour_1));
+	--grad_1: linear-gradient(var(--colour_3), var(--colour_2));
+	--grad_2: linear-gradient(var(--colour_2), var(--colour_1))
+	
+}
+
+.sidebar {
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-image: var(--grad);
+	overflow-x: hidden;
+	transition: 0.5s;
+	padding-top: 60px;
+}
+.sidebar a {
+	padding: 8px 8px 8px 32px;
+	text-decoration: none;
+	font-size: 25px;
+	color: #818181;
+	display: block;
+	transition: 0.3s;
+}
+.sidebar a:hover {
+	color: #f1f1f1;
+}
+.sidebar .closebtn {
+	position: absolute;
+	top: 0;
+	right: 15px;
+	font-size: 45px;
+	margin-left: 50px;
+}
+.openbtn {
+	font-size: 20px;
+	cursor: pointer;
+	background-color: #111;
+	color: white;
+	padding: 10px 15px;
+	border: none;
+	border-radius:8px;
+}
+.openbtn:hover {
+	background-color: #444;
+}
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+	.sidebar {padding-top: 15px;}
+	.sidebar a {font-size: 18px;}
+}
+
+/* DARK MODE */
+.dark-mode {
+	background-color: #202020;
+	color: #E0E0E0;
+	background-image: url("https://img.freepik.com/free-vector/black-dark-3d-low-poly-geometric-background_79145-393.jpg?size=626&ext=jpg");
+	background-size: 33.222% 35%;
+
+
+}
+/* ROUND TOGGLE SWITCH */
+.switch {
+	position: absolute;
+	display: inline-block;
+	width: 60px;
+	height: 34px;
+	margin-left:1px;
+}
+/* Hide default HTML checkbox */
+.switch input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+/* The slider */
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: grey;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+.slider:before {
+	position: absolute;
+	content: "";
+	height: 26px;
+	width: 26px;
+	left: 4px;
+	bottom: 4px;
+	background-color: white;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+input:checked + .slider {
+	background-color: #2196F3;
+}
+input:focus + .slider {
+	box-shadow: 0 0 1px #2196F3;
+}
+input:checked + .slider:before {
+	-webkit-transform: translateX(26px);
+	-ms-transform: translateX(26px);
+	transform: translateX(26px);
+}
+/* Rounded sliders */
+.slider.round {
+	border-radius: 34px;
+}
+.slider.round:before {
+	border-radius: 50%;
+}
+.button-group .button {
+	background-color: #444;
+	border:	1px solid black;
+	color: white;
+	text-align: white;
+	font-size: 18px;
+	cursor: pointer;
+	width: 150px;
+	display:block;
+	padding: 11px;
+	width: 200px;
+	margin-left:0.1px;
+	border-radius:4px;
+}
+.button-group .button:not(:last-child) {
+	border-bottom: none; /* Prevent double borders */
+}
+.button-group .button:hover {
+	background-color: #777;
+}
+
+.dropbutton{
+	background-color: #111;
+	color:white;
+	padding:14px;
+	font-size:18px;
+	border-radius:6px;
+	border: none;
+}
+
+.dropbutton:hover {
+	background-color: #444;
+}
+
+.dropdown {
+	position: relative;
+	display: inline-block;
+	margin: 0;
+	left: 50%;
+	-ms-transform: translate(-50%);
+	transform: translate(-50%);
+ 
+}
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f1f1f1;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+	margin: 0;
+	left: 50%;
+	-ms-transform: translate(-50%);
+	transform: translate(-50%);
+}
+.dropdown-content a {
+	color: black;
+	padding: 20px;
+	font-family: Arial, Helvetica, sans-serif;
+	display: block;
+	text-align:center;
+	text-decoration:none;
+}
+.dropdown-content a:hover {
+	background-color: #ddd;
+}
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+.dropdown:hover .dropbtn {
+	background-color: #3e8e41;
+}
+
+.uploadbutton{
+	display: inline-block;
+	background-color: black;
+	color: white;
+	padding: 5px;
+	font-family: sans-serif;
+	border-radius: 4px;
+	cursor: pointer;
+	
+}
+
+.uploadbutton:hover{
+	background-color: #444;
+}
+#box1{
+	height: 100%;
+	width:40%;
+	border: 5px solid transparent;
+	border-image: var(--grad_2) 5 round;
+	float:left;
+	margin-left:0.5%;
+	transition:width 0.8s;
+	transition-delay:-0.2s;
+}
+
+#box1.leftSmall{
+    z-index: 9999; 
+    width: 81%; 
+    height: 100%; 
+    position: relative; 
+	transition:width 1s;
+ }
+ 
+#box1.leftFull{
+    z-index: 9999; 
+    width: 97.5%; 
+    height: 103%; 
+    position: relative; 
+	transition:width 0.8s;
+	transition-delay:-0.2s;
+	bottom:3%;
+ }
+ 
+#box1.rightSmall{
+  	visibility:hidden;
+	position:absolute;
+	float:left;
+	height:50%;
+	width:0.0001%;
+ }
+ 
+#box1.rightFull{
+ 	visibility:hidden;
+	position:absolute;
+	float:left;
+	height:50%;
+	width:0.0001%;
+ }
+ 
+#box2{
+	height: 100%;
+	width:40%;
+	border: 5px solid transparent;
+	border-image: var(--grad_2) 5 round;
+	margin-left:10px;
+	float:left;
+	transition:width 0.8s;
+	transition-delay:-0.2s;
+}
+
+#box2.leftSmall{
+	visibility:hidden;
+	position:absolute;
+	float:left;
+	height:50%;
+	width:0.0001%;
+
+ }
+ 
+#box2.leftFull{
+	visibility:hidden;
+	position:absolute;
+	float:left;
+	height:50%;
+	width:0.000001%;
+
+}
+
+#box2.rightSmall{
+    z-index: 9999; 
+    width: 81%; 
+    height: 100%; 
+    position: relative; 
+	transition:width 1s, height 1s;
+
+}
+ 
+#box2.rightFull{
+    z-index: 9999; 
+    width: 97.5%; 
+    height: 103%; 
+    position: relative; 
+	transition:width 1s;
+	transition-delay:-0.2s;
+	bottom:3%;
+ }
+
+#box3{
+	height: 100%;
+	width: 16%;
+	border: 5px solid transparent;
+	border-image: var(--grad_2) 5 round;
+	float:right;
+	position:relative;
+	transition:width 0.8s;
+	transition-delay:-0.2s;
+
+
+}
+
+#box3.leftSmall{
+	height: 100%;
+	width: 16%;
+	border: 5px solid transparent;
+	border-image: var(--grad_2) 5 round;
+	float:right;
+	position:relative;
+	transition:width 0.8s;
+	transition-delay:0.1s;
+
+
+}
+
+#box3.leftFull{
+	visibility:hidden;
+	float:left;
+	position:absolute;
+	height:50%;
+	width:0.00001%;
+
+}
+
+#box3.rightSmall{
+	height: 100%;
+	width: 16%;
+	border: 5px solid transparent;
+	border-image: var(--grad_2) 5 round;
+	float:right;
+	position:relative;
+	transition:width 0.8s;
+	transition-delay:0.1s;
+
+}
+
+#box3.rightFull{
+	visibility:hidden;
+	float:left;
+	position:absolute;
+	height:50%;	
+	width:0.0001%;
+}
+
+#buttonleftFull{
+	float:right;
+	margin:0;
+	padding:0px;
+	border-radius:8px;
+	background-color:#ffffff00 ;
+	padding:2.5px 2.5px 1px 2.5px;
+	border:1px solid white;
+	position:relative;
+
+
+}
+#buttonleftSmall{
+	float:right;
+	margin:0;
+	padding:0px;
+	display:inline-block;
+	border-radius:8px;
+	background-color:#ffffff00 ;
+	border:1px dashed white;
+	top:45%;
+	position:relative;
+	height:35px;
+	width:35px;
+	clear:right;
+}
+
+#buttonrightFull{
+	float:right;
+	margin:0;
+	padding:0px;
+	border-radius:8px;
+	background-color:#ffffff00 ;
+	padding:2.5px 2.5px 1px 2.5px;
+	border:1px solid white;
+	position:relative;
+
+
+}
+#buttonrightSmall{
+	float:right;
+	margin:0;
+	padding:0px;
+	display:inline-block;
+	border-radius:8px;
+	background-color:#ffffff00 ;
+	border:1px dashed white;
+	top:45%;
+	position:relative;
+	height:35px;
+	width:35px;
+	clear:right;
+}
+
+#buttonleftSmall{
+    background-image: url(https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-double-right-512.png);
+	background-size:cover;
+	filter:invert(100%);
+}
+
+#buttonleftSmall.leftSmall{
+	background-image:url(https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-double-left-512.png);
+	background-size:cover;
+}
+#buttonleftSmall.Hide{
+	visibility:hidden;
+}
+
+#buttonrightSmall{
+    background-image: url(https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-double-right-512.png);
+	background-size:cover;
+}
+
+#buttonrightSmall.rightSmall{
+	background-image:url(https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-double-left-512.png);
+	background-size:cover;
+}
+#buttonrightSmall.Hide{
+	visibility:hidden;
+}
+
+
+
+
+.bigbox{
+
+	height:80vh;
+	margin-top:20px;
+	
+}
+
+#darkbox{
+
+	position: absolute;
+	margin-left: 40px;
+	bottom:80px;
+	height:34px;
+	width:128px;
+
+}
+
+#image2{
+	float:right;
+}
+
+.title{
+	position:relative;
+	display: inline-block;
+	text-align:center;
+	font-size:50px;
+	margin: 0;
+
+}
+
+
+.expand{
+	height:10%;
+	width:100%;
+}
+
+.topper{
+
+	margin: 0;
+	left: 50%;
+	-ms-transform: translate(-50%);
+	transform: translate(-50%);
+	position:relative;
+	width:50%;
+	margin-top:-1%;
+	text-align:center;
+}

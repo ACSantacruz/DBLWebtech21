@@ -1,44 +1,146 @@
-<!doctype html>
-<html class="no-js" lang="">
+<!DOCTYPE html>
 
-<head>
-    <meta charset="utf-8">
-    <title>DBL+ HTI</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
+	<body>
+	
+	<head>
+		<title> Visualizations</title>
+		<link rel=stylesheet href=styleVisualizations.css>
+	</head>
+
+	<div id="mySidebar" class="sidebar">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+		<a href=index.html>Home</a>
+		<a href="#">Visualizations</a>		
+		<a href=About.html>About us</a>
+		<div id=darkbox>
+			<img src="https://cdn4.iconfinder.com/data/icons/stroke-weather-and-forecast/64/weather_sun_sunny_day-512.png" width = "34" height = "34">
+			<label class="switch">
+				<input type="checkbox" onclick="myFunction()">
+				<span class="slider round"></span>
+			</label>
+			<div id=image2>
+				<img src="https://cdn4.iconfinder.com/data/icons/muticon-simple-ui-part-7/32/moon_crescent_night_weather-512.png" width = "34" height = "34">
+			</div>
+		</div>
+	</div>
+	
+	<div id="main">
+
+		<button class="openbtn" onclick="openNav()">Menu</button>  
+		<input type="file" id="upload" hidden/>
+			<label class="uploadbutton" for="upload">Choose file</label>
+		<div class="topper">	
+			<div class="title">
+				<div>Visualizations </div>
+			</div>
+		</div>
+
+	
+		
+		<div class=bigbox>
+
+			<div id="box1">
+				<div class="dropdown">
+					<button class="dropbutton">Choose Visualization</button>
+					<div class="dropdown-content">
+						<a href="#">Visualization 1</a>
+						<a href="#">Visualization 2</a>
+						<a href="#">Visualization 3</a>
+					</div>
+				</div>	
+					<button id="buttonleftFull"  onclick = "FunctionleftFull()" ><img src="https://icon-library.com/images/expand-icon-png/expand-icon-png-3.jpg" height="35" width="35"></button>		
+					<button id="buttonleftSmall" onclick = "FunctionleftSmall()" ></button>
+			</div>
+		
+			<div id="box2">
+				<div class="dropdown">
+					<button class="dropbutton">Choose Visualization</button>
+					<div class="dropdown-content">
+						<a href="#">Visualization 1</a>
+						<a href="#">Visualization 2</a>
+						<a href="#">Visualization 3</a>
+					</div>
+				</div>
+					<button id="buttonrightFull"  onclick = "FunctionrightFull()" ><img src="https://icon-library.com/images/expand-icon-png/expand-icon-png-3.jpg" height="35" width="35"></button>		
+					<button id="buttonrightSmall" onclick = "FunctionrightSmall()" ></button>					
+			</div>
+		
+			<div id="box3">
+			</div>
+	
+		</div>
+		</div>
+
+	
 
 
-    <!--The main css file(frontend should use this mainly) no use for it yet but might be handy to have in the github.-->
-    <link rel="stylesheet" href="CSS/main.css">
+ 
+<script>
+function openNav() {
+	var elementA = document.getElementById("box1");
+	var elementB = document.getElementById("box2");
+	document.getElementById("mySidebar").style.width = "210px";
+	document.getElementById("main").style.marginLeft = "210px";
+	elementA.classList.toggle("dark");
+	elementB.classList.toggle("dark");
+}
 
+function closeNav() {
+	document.getElementById("mySidebar").style.width = "0";
+	document.getElementById("main").style.marginLeft= "0";
+}
+	
+function myFunction() {
+	var element = document.body;
+	element.classList.toggle("dark-mode");
+}
 
-</head>
+function FunctionleftSmall(){
+	var element1 = document.getElementById("box1");
+	var element2 = document.getElementById("box2");
+	var element3 = document.getElementById("box3");
+	var arrow = document.getElementById("buttonleftSmall");
+	element1.classList.toggle("leftSmall");
+	element2.classList.toggle("leftSmall");
+	element3.classList.toggle("leftSmall");
+	arrow.classList.toggle("leftSmall");
+}
 
-<body>
-<nav>
-    <div class='logo'>
-        <h3><a href="index.html">DBL+ HTI </a></h3>
-    </div>
-    <ul>
-        <a class="active" href="index.html">Home</a>
-        <a href="About.html">About</a>
-        <a class="active" href="#">Visualize</a>
-    </ul>
-</nav>
+function FunctionleftFull(){
+	var element1 = document.getElementById("box1");
+	var element2 = document.getElementById("box2");
+	var element3 = document.getElementById("box3");
+	var arrow = document.getElementById("buttonleftSmall");
+	element1.classList.toggle("leftFull");
+	element2.classList.toggle("leftFull");
+	element3.classList.toggle("leftFull");
+	arrow.classList.toggle("Hide");
+}
 
+function FunctionrightSmall(){
+	var element1 = document.getElementById("box1");
+	var element2 = document.getElementById("box2");
+	var element3 = document.getElementById("box3");
+	var arrow = document.getElementById("buttonrightSmall");
+	element1.classList.toggle("rightSmall");
+	element2.classList.toggle("rightSmall");
+	element3.classList.toggle("rightSmall");
+	arrow.classList.toggle("rightSmall");
+}
 
-
-<h1>Visualizer</h1>
-
-
-<script src="https://d3js.org/d3.v6.min.js"></script>
-<script type="text/javascript" src="JS/main.js"></script>
-<script data-require="d3@3.5.3" data-semver="3.5.3" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.js"></script>
-
-<!--Buttons to upload-->
-<input type="file" id="csvUploader" accept=".csv" onchange="loadFile()">
-<table id="table"></table>
-
+function FunctionrightFull(){
+	var element1 = document.getElementById("box1");
+	var element2 = document.getElementById("box2");
+	var element3 = document.getElementById("box3");
+	var arrow = document.getElementById("buttonrightSmall");
+	element1.classList.toggle("rightFull");
+	element2.classList.toggle("rightFull");
+	element3.classList.toggle("rightFull");
+	arrow.classList.toggle("Hide");
+}
+</script>
 
 </body>
 
-</html>
+</html>	

@@ -1,41 +1,91 @@
-<!doctype html>
-<html class="no-js" lang="">
+<!DOCTYPE html>
 
-<head>
- <meta charset="utf-8">
- <title>DBL+ HTI</title>
- <meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
+	<body BGCOLOR= white>
+	
+	<head>
+		<title> DBL HTI + Webtech </title>
+		<link rel=stylesheet href=styleHomepage.css>
+	</head>
+		
+	<div id="mySidebar" class="sidebar">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+		<a href="#">Home</a>
+		<a href=visualizer.html>Visualizations</a>		
+		<a href=About.html>About us</a>
+		<div id=darkbox>
+			<img src="https://cdn4.iconfinder.com/data/icons/stroke-weather-and-forecast/64/weather_sun_sunny_day-512.png" width = "34" height = "34">
+			<label class="switch">
+				<input type="checkbox" onclick="myFunction()">
+				<span class="slider round"></span>
+			</label>
+			<div id=image2>
+				<img src="https://cdn4.iconfinder.com/data/icons/muticon-simple-ui-part-7/32/moon_crescent_night_weather-512.png" width = "34" height = "34">
+			</div>
+		</div>
+	</div>
+	
+	<div id="main">
+			<button class="openbtn" onclick="openNav()">Menu</button>
+			<div class="topper">
+				<div class="text1">
+					<div> Placeholder Name</div>
+				</div>
+			</div>
+			<div class=bigbox>
+			<div class=middle>
+			<div class="upper">
+			
+				<div class="image1">
+					<img src="https://boostlabs.com/wp-content/uploads/2019/09/10-types-of-data-visualization-1.jpg" width ="100%" height="100%">
+				</div>
+			
+					<h2> Meet our team</h2>
+					<div class="teambutton">
+						<a href=Aboutus.html class="button">Meet team</button></a>
+				</div>
+			</div>
+			
+			
 
+		<div class="lower">
+			<div class="text2">
+				<h2>Welcome to "#", a user-friendly tool where you can upload your own dataset to analyze. This tool provides several different visualizations to analyze your own, or our sample dataset.</h2>
+			</div>
+			<div class="center">
+				<a href=Visualizations.html class="button">Go to Visualizations</button></a>
+			</div>
+			</div>
+		</div>
+	
+	</div>
 
- <!--The main css file(frontend should use this mainly) no use for it yet but might be handy to have in the github.-->
- <link rel="stylesheet" href="CSS/main.css">
+<script>
+function openNav() {
+  document.getElementById("mySidebar").style.width = "210px";
+  document.getElementById("main").style.marginLeft = "210px";
+}
 
-
-
-</head>
-
-<body>
-
-<nav>
-    <div class='logo'>
-        <h3><a href="#">DBL+ HTI </a></h3>
-    </div>
-        <ul>
-            <a class="active" href="#">Home</a>
-            <a href="About.html">About</a>
-            <a href="visualizer.html">Visualize</a>
-        </ul>
-</nav>
-
-<h1>Home</h1>
-
-<!-- If someone reads this please say whether we can use the paparse file, because i think
-it is beyond the scope of the course to write this ourselves, will ask this to sam next meeting-->
-
-
-<script src="https://d3js.org/d3.v6.min.js"></script>
-<script type="module" src="JS/TabMenu.js"></script>
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+	
+function myFunction() {
+	var element = document.body;
+	element.classList.toggle("dark-mode");
+		}	
+</script>
 
 </body>
 
-</html>
+</html>	
+
+
+
+
+
+
+
+
+
