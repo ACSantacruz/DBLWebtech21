@@ -11,6 +11,16 @@ body{
 
 }
 
+:root{
+	--colour_1: #c266ff;
+	--colour_2: #9900ff;
+	--colour_3: #6b00b3;
+	--grad: linear-gradient(var(--colour_3), var(--colour_1));
+	--grad_1: linear-gradient(var(--colour_3), var(--colour_2));
+	--grad_2: linear-gradient(var(--colour_2), var(--colour_1))
+
+}
+
 .sidebar {
 	height: 100%;
 	width: 0;
@@ -18,7 +28,7 @@ body{
 	z-index: 1;
 	top: 0;
 	left: 0;
-	background-color: #ccc;
+	background-image: var(--grad);
 	overflow-x: hidden;
 	transition: 0.5s;
 	padding-top: 60px;
