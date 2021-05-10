@@ -321,6 +321,9 @@ input:checked + .slider:before {
 	position:relative;
 	transition:width 0.8s;
 	transition-delay:-0.2s;
+	padding-top:1px;
+	padding-left:1px;
+	padding-bottom:1px;
 
 
 }
@@ -507,6 +510,8 @@ table {
 	font-family: sans-serif;
 	font-weight: bold;
 	font-size: 14px;
+	width: 100%;
+	height: 100%;
 }
 
 th {
@@ -528,5 +533,21 @@ ul{
 	font-family: "Quicksand", sans-serif;
 	font-size: 20px;
 	word-spacing: 40px;
+
+}
+
+div.scroll {
+
+	width: 100%;
+	height: 89%;
+	overflow-x: auto;
+	overflow-y: auto;
+	text-align: center;
+	padding: 1px;
+}
+
+h2 {
+	font-family: "Quicksand", sans-serif;
+	font-size: 20px;
 
 }

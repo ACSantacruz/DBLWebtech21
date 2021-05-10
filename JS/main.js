@@ -6,7 +6,6 @@ function loadFile() {
     if (file) {
         reader.readAsText(file);
     }
-    console.log("loading file.")
 }
 
 function parseFile(){
@@ -73,11 +72,6 @@ function createTable(data) {
         .data(function(d) { return keys.map(function(key) { return d[key] }) ; })
         .enter().append("td")
         .text(function(d) { return d; })
-
-
-
-
-    //Showing the columns in
-    console.log(keys)
+    
 }
 
