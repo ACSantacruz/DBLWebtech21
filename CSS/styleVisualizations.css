@@ -543,7 +543,7 @@ div.scroll {
 	overflow-x: auto;
 	overflow-y: auto;
 	text-align: center;
-	padding: 1px;
+	padding: 0px;
 }
 
 h2 {
