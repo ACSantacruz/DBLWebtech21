@@ -498,3 +498,35 @@ input:checked + .slider:before {
 	margin-top:-1%;
 	text-align:center;
 }
+
+table {
+	border-collapse: collapse;
+	border-radius: 5px;
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
+	overflow: hidden;
+	font-family: sans-serif;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+th {
+	text-align: left;
+	background-color: #ff1400;
+}
+
+th,
+td {
+	padding: 5px 10px;
+}
+
+tr:nth-child(even) {
+	background: #c1c1c1;
+}
+
+
+ul{
+	font-family: "Quicksand", sans-serif;
+	font-size: 20px;
+	word-spacing: 40px;
+
+}

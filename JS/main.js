@@ -6,6 +6,7 @@ function loadFile() {
     if (file) {
         reader.readAsText(file);
     }
+    console.log("loading file.")
 }
 
 function parseFile(){
@@ -65,7 +66,6 @@ function createTable(data) {
                 // CHANGE date TO WHAT YOU WANT TO BE SORTED!!!!!
                 //Works both with alphabet and numbers
                 return d3.descending(a.date, b.date);
-
         })
         .enter().append("tr")
         .attr("class", "row")
