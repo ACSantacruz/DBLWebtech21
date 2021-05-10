@@ -62,8 +62,9 @@ function createTable(data) {
         .selectAll("tr.row")
         .data(data)
         .sort(function(a, b) {
-                // CHANGE AREA TO WHAT YOU WANT TO BE SORTED!!!!!
-                return d3.descending(a.area, b.area);
+                // CHANGE date TO WHAT YOU WANT TO BE SORTED!!!!!
+                //Works both with alphabet and numbers
+                return d3.descending(a.date, b.date);
 
         })
         .enter().append("tr")
