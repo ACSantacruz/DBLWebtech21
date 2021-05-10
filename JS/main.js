@@ -16,6 +16,7 @@ function parseFile(){
         return d;
     });
     createTable(data);
+    createLineGraph(data);
 }
 
 function createTable(data) {
@@ -72,6 +73,9 @@ function createTable(data) {
         .data(function(d) { return keys.map(function(key) { return d[key] }) ; })
         .enter().append("td")
         .text(function(d) { return d; })
-    
 }
 
+
+function createLineGraph(data) {
+
+}

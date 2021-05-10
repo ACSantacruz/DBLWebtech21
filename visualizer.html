@@ -28,6 +28,7 @@
 	<script src="https://d3js.org/d3.v6.min.js"></script>
 	<script type="text/javascript" src="JS/main.js"></script>
 	<script data-require="d3@3.5.3" data-semver="3.5.3" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.js"></script>
+	<script src="https://d3js.org/d3-scale.v3.min.js"></script>
 
 	<div id="main">
 
@@ -55,6 +56,9 @@
 					<button id="buttonleftFull"  onclick = "FunctionleftFull()" ><img src="https://icon-library.com/images/expand-icon-png/expand-icon-png-3.jpg" height="35" width="35"></button>		
 					<button id="buttonleftSmall" onclick = "FunctionleftSmall()" ></button>
 				<div class="scroll">
+
+					<!-- IF STATEMENT BELOW TO SELECT WHETHER TO SHOW TABLE OR SOMETHING ELSE. -->
+
 				<table id="table"></table>
 				</div>
 			</div>
@@ -70,7 +74,10 @@
 					</div>
 				</div>
 					<button id="buttonrightFull"  onclick = "FunctionrightFull()" ><img src="https://icon-library.com/images/expand-icon-png/expand-icon-png-3.jpg" height="35" width="35"></button>		
-					<button id="buttonrightSmall" onclick = "FunctionrightSmall()" ></button>					
+					<button id="buttonrightSmall" onclick = "FunctionrightSmall()" ></button>
+				<div class="scroll">
+					 <div id="lineGraph"> <svg id="visualisation" width="100%" height="600"> </svg> </div>
+				</div>
 			</div>
 		
 			<div id="box3">
@@ -80,7 +87,7 @@
 			</div>
 	
 		</div>
-		</div>
+	</div>
 
 	
 
@@ -150,6 +157,7 @@ function FunctionrightFull(){
 	arrow.classList.toggle("Hide");
 }
 </script>
+
 
 </body>
 
