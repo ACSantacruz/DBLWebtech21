@@ -99,7 +99,6 @@ function createHeatMap(data) {
         var fromTitle = ["Unknown", "Employee", "Trader", "In House Lawyer", "Manager", "Managing Director", "Director", "Vice President", "President", "CEO"]
         var toTitle = ["Unknown", "Employee", "Trader", "In House Lawyer", "Manager", "Managing Director", "Director", "Vice President", "President", "CEO"]
 
-
     //This is to make the x- axis and to make the grid layout scalable But does not work
     var xAxis = d3.scaleBand()
         .range([ 0, width ])
