@@ -114,8 +114,8 @@ function createHeatMap(data) {
 
         //To colour in the heatmap, can someb
         var ColourHM = d3.scaleLinear()
-            .range(["#ffffff", "#ff0000", "#0023ff"])
-            .domain([-0.07,0.07])
+            .range(["#0041ff", "#ffffff", "#ffbe00", "#ff0000"])
+            .domain([-0.07, -0.03, 0.03, 0.07])
 
         // For When the mouse goes on a square
         var mouseHover = d3.select("#heatMap")
