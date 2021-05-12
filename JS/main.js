@@ -145,7 +145,9 @@ function createHeatMap(data) {
         var textDisplay = function(d) {
             mouseHover
                 //d3.mean(data.filter(d => d.fromJobtitle === "Employee"), (d => d.toJobtitle === "Employee"),d => d.sentiment)
-                .html("value: " + d.sentiment + " mean: " + d3.mean(data.filter(d => d.fromJobtitle === d.fromTitle), (d => d.toJobtitle === d.toTitle),d => d.sentiment))
+                .html("value: " + d.sentiment + " mean: " + d3.mean(data.filter(d => d.fromJobtitle == d.fromJobtitle,
+                    d.toJobtitle == d.toJobtitle),
+                        d => d.sentiment))
         }
 
 
