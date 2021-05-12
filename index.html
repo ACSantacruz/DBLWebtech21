@@ -120,7 +120,6 @@
 
 <script>
 
-var sidebarOpened = false;
 
 	const cookieBox = document.querySelector(".wrapper");
 	acceptBtn = cookieBox.querySelector(".buttons button");
@@ -136,6 +135,9 @@ var sidebarOpened = false;
 		let checkCookie = document.cookie.indexOf("CookieBy=Darkmode");
 		checkCookie != 1 ? cookieBox.classList.add("hide"): cookieBox.classList.remove("hide");
 
+var sidebarOpened = false;
+//check whether sidebar is opened or closed to determine whether the menu button
+//	should open or close it
 function checkMenu() {
 	if(sidebarOpened == false){
 		openNav();
@@ -144,6 +146,7 @@ function checkMenu() {
 	}
 }
 
+//open sidebar
 function openNav() {
 	
 	document.getElementById("mySidebar").style.width = "210px";
@@ -151,6 +154,7 @@ function openNav() {
 	sidebarOpened = true;
 }
 
+//close sidebar
 function closeNav() {
 	document.getElementById("mySidebar").style.width = "0";
 	document.getElementById("main").style.marginLeft= "0"
@@ -180,6 +184,7 @@ function myFunction() {
 </body>
 
 </html>	
+
 
 
 
