@@ -26,10 +26,10 @@
 	</div>
 
 
-	<script src="https://d3js.org/d3.v6.min.js"></script>
+	<!--<script src="https://d3js.org/d3.v6.min.js"></script>
 	<script type="text/javascript" src="JS/main.js"></script>
 	<script data-require="d3@3.5.3" data-semver="3.5.3" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.js"></script>
-	<script src="https://d3js.org/d3-scale.v3.min.js"></script>
+	<script src="https://d3js.org/d3-scale.v3.min.js"></script>-->
 
 	<div id="main">
 
@@ -123,16 +123,21 @@ function myFunction() {
 	var elementD = document.getElementById("buttonrightFull");
 	var element = document.body;
 	element.classList.toggle("dark-mode");
-	elementA.classList.toggle("dark");
-	elementB.classList.toggle("dark");
-	elementC.classList.toggle("dark");
-	elementD.classList.toggle("dark");
+
   if(tSwitcher.checked){
       localStorage.setItem('theme', 'dark-mode');
         element.classList.add('dark-mode');
+		elementA.classList.add("dark");
+		elementB.classList.add("dark");
+		elementC.classList.add("dark");
+		elementD.classList.add("dark");
     } else {
       localStorage.setItem('theme', '');
-        element.classList.remove('dark-mode');
+		element.classList.remove('dark-mode');
+		elementA.classList.remove("dark");
+		elementB.classList.remove("dark");
+		elementC.classList.remove("dark");
+		elementD.classList.remove("dark");
     }
 }
 
