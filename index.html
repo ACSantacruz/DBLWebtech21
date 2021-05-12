@@ -25,7 +25,7 @@
 	</div>
 	
 	<div id="main">
-			<button class="openbtn" onclick="openNav()">Menu</button>
+			<button class="openbtn" onclick="checkMenu()">Menu</button>
 			<div class="topper">
 				<div class="text1">
 					<div> Placeholder Name</div>
@@ -120,6 +120,8 @@
 
 <script>
 
+var sidebarOpened = false;
+
 	const cookieBox = document.querySelector(".wrapper");
 	acceptBtn = cookieBox.querySelector(".buttons button");
 	
@@ -134,15 +136,25 @@
 		let checkCookie = document.cookie.indexOf("CookieBy=Darkmode");
 		checkCookie != 1 ? cookieBox.classList.add("hide"): cookieBox.classList.remove("hide");
 
+function checkMenu() {
+	if(sidebarOpened == false){
+		openNav();
+	} else if(sidebarOpened == true){
+		closeNav();
+	}
+}
+
 function openNav() {
 	
 	document.getElementById("mySidebar").style.width = "210px";
 	document.getElementById("main").style.marginLeft = "210px";
+	sidebarOpened = true;
 }
 
 function closeNav() {
 	document.getElementById("mySidebar").style.width = "0";
-	document.getElementById("main").style.marginLeft= "0";
+	document.getElementById("main").style.marginLeft= "0"
+	sidebarOpened = false;
 }
 
 	var tSwitcher = document.getElementById('theme-switcher');
