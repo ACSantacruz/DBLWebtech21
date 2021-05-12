@@ -27,7 +27,7 @@
 	</div>
 	
 	<div id="main">
-		<button class="openbtn" onclick="openNav()">Menu</button>  
+		<button class="openbtn" onclick="checkMenu()">Menu</button>  
 		
 		<div class="topper">	
 			<div class="title">
@@ -85,14 +85,27 @@
 	</div>
 	
 <script>
+
+sidebarOpened = false;
+
+function checkMenu() {
+	if(sidebarOpened == false){
+		openNav();
+	} else if(sidebarOpened == true){
+		closeNav();
+	}
+}
+
 function openNav() {
-  document.getElementById("mySidebar").style.width = "210px";
-  document.getElementById("main").style.marginLeft = "210px";
+  	document.getElementById("mySidebar").style.width = "210px";
+ 	document.getElementById("main").style.marginLeft = "210px";
+  	sidebarOpened = true;
 }
 
 function closeNav() {
-  document.getElementById("mySidebar").style.width = "0";
-  document.getElementById("main").style.marginLeft= "0";
+ 	document.getElementById("mySidebar").style.width = "0";
+  	document.getElementById("main").style.marginLeft= "0";
+  	sidebarOpened = false;
 }
 	
 	var tSwitcher = document.getElementById('theme-switcher');
