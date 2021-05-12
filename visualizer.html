@@ -9,7 +9,7 @@
 	</head>
 
 	<div id="mySidebar" class="sidebar">
-		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">x</a>
 		<a href=index.html>Home</a>
 		<a href="#">Visualizations</a>		
 		<a href=About.html>About us</a>
@@ -33,7 +33,7 @@
 
 	<div id="main">
 
-		<button class="openbtn" onclick="openNav()">Menu</button>
+		<button class="openbtn" onclick="checkMenu()">Menu</button>
 		<input type="file" id="csvUploader" accept=".csv" onchange="loadFile()">
 		<div class="topper">	
 			<div class="title">
@@ -97,14 +97,27 @@
 
  
 <script>
+
+sidebarOpened = false;
+
+function checkMenu() {
+	if(sidebarOpened == false){
+		openNav();
+	} else if(sidebarOpened == true){
+		closeNav();
+	}
+}
+
 function openNav() {
 	document.getElementById("mySidebar").style.width = "210px";
 	document.getElementById("main").style.marginLeft = "210px";
+	sidebarOpened = true;
 }
 
 function closeNav() {
 	document.getElementById("mySidebar").style.width = "0";
 	document.getElementById("main").style.marginLeft= "0";
+	sidebarOpened = false;
 }
 
 	var tSwitcher = document.getElementById('theme-switcher');

@@ -8,7 +8,7 @@
 	</head>
 		
 	<div id="mySidebar" class="sidebar">
-		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">x</a>
 		<a href="#">Home</a>
 		<a href=visualizer.html>Visualizations</a>		
 		<a href=About.html>About us</a>
@@ -25,7 +25,7 @@
 	</div>
 	
 	<div id="main">
-			<button class="openbtn" onclick="openNav()">Menu</button>
+			<button class="openbtn" onclick="checkMenu()">Menu</button>
 			<div class="topper">
 				<div class="text1">
 					<div> Placeholder Name</div>
@@ -96,8 +96,8 @@
 							<a href=visualizer.html class="button">Go to Visualizations</a>
 						</div>
 					</div>
-					
-<!--
+				</div>
+
 				</div>
 					<div class="wrapper">
 						<img src="#" alt ="">
@@ -111,14 +111,16 @@
 						</div>
 					</div>
 			</div>
--->			
+
 			
 			
 			
 		</div>
-	
+	</div>
 
 <script>
+
+var sidebarOpened = false;
 
 	const cookieBox = document.querySelector(".wrapper");
 	acceptBtn = cookieBox.querySelector(".buttons button");
@@ -131,18 +133,28 @@
 			cookieBox.classList.add("hide")
 		}
 		}
-		<!--let checkCookie = document.cookie.indexOf("CookieBy=Darkmode");
-		<!--checkCookie != 1 ? cookieBox.classList.add("hide"): cookieBox.classList.remove("hide");
+		let checkCookie = document.cookie.indexOf("CookieBy=Darkmode");
+		checkCookie != 1 ? cookieBox.classList.add("hide"): cookieBox.classList.remove("hide");
+
+function checkMenu() {
+	if(sidebarOpened == false){
+		openNav();
+	} else if(sidebarOpened == true){
+		closeNav();
+	}
+}
 
 function openNav() {
 	
 	document.getElementById("mySidebar").style.width = "210px";
 	document.getElementById("main").style.marginLeft = "210px";
+	sidebarOpened = true;
 }
 
 function closeNav() {
 	document.getElementById("mySidebar").style.width = "0";
-	document.getElementById("main").style.marginLeft= "0";
+	document.getElementById("main").style.marginLeft= "0"
+	sidebarOpened = false;
 }
 
 	var tSwitcher = document.getElementById('theme-switcher');
