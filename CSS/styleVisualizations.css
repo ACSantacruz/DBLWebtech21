@@ -36,12 +36,12 @@ body{
 	padding: 8px 8px 8px 32px;
 	text-decoration: none;
 	font-size: 25px;
-	color: #818181;
+	color: #E0E0E0;
 	display: block;
 	transition: 0.3s;
 }
 .sidebar a:hover {
-	color: #f1f1f1;
+	color: black;
 }
 .sidebar .closebtn {
 	position: absolute;
@@ -53,14 +53,15 @@ body{
 .openbtn {
 	font-size: 20px;
 	cursor: pointer;
-	background-color: #111;
-	color: white;
+	color: #E0E0E0;
 	padding: 10px 15px;
-	border: none;
-	border-radius:8px;
+	background-image: var(--grad_1);
+	border:none;
+	border-radius:3px;
+	
 }
 .openbtn:hover {
-	background-color: #444;
+	color: black;
 }
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
@@ -99,7 +100,7 @@ body{
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background-color: grey;
+	background-color: #404040;
 	-webkit-transition: .4s;
 	transition: .4s;
 }
@@ -213,6 +214,7 @@ input:checked + .slider:before {
 	font-family: sans-serif;
 	border-radius: 4px;
 	cursor: pointer;
+	margin-left:10px;
 	
 }
 
@@ -228,6 +230,8 @@ input:checked + .slider:before {
 	margin-left:0.5%;
 	transition:width 0.8s;
 	transition-delay:-0.2s;
+	
+	
 }
 
 #box1.leftSmall{
@@ -321,9 +325,6 @@ input:checked + .slider:before {
 	position:relative;
 	transition:width 0.8s;
 	transition-delay:-0.2s;
-	padding-top:1px;
-	padding-left:1px;
-	padding-bottom:1px;
 
 
 }
@@ -373,15 +374,32 @@ input:checked + .slider:before {
 #buttonleftFull{
 	float:right;
 	margin:0;
-	padding:0px;
-	border-radius:8px;
 	background-color:#ffffff00 ;
-	padding:2.5px 2.5px 1px 2.5px;
-	border:1px solid white;
+	border:none;
 	position:relative;
+	height:30px;
+	width:30px;
+	background-image:url(https://pic.onlinewebfonts.com/svg/img_411379.png);
+	background-size:cover;
+	margin-top:2px;
+	margin-right:2px;
+}
 
+#buttonrightFull{
+	float:right;
+	margin:0;
+	background-color:#ffffff00 ;
+	border:none;
+	position:relative;
+	height:30px;
+	width:30px;
+	background-image:url(https://pic.onlinewebfonts.com/svg/img_411379.png);
+	background-size:cover;
+	margin-top:2px;
+	margin-right:2px;
 
 }
+
 #buttonleftSmall{
 	float:right;
 	margin:0;
@@ -389,26 +407,16 @@ input:checked + .slider:before {
 	display:inline-block;
 	border-radius:8px;
 	background-color:#ffffff00 ;
-	border:1px dashed white;
+	border:none;
 	top:45%;
 	position:relative;
 	height:35px;
 	width:35px;
 	clear:right;
+    background-image: url(https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-double-right-512.png);
+	background-size:cover;
 }
 
-#buttonrightFull{
-	float:right;
-	margin:0;
-	padding:0px;
-	border-radius:8px;
-	background-color:#ffffff00 ;
-	padding:2.5px 2.5px 1px 2.5px;
-	border:1px solid white;
-	position:relative;
-
-
-}
 #buttonrightSmall{
 	float:right;
 	margin:0;
@@ -416,7 +424,7 @@ input:checked + .slider:before {
 	display:inline-block;
 	border-radius:8px;
 	background-color:#ffffff00 ;
-	border:1px dashed white;
+	border:none;
 	top:45%;
 	position:relative;
 	height:35px;
@@ -424,11 +432,6 @@ input:checked + .slider:before {
 	clear:right;
 }
 
-#buttonleftSmall{
-    background-image: url(https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-double-right-512.png);
-	background-size:cover;
-	filter:invert(100%);
-}
 
 #buttonleftSmall.leftSmall{
 	background-image:url(https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-double-left-512.png);
@@ -451,7 +454,31 @@ input:checked + .slider:before {
 	visibility:hidden;
 }
 
+#buttonleftFull.leftFull{
+    background-image: url(http://cdn.onlinewebfonts.com/svg/img_448302.png);
+	background-size:cover;
+}
 
+#buttonrightFull.rightFull{
+    background-image: url(http://cdn.onlinewebfonts.com/svg/img_411394.png);
+	background-size:cover;
+}
+
+#buttonleftSmall.dark{
+	filter:invert(100%);
+}
+
+#buttonrightSmall.dark{
+	filter:invert(100%);
+}
+
+#buttonleftFull.dark{
+	filter:invert(100%);
+}
+
+#buttonrightFull.dark{
+	filter:invert(100%);
+}
 
 
 .bigbox{
@@ -501,6 +528,7 @@ input:checked + .slider:before {
 	margin-top:-1%;
 	text-align:center;
 }
+
 
 table {
 	border-collapse: collapse;

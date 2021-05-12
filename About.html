@@ -17,7 +17,7 @@
 		<div id=darkbox>
 			<img src="https://cdn4.iconfinder.com/data/icons/stroke-weather-and-forecast/64/weather_sun_sunny_day-512.png" width = "34" height = "34">
 			<label class="switch">
-				<input type="checkbox" onclick="myFunction()">
+				<input type="checkbox" onclick="myFunction()" id="theme-switcher">
 				<span class="slider round"></span>
 			</label>
 			<div id=image2>
@@ -95,10 +95,24 @@ function closeNav() {
   document.getElementById("main").style.marginLeft= "0";
 }
 	
+	var tSwitcher = document.getElementById('theme-switcher');
+	let element = document.body;
+	
+	let onpageLoad = localStorage.getItem("theme") || "";
+	if(onpageLoad != null && onpageLoad  == 'dark-mode'){
+	tSwitcher.checked = true;
+	} 
+	element.classList.add(onpageLoad);
+	
 function myFunction() {
-	var element = document.body;
-	element.classList.toggle("dark-mode");
-}	
+  if(tSwitcher.checked){
+      localStorage.setItem('theme', 'dark-mode');
+        element.classList.add('dark-mode');
+    } else {
+      localStorage.setItem('theme', '');
+        element.classList.remove('dark-mode');
+    }
+}
 </script>
 
 </body>

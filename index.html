@@ -15,7 +15,7 @@
 		<div id=darkbox>
 			<img src="https://cdn4.iconfinder.com/data/icons/stroke-weather-and-forecast/64/weather_sun_sunny_day-512.png" width = "34" height = "34">
 			<label class="switch">
-				<input type="checkbox" onclick="myFunction()">
+				<input type="checkbox" onclick="myFunction()" id="theme-switcher">
 				<span class="slider round"></span>
 			</label>
 			<div id=image2>
@@ -32,49 +32,136 @@
 				</div>
 			</div>
 			<div class=bigbox>
-			<div class=middle>
-			<div class="upper">
+				<div class=middle>
+				
+					<div class="side">
+						<div class=namediv>
+							<div class=name>
+								<div>Andres Baroja Sierra</div>
+							</div>
+							
+							<div class=line></div>
+							
+							<div class=name>
+								<div>Anouk van den Hoogen</div>						
+							</div>
+							
+							<div class=line></div>
+							
+							<div class=name>
+									<div>Kelvin Tran</div>	
+							</div>
+							
+							<div class=line></div>
+							
+							<div class=name>
+								<div>Myrna van 't Hof</div>	
+							</div>
+							
+							<div class=line></div>
+							
+							<div class=name>
+								<div>Marnick Tom</div>	
+							</div>
+							
+							<div class=line></div>
+						
+							<div class=name>
+								<div>Oleksandr Ivanenko</div>	
+							</div>
+							
+							<div class=line></div>
+						</div>
+						<div class="teambutton">
+							<a href=About.html class="button">Meet team</a>
+						</div>					
+					</div>
+					
+					<div class="upper">
 			
-				<div class="image1">
-					<img src="https://boostlabs.com/wp-content/uploads/2019/09/10-types-of-data-visualization-1.jpg" width ="100%" height="100%">
-				</div>
+						<div class="image1">
+							<img src="https://boostlabs.com/wp-content/uploads/2019/09/10-types-of-data-visualization-1.jpg" width ="100%" height="100%">
+						</div>
 			
-					<h2> Meet our team</h2>
-					<div class="teambutton">
-						<a href=About.html class="button">Meet team</button></a>
-				</div>
-			</div>
+					
+						
+					</div>
+				
 			
-			
+					<div class="lower">
+						<div class="text2">
+							<h2>Welcome to "#", a user-friendly tool where you can upload your own dataset to analyze. This tool provides several different visualizations to analyze your own, or our sample dataset.</h2>
+						</div>
+						<div class="visbutton">
+							<a href=visualizer.html class="button">Go to Visualizations</a>
+						</div>
+					</div>
+					
 
-		<div class="lower">
-			<div class="text2">
-				<h2>Welcome to "#", a user-friendly tool where you can upload your own dataset to analyze. This tool provides several different visualizations to analyze your own, or our sample dataset.</h2>
+				</div>
+					<div class="wrapper">
+						<img src="#" alt ="">
+						<div class="content">
+							<header>Cookie consent</header>
+								<p>This website uses cookies</p>
+							<div class="buttons">
+								<button class="item">I understand</button>
+								<a href="#" class="item">Learn More</a>
+							</div>
+						</div>
+					</div>
 			</div>
-			<div class="center">
-				<a href=Visualizer.html class="button">Go to Visualizations</button></a>
-			</div>
-			</div>
+			
+			
+			
+			
 		</div>
-			</div>
 	
-	</div>
 
 <script>
+
+	const cookieBox = document.querySelector(".wrapper");
+	acceptBtn = cookieBox.querySelector(".buttons button");
+	
+	acceptBtn.onclick = ()=>{
+		document.cookie = "CookieBy=Darkmode; max-age="+60*60*24;
+		if(document.cookie){
+			cookieBox.classList.add("hide")
+		}else{
+			cookieBox.classList.add("hide")
+		}
+		}
+		<!--let checkCookie = document.cookie.indexOf("CookieBy=Darkmode");
+		<!--checkCookie != 1 ? cookieBox.classList.add("hide"): cookieBox.classList.remove("hide");
+
 function openNav() {
-  document.getElementById("mySidebar").style.width = "210px";
-  document.getElementById("main").style.marginLeft = "210px";
+	document.getElementById("mySidebar").style.width = "210px";
+	document.getElementById("main").style.marginLeft = "210px";
 }
 
 function closeNav() {
-  document.getElementById("mySidebar").style.width = "0";
-  document.getElementById("main").style.marginLeft= "0";
+	document.getElementById("mySidebar").style.width = "0";
+	document.getElementById("main").style.marginLeft= "0";
 }
+
+	var tSwitcher = document.getElementById('theme-switcher');
+	let element = document.body;
+	
+	let onpageLoad = localStorage.getItem("theme") || "";
+	if(onpageLoad != null && onpageLoad  == 'dark-mode'){
+	tSwitcher.checked = true;
+	} 
+	element.classList.add(onpageLoad);
 	
 function myFunction() {
-	var element = document.body;
-	element.classList.toggle("dark-mode");
-		}	
+  if(tSwitcher.checked){
+      localStorage.setItem('theme', 'dark-mode');
+        element.classList.add('dark-mode');
+    } else {
+      localStorage.setItem('theme', '');
+        element.classList.remove('dark-mode');
+    }
+}
 </script>
 
 </body>

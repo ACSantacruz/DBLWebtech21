@@ -16,7 +16,7 @@
 		<div id=darkbox>
 			<img src="https://cdn4.iconfinder.com/data/icons/stroke-weather-and-forecast/64/weather_sun_sunny_day-512.png" width = "34" height = "34">
 			<label class="switch">
-				<input type="checkbox" onclick="myFunction()">
+				<input type="checkbox" onclick="myFunction()" id="theme-switcher">
 				<span class="slider round"></span>
 			</label>
 			<div id=image2>
@@ -54,7 +54,7 @@
 						<a href="#">Visualization 3</a>
 					</div>
 				</div>	
-					<button id="buttonleftFull"  onclick = "FunctionleftFull()" ><img src="https://icon-library.com/images/expand-icon-png/expand-icon-png-3.jpg" height="35" width="35"></button>		
+					<button id="buttonleftFull"  onclick = "FunctionleftFull()" ></button>		
 					<button id="buttonleftSmall" onclick = "FunctionleftSmall()" ></button>
 				<div class="scroll">
 
@@ -74,8 +74,8 @@
 						<a href="#">Visualization 3</a>
 					</div>
 				</div>
-					<button id="buttonrightFull"  onclick = "FunctionrightFull()" ><img src="https://icon-library.com/images/expand-icon-png/expand-icon-png-3.jpg" height="35" width="35"></button>		
-					<button id="buttonrightSmall" onclick = "FunctionrightSmall()" ></button>
+					<button id="buttonrightFull"  onclick = "FunctionrightFull()" ></button>		
+					<button id="buttonrightSmall" onclick = "FunctionrightSmall()" ></button>		
 				<div class="scroll">
 					<div id="heatMap">
 
@@ -98,22 +98,42 @@
  
 <script>
 function openNav() {
-	var elementA = document.getElementById("box1");
-	var elementB = document.getElementById("box2");
 	document.getElementById("mySidebar").style.width = "210px";
 	document.getElementById("main").style.marginLeft = "210px";
-	elementA.classList.toggle("dark");
-	elementB.classList.toggle("dark");
 }
 
 function closeNav() {
 	document.getElementById("mySidebar").style.width = "0";
 	document.getElementById("main").style.marginLeft= "0";
 }
+
+	var tSwitcher = document.getElementById('theme-switcher');
+	let element = document.body;
+	
+	let onpageLoad = localStorage.getItem("theme") || "";
+	if(onpageLoad != null && onpageLoad  == 'dark-mode'){
+	tSwitcher.checked = true;
+	} 
+	element.classList.add(onpageLoad);
 	
 function myFunction() {
+	var elementA = document.getElementById("buttonleftSmall");
+	var elementB = document.getElementById("buttonrightSmall");
+	var elementC = document.getElementById("buttonleftFull");
+	var elementD = document.getElementById("buttonrightFull");
 	var element = document.body;
 	element.classList.toggle("dark-mode");
+	elementA.classList.toggle("dark");
+	elementB.classList.toggle("dark");
+	elementC.classList.toggle("dark");
+	elementD.classList.toggle("dark");
+  if(tSwitcher.checked){
+      localStorage.setItem('theme', 'dark-mode');
+        element.classList.add('dark-mode');
+    } else {
+      localStorage.setItem('theme', '');
+        element.classList.remove('dark-mode');
+    }
 }
 
 function FunctionleftSmall(){
