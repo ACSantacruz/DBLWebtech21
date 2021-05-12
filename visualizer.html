@@ -29,7 +29,7 @@
 	<!--<script src="https://d3js.org/d3.v6.min.js"></script>
 	<script type="text/javascript" src="JS/main.js"></script>
 	<script data-require="d3@3.5.3" data-semver="3.5.3" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.js"></script>
-	<script src="https://d3js.org/d3-scale.v3.min.js"></script>-->
+	<script src="https://d3js.org/d3-scale.v3.min.js"></script> -->
 
 	<div id="main">
 
@@ -120,14 +120,23 @@ function closeNav() {
 	sidebarOpened = false;
 }
 
+	var elementA = document.getElementById("buttonleftSmall");
+	var elementB = document.getElementById("buttonrightSmall");
+	var elementC = document.getElementById("buttonleftFull");
+	var elementD = document.getElementById("buttonrightFull");
 	var tSwitcher = document.getElementById('theme-switcher');
 	let element = document.body;
 	
 	let onpageLoad = localStorage.getItem("theme") || "";
 	if(onpageLoad != null && onpageLoad  == 'dark-mode'){
 	tSwitcher.checked = true;
+		elementA.classList.add("dark");
+		elementB.classList.add("dark");
+		elementC.classList.add("dark");
+		elementD.classList.add("dark");
 	} 
 	element.classList.add(onpageLoad);
+
 	
 function myFunction() {
 	var elementA = document.getElementById("buttonleftSmall");
@@ -170,10 +179,12 @@ function FunctionleftFull(){
 	var element2 = document.getElementById("box2");
 	var element3 = document.getElementById("box3");
 	var arrow = document.getElementById("buttonleftSmall");
+	var arrowA = document.getElementById("buttonleftFull");
 	element1.classList.toggle("leftFull");
 	element2.classList.toggle("leftFull");
 	element3.classList.toggle("leftFull");
 	arrow.classList.toggle("Hide");
+	arrowA.classList.toggle("leftFull");
 }
 
 function FunctionrightSmall(){
@@ -192,10 +203,12 @@ function FunctionrightFull(){
 	var element2 = document.getElementById("box2");
 	var element3 = document.getElementById("box3");
 	var arrow = document.getElementById("buttonrightSmall");
+	var arrowA = document.getElementById("buttonrightFull");
 	element1.classList.toggle("rightFull");
 	element2.classList.toggle("rightFull");
 	element3.classList.toggle("rightFull");
 	arrow.classList.toggle("Hide");
+	arrowA.classList.toggle("rightFull");
 }
 </script>
 
