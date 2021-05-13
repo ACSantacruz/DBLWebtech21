@@ -1,5 +1,5 @@
 body{
-	background-image:url(https://static8.depositphotos.com/1154062/1071/v/600/depositphotos_10712741-stock-illustration-white-crumpled-abstract-background.jpg);
+	background-image: url("ImagesCSS/lightBG.png");
 	background-size:33.32% 55%;
 }
 
@@ -76,7 +76,7 @@ body{
 .dark-mode {
 	background-color: #202020;
 	color: #E0E0E0;
-	background-image: url("https://img.freepik.com/free-vector/black-dark-3d-low-poly-geometric-background_79145-393.jpg?size=626&ext=jpg");
+	background-image: url("ImagesCSS/blackBG.png");
 	background-size: 33.222% 35%;
 
 	
