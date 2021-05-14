@@ -39,6 +39,7 @@ body{
 	color: #E0E0E0;
 	display: block;
 	transition: 0.3s;
+	font-family: Arial, Helvetica, sans-serif;	
 }
 .sidebar a:hover {
 	color: black;
@@ -507,7 +508,7 @@ input:checked + .slider:before {
 	text-align:center;
 	font-size:50px;
 	margin: 0;
-
+	font-family: "Lucida Console", "Courier New", monospace;
 }
 
 
@@ -574,7 +575,7 @@ div.scroll {
 }
 
 h2 {
-	font-family: "Quicksand", sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
 	font-size: 20px;
 
 }

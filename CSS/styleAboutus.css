@@ -39,6 +39,7 @@ body{
 	color: #E0E0E0;
 	display: block;
 	transition: 0.3s;
+	font-family: Arial, Helvetica, sans-serif;	
 
 }
 .sidebar a:hover {
@@ -180,6 +181,7 @@ input:checked + .slider:before {
 	text-align:center;
 	font-size:50px;
 	margin: 0;
+	font-family: "Lucida Console", "Courier New", monospace;
 
 }
 
@@ -243,6 +245,8 @@ input:checked + .slider:before {
 	left: 50%;
 	-ms-transform: translate(-50%);
 	transform: translate(-50%);
+	font-family: Arial, Helvetica, sans-serif;
+	text-align:center;
 }
 
 #box_main2{
