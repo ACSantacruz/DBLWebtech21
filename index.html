@@ -121,21 +121,6 @@
 
 <script>
 
-
-	const cookieBox = document.querySelector(".wrapper");
-	acceptBtn = cookieBox.querySelector(".buttons button");
-	
-	acceptBtn.onclick = ()=>{
-		document.cookie = "Cookie=Darkmode; max-age="+60; //set cookie popup for 24 hours
-		if(document.cookie){
-			cookieBox.classList.add("hide")
-		}else{
-			alert("Cookies can't be set, please check your settings");
-		}
-		}
-		let checkCookie = document.cookie.indexOf("Cookie=Darkmode");
-		checkCookie != -1 ? cookieBox.classList.add("hide"): cookieBox.classList.remove("hide");
-
 var sidebarOpened = false;
 //check whether sidebar is opened or closed to determine whether the menu button
 //	should open or close it
@@ -162,17 +147,40 @@ function closeNav() {
 	sidebarOpened = false;
 }
 
-	var tSwitcher = document.getElementById('theme-switcher');
-	let element = document.body;
+	const cookieBox = document.querySelector(".wrapper");
+	acceptBtn = cookieBox.querySelector(".buttons button");
 	
-	let onpageLoad = localStorage.getItem("theme") || "";
-	if(onpageLoad != null && onpageLoad  == 'dark-mode'){
-	tSwitcher.checked = true;
-	} 
-	element.classList.add(onpageLoad);
-	
+	acceptBtn.onclick = ()=>{
+		document.cookie = "Cookie=Darkmode; max-age="+60*60*24; //set cookie popup for 24 hours
+		if(document.cookie){
+			cookieBox.classList.add("hide")
+		}else{
+			alert("Cookies can't be set, please check your settings");
+
+		}
+		}
+		let checkCookie = document.cookie.indexOf("Cookie=Darkmode");
+		var tSwitcher = document.getElementById('theme-switcher');
+		let element = document.body;
+		let onpageLoad = localStorage.getItem("theme") || "";
+		
+		if(checkCookie != -1){ 
+			if(onpageLoad != null && onpageLoad  == 'dark-mode'){
+				var tSwitcher = document.getElementById('theme-switcher');
+				tSwitcher.checked = true;
+				cookieBox.classList.add("hide");
+				element.classList.add(onpageLoad);
+			}else if(onpageLoad != null && onpageLoad  != 'dark-mode'){
+				var tSwitcher = document.getElementById('theme-switcher');
+				tSwitcher.checked = false;
+				cookieBox.classList.add("hide");
+				element.classList.add(onpageLoad);
+			}}else{
+		cookieBox.classList.remove("hide");
+		}
+
 function myFunction() {
-  if(tSwitcher.checked){
+  	if(tSwitcher.checked){
       localStorage.setItem('theme', 'dark-mode');
         element.classList.add('dark-mode');
     } else {
