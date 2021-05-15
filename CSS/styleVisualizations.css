@@ -380,12 +380,11 @@ input:checked + .slider:before {
 #buttonleftFull{
 	float:right;
 	margin:0;
-	background-color:#ffffff00 ;
 	border:none;
 	position:relative;
 	height:30px;
 	width:30px;
-	background-image:url(https://pic.onlinewebfonts.com/svg/img_411379.png);
+	background-image:url("ImagesCSS/Expand.png");
 	background-size:cover;
 	margin-top:2px;
 	margin-right:2px;
@@ -399,7 +398,7 @@ input:checked + .slider:before {
 	position:relative;
 	height:30px;
 	width:30px;
-	background-image:url(https://pic.onlinewebfonts.com/svg/img_411379.png);
+	background-image:url("ImagesCSS/Expand.png");
 	background-size:cover;
 	margin-top:2px;
 	margin-right:2px;
@@ -410,7 +409,6 @@ input:checked + .slider:before {
 	float:right;
 	margin:0;
 	padding:0px;
-	display:inline-block;
 	border-radius:8px;
 	background-color:#ffffff00 ;
 	border:none;
@@ -419,7 +417,7 @@ input:checked + .slider:before {
 	height:35px;
 	width:35px;
 	clear:right;
-    background-image: url(https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-double-right-512.png);
+	background-image:url("ImagesCSS/ArrowRight.png");
 	background-size:cover;
 }
 
@@ -427,7 +425,6 @@ input:checked + .slider:before {
 	float:right;
 	margin:0;
 	padding:0px;
-	display:inline-block;
 	border-radius:8px;
 	background-color:#ffffff00 ;
 	border:none;
@@ -436,24 +433,21 @@ input:checked + .slider:before {
 	height:35px;
 	width:35px;
 	clear:right;
+	background-image:url("ImagesCSS/ArrowRight.png");
+	background-size:cover;
 }
 
 
 #buttonleftSmall.leftSmall{
-	background-image:url(https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-double-left-512.png);
+	background-image:url("ImagesCSS/ArrowLeft.png");
 	background-size:cover;
 }
 #buttonleftSmall.Hide{
 	visibility:hidden;
 }
 
-#buttonrightSmall{
-    background-image: url(https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-double-right-512.png);
-	background-size:cover;
-}
-
 #buttonrightSmall.rightSmall{
-	background-image:url(https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-double-left-512.png);
+	background-image:url("ImagesCSS/ArrowLeft.png");
 	background-size:cover;
 }
 #buttonrightSmall.Hide{
@@ -461,12 +455,12 @@ input:checked + .slider:before {
 }
 
 #buttonleftFull.leftFull{
-    background-image: url(http://cdn.onlinewebfonts.com/svg/img_448302.png);
+	background-image:url("ImagesCSS/Shrink.png");
 	background-size:cover;
 }
 
 #buttonrightFull.rightFull{
-    background-image: url(http://cdn.onlinewebfonts.com/svg/img_411394.png);
+	background-image:url("ImagesCSS/Shrink.png");
 	background-size:cover;
 }
 
