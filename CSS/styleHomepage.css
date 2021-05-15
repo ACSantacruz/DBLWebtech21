@@ -73,7 +73,7 @@ body{
 	.sidebar a {font-size: 18px;}
 }
 .button1{
-	background-color: #111;
+	background-image: var(--grad_1);
 	border: none;
 	color: white;
 	padding: 15px 25px;
@@ -88,11 +88,11 @@ body{
 	
 }
 .button1:hover {
-	background-color: #444;
+	color: black;
 }
 
 .button2{
-	background-color: #111;
+	background-image: var(--grad_1);
 	border: none;
 	color: white;
 	padding: 15px 25px;
@@ -106,7 +106,7 @@ body{
 	width:8vw;
 }
 .button2:hover {
-	background-color: #444;
+	color: black;
 }
 
 
@@ -181,9 +181,10 @@ input:checked + .slider:before {
 	border: 5px solid transparent;
 	border-image: var(--grad_1) 5 round;
 	height: 50%;
-	width:72%;
+	width:63%;
 	position: relative;
-	
+	float:right;
+	margin-right:30px;
 
 }
 
@@ -192,8 +193,10 @@ input:checked + .slider:before {
 	border-image: var(--grad_2) 5 round;
 	height: 47%;
 	position: relative;
-	width:72%;
+	width:63%;
 	margin-top:1%;
+	float:right;
+	margin-right:30px;
 	
 }
 
@@ -201,9 +204,10 @@ input:checked + .slider:before {
 	border: 5px solid transparent;
 	border-image: var(--grad_2) 5 round;	
 	position:relative;
-	width:25%;
+	width:24%;
 	height:100%;
 	float:right;
+	
 	
 }
 
@@ -244,7 +248,7 @@ input:checked + .slider:before {
 
 .text2{
 	text-align:center;
-	padding:0px 10px 10px 10px;
+	padding:0px 5px 10px 5px;
 	font-family: Arial, Helvetica, sans-serif;
 }
 
