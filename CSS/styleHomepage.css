@@ -72,7 +72,7 @@ body{
 	.sidebar {padding-top: 15px;}
 	.sidebar a {font-size: 18px;}
 }
-.button{
+.button1{
 	background-color: #111;
 	border: none;
 	color: white;
@@ -83,17 +83,30 @@ body{
 	font-size: 1.1vw;
 	cursor: pointer;
 	border-radius: 3px;
-	box-shadow: 0 8px #888;
+	font-family: Arial, Helvetica, sans-serif;
+	width:11vw;
+	
+}
+.button1:hover {
+	background-color: #444;
+}
+
+.button2{
+	background-color: #111;
+	border: none;
+	color: white;
+	padding: 15px 25px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 1.1vw;
+	cursor: pointer;
+	border-radius: 3px;
 	font-family: Arial, Helvetica, sans-serif;
 	width:8vw;
 }
-.button:hover {
+.button2:hover {
 	background-color: #444;
-}
-.button:active {
-	background-color: #111;
-	box-shadow: 0 3px #666;
-	transform: translateY(4px);
 }
 
 
@@ -163,17 +176,6 @@ input:checked + .slider:before {
 	border-radius: 50%;
 }
 
-.teambutton{
-	
-	position: absolute;
-	left: 50%;
-	-ms-transform: translate(-50%);
-	transform: translate(-50%);
-	bottom:5%;
-	display: inline-block;
-	margin:0;
-	
-}
 
 .upper{
 	border: 5px solid transparent;
@@ -211,8 +213,21 @@ input:checked + .slider:before {
 	left: 50%;
 	-ms-transform: translate(-50%);
 	transform: translate(-50%);
-	bottom:5%;
 	font-family: Arial, Helvetica, sans-serif;
+	bottom:5%;
+	
+}
+
+.teambutton{
+	
+	position: absolute;
+	left: 50%;
+	-ms-transform: translate(-50%);
+	transform: translate(-50%);
+	bottom:3%;
+	display: inline-block;
+	font-family: Arial, Helvetica, sans-serif;
+	margin:0;
 	
 }
 
@@ -229,7 +244,7 @@ input:checked + .slider:before {
 
 .text2{
 	text-align:center;
-	padding:10px 10px 10px 10px;
+	padding:0px 10px 10px 10px;
 	font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -307,7 +322,7 @@ input:checked + .slider:before {
 }
 
 .name{
-	margin-bottom:5%;
+	margin-bottom:7%;
 	width:80%;
 	text-align:center;
 	font-size:1.5vw;
@@ -317,7 +332,7 @@ input:checked + .slider:before {
 	-ms-transform: translate(-50%);
 	transform: translate(-50%);
 	position:relative;
-	margin-top:5%;
+	margin-top:7%;
 
 }
 
@@ -390,7 +405,7 @@ input:checked + .slider:before {
 	font-size:16px;
 	font-weight:500;
 	cursor:pointer; 
-	border-radius:5px;
+	border-radius:3px;
 
 }
 .buttons a{

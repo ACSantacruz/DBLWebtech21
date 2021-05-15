@@ -159,7 +159,7 @@ input:checked + .slider:before {
 	color:white;
 	padding:14px;
 	font-size:18px;
-	border-radius:6px;
+	border-radius:3px;
 	border: none;
 }
 

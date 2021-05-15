@@ -73,7 +73,7 @@
 							<div class=line></div>
 						</div>
 						<div class="teambutton">
-							<a href=About.html class="button">Meet team</a>
+							<a href=About.html class="button2">Meet team</a>
 						</div>					
 					</div>
 					
@@ -95,7 +95,7 @@
 								technology.</h2>
 						</div>
 						<div class="visbutton">
-							<a href=visualizer.html class="button">Go to Visualizations</a>
+							<a href=visualizer.html class="button1">Go to Visualizations</a>
 						</div>
 					</div>
 				</div>
@@ -126,7 +126,7 @@
 	acceptBtn = cookieBox.querySelector(".buttons button");
 	
 	acceptBtn.onclick = ()=>{
-		document.cookie = "Cookie=Darkmode; max-age="+60*60*24; //set cookie popup for 24 hours
+		document.cookie = "Cookie=Darkmode; max-age="+60; //set cookie popup for 24 hours
 		if(document.cookie){
 			cookieBox.classList.add("hide")
 		}else{
