@@ -18,6 +18,7 @@ function parseFile(){
     fileInfo(data)
     createTable(data);
     createHeatMap(data);
+    //createUniqueGraph(data); unfinished
 }
 
 function createTable(data) {
@@ -159,6 +160,124 @@ function createHeatMap(data) {
                 .style("stroke", "none")
                 .style("opacity", 0.8)
         }
+
+// A title for the visualization, maybe do this for all vis?
+    svg.append("text")
+        .style("font-size", "24px")
+        .style("font-family", "Verdana")
+        .text("Sentiment Heatmap");
+
+        //Adding the squares
+        svg.selectAll()
+            .data(data, function(d) {
+                return d.fromJobtitle+':'+d.toJobtitle;
+            })
+            .enter()
+
+            .append("rect")
+            .attr("x", function(d) {
+                return xAxis(d.fromJobtitle)
+            })
+            .attr("y", function(d) {
+                return yAxis(d.toJobtitle)
+            })
+
+            .attr("rx", 8)
+            .attr("ry", 8)
+
+            .style("stroke-width", 3)
+            .style("opacity", 0.9)
+
+            .attr("width", xAxis.bandwidth() )
+            .attr("height", yAxis.bandwidth() )
+
+            //Using the colour heatmap function made earlier to give the squares "heat"
+            .style("fill", function(d) {
+                return ColourHM(d.sentiment)
+            })
+
+            //d3 built in mouse interactivity stuff
+            .on("mouseover", mouseOnSquare)
+            .on("mousemove", textDisplay)
+            .on("mouseleave", mouseOffSquare);
+}
+
+function createUniqueGraph(data) {//https://observablehq.com/@d3/force-directed-graph
+    
+    // Using the standard Size thing from JS does anyone know how to convert this to scale to the size of the boxes>?
+    var margin = {top: 80, right: 25, bottom: 30, left: 40},
+        width = 600 - margin.left - margin.right,
+        height = 600 - margin.top - margin.bottom;
+
+    //const links = data.links.map(d => Object.create(d));
+    /*
+    All examples I found use a json where the "links" is formatted like:
+    {"source": "Name", "target": "Name2", "value" : n}
+    In our case this would be
+    {"fromId": "n", "toId": m, "sentiment": "o"}. Idk how to do the d3.csv.parse stuff tho
+    */
+    //const nodes = data.nodes.map(d => Object.create(d));
+    /*
+    Same as above, in this case
+    {"id": "Name", "group": n}
+    For us
+    {"fromId": "n", "jobTitle": "fromJobtitle"}
+    The group given here is used for the coloring
+    */
+
+    const simulation = d3.forceSimulation(nodes)
+        /*.force("link", d3.forceLink(links).id(d => d.id))
+        this force pushes linked elements a fixed distance apart, but it requires an *array*
+        of links with a source and a target element (see above).
+
+        It is *necessary* for the force-link diagram.
+        */
+        .force("charge", d3.forceManyBody()) //creates a repelling force between nodes
+        .force("center", d3.forceCenter(width / 2, height / 2)); //sets the center of the forces to the center of the visualization
+    
+    var svg = d3.select("#heatMap")
+        .attr("viewBox", [0,0, width, height]);
+
+    const link = svg.append("g")
+            .attr("stroke", "#999")
+            .attr("stroke-opacity", 0.6)
+        .selectAll("line")
+        .data(links)//links, see above
+        .join("line")
+            .attr("stroke-width", d => Math.sqrt(d.value))/* in the example this value is already set in the json,
+                but in our case could be absolute value of sentiment, or freq. of interactions (calculating this
+                second one seems complicated)
+                */
+
+    const node = svg.append("g")
+            .attr("stroke", "#fff")
+            .attr("stroke-width", 1.5)
+        .selectAll("circle")
+        .data(nodes)//romId, see fabove
+        .join("circle")
+            .attr("r", 5)
+            .attr("fill", color)
+
+    node.append("title")
+        .text(d => d.fromId);
+
+    simulation.on("tick", () => {//the simulation refreshes every tick, same principle as clock circuits from 2IC30
+        link
+            .attr("x1", d => d.source.x)//fromId
+            .attr("y1", d => d.source.y)
+            .attr("x2", d => d.target.x)//toId
+            .attr("y2", d => d.target.y);
+        
+        node
+            .attr("cx", d => d.x)
+            .attr("cy", d => d.y);
+    });
+
+    invalidation.then(() => simulation.stop());
+
+    var scale = d3.scaleOrdinal(d3.schemeTableau10);
+    var color = scale(d.fromJobtitle);//job title isn't a number tho so this would raise an error
+    
 
 // A title for the visualization, maybe do this for all vis?
     svg.append("text")
