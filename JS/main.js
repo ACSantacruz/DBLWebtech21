@@ -209,6 +209,15 @@ function createUniqueGraph(data) {//https://observablehq.com/@d3/force-directed-
         width = 600 - margin.left - margin.right,
         height = 600 - margin.top - margin.bottom;
 
+
+    const links;
+    links = d3.csv("enron-clean.csv", function(data) {
+        
+    });
+
+
+    const nodes;
+
     //const links = data.links.map(d => Object.create(d));
     /*
     All examples I found use a json where the "links" is formatted like:
@@ -321,7 +330,7 @@ function createUniqueGraph(data) {//https://observablehq.com/@d3/force-directed-
 }
 
 function fileInfo(data){
-//Does not work for some reason?
+   //Does not work for some reason?
     if (d3.keys(data[0]) == ["date", "fromId", "fromEmail", "fromJobtitle", "toId", "toEmail", "toJobtitle", "messageType", "sentiment"] ) {
 
         var svg = d3.select("#box3")
