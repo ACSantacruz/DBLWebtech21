@@ -205,21 +205,6 @@ input:checked + .slider:before {
 	background-color: #3e8e41;
 }
 
-.uploadbutton{
-	display: inline-block;
-	background-color: black;
-	color: white;
-	padding: 5px;
-	font-family: sans-serif;
-	border-radius: 4px;
-	cursor: pointer;
-	margin-left:10px;
-	
-}
-
-.uploadbutton:hover{
-	background-color: #444;
-}
 #box1{
 	height: 100%;
 	width:40%;
@@ -651,4 +636,34 @@ h2 {
 
 .buttons button:hover{
 	background-color: #444;
+}
+
+
+
+input[type="file"] { 
+	z-index: -1;
+	position: absolute;
+	opacity: 0;
+  }
+  
+  input:focus + label {
+	outline: 2px solid;
+  }
+
+  .uploadbutton {
+	font-size: 20px;
+	cursor: pointer;
+	color: #E0E0E0;
+	padding: 10px 15px;
+	background-image: var(--grad_1);
+	border:none;
+	border-radius:3px;
+	display: inline-block;
+	cursor: pointer;
+	position:relative;
+	font-family: Arial, Helvetica, sans-serif;	
+	
+}
+.uploadbutton:hover {
+	color: black;
 }

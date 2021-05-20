@@ -35,7 +35,11 @@
 	<div id="main">
 
 		<button class="openbtn" onclick="checkMenu()">Menu</button>
-		<input type="file" id="csvUploader" accept=".csv" onchange="loadFile()">
+		
+		<input type="file" id="csvUploader" accept=".csv" onchange="loadFile()" hidden/>
+			<label class="uploadbutton"for="csvUploader">Upload file</label>
+		<!--	<div id="file-upload-filename"></div> -->
+		
 		<div class="topper">	
 			<div class="title">
 				<div>Visualizations </div>
@@ -252,6 +256,16 @@ function FunctionrightFull(){
 	element3.classList.toggle("rightFull");
 	arrow.classList.toggle("Hide");
 	arrowA.classList.toggle("rightFull");
+}
+
+
+var input = document.getElementById( 'csvUploader' );
+var infoArea = document.getElementById( 'file-upload-filename' );
+input.addEventListener( 'change', showFileName );
+function showFileName( event ) {
+  var input = event.srcElement;
+  var fileName = input.files[0].name;
+  infoArea.textContent = 'File name: ' + fileName;
 }
 </script>
 
