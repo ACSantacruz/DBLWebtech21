@@ -7,7 +7,7 @@ www.marnicktom.nl
 # Features
 Currently the features are:
 
--A Layout of te website with different pages.
+-A Layout of the website with different pages.
 
 -An interactive visualisation (heatmap) displaying the sentiment in emails between job titles.
 
