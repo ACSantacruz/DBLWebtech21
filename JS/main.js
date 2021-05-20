@@ -335,7 +335,7 @@ function fileInfo(data){
 
         var svg = d3.select("#box3")
         svg.append("text")
-            .text("The file is in the correct format."+ + d3.keys(data[0]));
+            .text("The file is in the correct format." + d3.keys(data[0]));
     } else {
         console.log(d3.keys(data[0]) )
         console.log(["date", "fromId", "fromEmail", "fromJobtitle", "toId", "toEmail", "toJobtitle", "messageType", "sentiment"])
