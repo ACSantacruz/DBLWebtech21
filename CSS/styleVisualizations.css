@@ -164,7 +164,7 @@ input:checked + .slider:before {
 }
 
 .dropbutton:hover {
-	background-color: #444;
+	color: black;
 }
 
 .dropdown {
@@ -365,6 +365,7 @@ input:checked + .slider:before {
 #buttonleftFull{
 	float:right;
 	margin:0;
+	background-color:#ffffff00 ;
 	border:none;
 	position:relative;
 	height:30px;
@@ -373,6 +374,7 @@ input:checked + .slider:before {
 	background-size:cover;
 	margin-top:2px;
 	margin-right:2px;
+	cursor: pointer;
 }
 
 #buttonrightFull{
@@ -387,6 +389,7 @@ input:checked + .slider:before {
 	background-size:cover;
 	margin-top:2px;
 	margin-right:2px;
+	cursor: pointer;
 
 }
 
@@ -404,6 +407,7 @@ input:checked + .slider:before {
 	clear:right;
 	background-image:url("ImagesCSS/ArrowRight.png");
 	background-size:cover;
+	cursor: pointer;
 }
 
 #buttonrightSmall{
@@ -420,6 +424,7 @@ input:checked + .slider:before {
 	clear:right;
 	background-image:url("ImagesCSS/ArrowRight.png");
 	background-size:cover;
+	cursor: pointer;
 }
 
 
