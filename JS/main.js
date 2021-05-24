@@ -19,6 +19,7 @@ function parseFile(){
     createTable(data);
     createHeatMap(data);
     //createUniqueGraph(data); unfinished
+    //createUGTest(data);
 }
 
 function createTable(data) {
@@ -212,11 +213,9 @@ function createUniqueGraph(data) {//https://observablehq.com/@d3/force-directed-
         height = 600 - margin.top - margin.bottom;
 
 
-    const links;
-    links = d3.csv("enron-clean.csv", function(data) {
+    const links = d3.csv("enron-clean.csv", function(data) {
 
     });
-
 
     const nodes;
 
@@ -348,3 +347,13 @@ function fileInfo(data){
     }
 
 }
+
+/* function createUGTest(data){
+
+    const links = d3.csv(data, function(data) {
+        for (var i = 0; i < data.length; i++) {
+            console.log(data[i].fromId);
+            console.log(data[i].toId);
+        }
+    });
+} */
