@@ -345,9 +345,22 @@ function createUniqueness(data) {
         .attr("height", height + margin.top + margin.bottom)
         .style("background-color", "white")
         .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        .attr("viewBox", [0, 0, width, height]);
 
-    
+
+
+    var nodes = svg.selectAll()
+        .data(data, function(d) {
+            return d.fromId;
+        })
+
+    var node = svg.append("g")
+        .attr("stroke", "#ff0000")
+        .attr("stroke-width", 1.5)
+        .selectAll("circle")
+        .data(nodes)
+        .join("circle")
+
 }
 
 function fileInfo(data){
