@@ -18,6 +18,7 @@ function parseFile(){
     fileInfo(data)
     createTable(data);
     createHeatMap(data);
+    createUniqueness(data);
     //createUniqueGraph(data); unfinished
     //createUGTest(data);
 }
@@ -330,6 +331,24 @@ function createUniqueGraph(data) {//https://observablehq.com/@d3/force-directed-
             .on("mouseleave", mouseOffSquare);
 }
 */
+
+function createUniqueness(data) {
+    var margin = {top: 80, right: 25, bottom: 30, left: 40},
+        width = 600 - margin.left - margin.right,
+        height = 600 - margin.top - margin.bottom;
+
+
+    //Printing the field, still using the margin set above.
+    var svg = d3.select("#Uniqueness")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .style("background-color", "white")
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    
+}
 
 function fileInfo(data){
    //Does not work for some reason?
