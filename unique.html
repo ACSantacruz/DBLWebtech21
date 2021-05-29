@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
+
+
+<!--<script>
+    getData();
+
+    async function getData() {
+        const response = await fetch('enron-v1.csv');
+        const data = await response.text();
+
+        const table = data.split('\n').slice(1);
+        table.forEach(row => {
+            const col = row.split(',');
+            const sender = col[1];
+            const receiver = col[4];
+        });
+
+    }
+
+    
+</script>-->
+
+
+<div id="adjacency"></div><!--cpde based https://www.d3-graph-gallery.com/graph/heatmap_basic.html -->
+<script>
+    //setting dimensions
+var margin = {top: 30, right: 30, bottom: 30, left: 30},
+    width = 450 - margin.left - margin.right,
+    height = 450 - margin.top - margin.bottom;
+
+var svg = d3.select("#adjacency")
+.append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+.append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+//Labels of senders and receivers
+var xSend = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
+"21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40",
+"41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60",
+"61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80",
+"81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100",
+"101", "102", "103", "104", "105", "106", "107", "108", "109", "110", "111", "112", "113", "114", "115", "116", "117",
+"118", "119", "120", "121", "122", "123", "124", "125", "126", "127", "128", "129", "130", "131", "132", "133", "134",
+"135", "136", "137", "138", "139", "140", "141", "142", "143", "144", "145", "146", "147", "148", "149"]
+//(x axis)
+var yRec = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
+"21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40",
+"41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60",
+"61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80",
+"81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100",
+"101", "102", "103", "104", "105", "106", "107", "108", "109", "110", "111", "112", "113", "114", "115", "116", "117",
+"118", "119", "120", "121", "122", "123", "124", "125", "126", "127", "128", "129", "130", "131", "132", "133", "134",
+"135", "136", "137", "138", "139", "140", "141", "142", "143", "144", "145", "146", "147", "148", "149"]
+//(y axis)
+
+//Build X scale and axis
+var x = d3.scaleBand()
+    .range([ 0, width ])
+    .domain(xSend)
+    .padding(0.01);
+svg.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x))
+
+// Build X scales and axis:
+var y = d3.scaleBand()
+    .range([ height, 0 ])
+    .domain(yRec)
+    .padding(0.01);
+svg.append("g")
+    .call(d3.axisLeft(y));
+
+//Build color scale -> for negativity of answer?
+var myColor = d3.scaleLinear()
+    .range(["red","blue"])
+    .domain([-100, 100])
+
+d3.csv("./enron-clean.csv", function(data) {
+
+    svg.selectAll()
+        .data(data, function(d) {return d.fromID+':'+d.sentiment;})
+        .enter()
+        .append("rect")
+        .attr("x", function(d) { return x(d.fromID) })
+        .attr("y", function(d) { return y(d.toID) })
+        .attr("width", x.bandwidth() )
+        .attr("height", y.bandwidth() )
+        .style("fill", function(d) { return myColor(d.sentiment)} )
+//add opacity to show frequency of messages?
+
+})
+
+</script>
+</html>

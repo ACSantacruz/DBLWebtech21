@@ -1,41 +1,205 @@
-<!doctype html>
-<html class="no-js" lang="">
+<!DOCTYPE html>
 
-<head>
- <meta charset="utf-8">
- <title>DBL+ HTI</title>
- <meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
+	
+	<head>
+		<title> DBL HTI + Webtech </title>
+		<link rel=stylesheet href=CSS/styleHomepage.css>
+	</head>
+		
+	<div id="mySidebar" class="sidebar">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">x</a>
+		<a href="">Home</a>
+		<a href=visualizer.html>Visualizations</a>		
+		<a href=About.html>About us</a>
+		<div id=darkbox>
+			<img src="Images/lightMode.png" width = "34" height = "34">
+			<label class="switch">
+				<input type="checkbox" onclick="myFunction()" id="theme-switcher">
+				<span class="slider round"></span>
+			</label>
+			<div id=image2>
+				<img src="Images/darkMode.png" width = "34" height = "34">
+			</div>
+		</div>
+	</div>
+	
+	<div id="main">
+			<button class="openbtn" onclick="checkMenu()">Menu</button>
+			<div class="topper">
+				<div class="text1">
+					<div>Group 27 BD</div>
+				</div>
+			</div>
+			<div class=bigbox>
+				<div class=middle>
+				
+					<div class="side">
+						<div class=namediv>
+							<div class=name>
+								<div>Andres Baroja Sierra</div>
+							</div>
+							
+							<div class=line></div>
+							
+							<div class=name>
+								<div>Anouk van den Hoogen</div>						
+							</div>
+							
+							<div class=line></div>
+							
+							<div class=name>
+									<div>Kelvin Tran</div>	
+							</div>
+							
+							<div class=line></div>
+							
+							<div class=name>
+								<div>Myrna van 't Hof</div>	
+							</div>
+							
+							<div class=line></div>
+							
+							<div class=name>
+								<div>Marnick Tom</div>	
+							</div>
+							
+							<div class=line></div>
+						
+							<div class=name>
+								<div>Oleksandr Ivanenko</div>	
+							</div>
+							
+							<div class=line></div>
+						</div>
+						<div class="teambutton">
+							<a href=About.html class="button2">Meet team</a>
+						</div>					
+					</div>
+					
+					<div class="upper">
+			
+						<div class="image1">
+							<img src="Images/TUe.png" width ="100%" height="100%">
+						</div>
+			
+					
+						
+					</div>
+				
+			
+					<div class="lower">
+						<div class="text2">
+							<h2>Welcome to "GR27BD", a user-friendly tool where you can upload your own dataset to analyze through visualization.
+								This tool provides several different visualizations to analyze your own, or our sample dataset and is made by students of the Eindhoven university of
+								technology.</h2>
+						</div>
+						<div class="visbutton">
+							<a href=visualizer.html class="button1">Go to Visualizations</a>
+						</div>
+					</div>
+				</div>
 
+				</div>
+					<div class="wrapper">
+						<div class="content">
+							<header>Our Cookie Policy</header>
+								<p>This website uses cookies to ensure you get the best experience on our website.</p>
+							<div class="buttons">
+								<button class="item">Accept cookies</button>
+							
+							</div>
+						</div>
+					</div>
+			</div>
 
- <!--The main css file(frontend should use this mainly) no use for it yet but might be handy to have in the github.-->
- <link rel="stylesheet" href="CSS/main.css">
+			
+			
+			
+		</div>
+	</div>
 
+<script>
 
+var sidebarOpened = false;
+//check whether sidebar is opened or closed to determine whether the menu button
+//	should open or close it
+function checkMenu() {
+	if(sidebarOpened == false){
+		openNav();
+	} else if(sidebarOpened == true){
+		closeNav();
+	}
+}
 
-</head>
+//open sidebar
+function openNav() {
+	
+	document.getElementById("mySidebar").style.width = "210px";
+	document.getElementById("main").style.marginLeft = "210px";
+	sidebarOpened = true;
+}
 
-<body>
-<nav>
-    <div class='logo'>
-        <h3><a href="#">DBL+ HTI </a></h3>
-    </div>
-        <ul>
-            <a class="active" href="#">Home</a>
-            <a href="About.html">About</a>
-            <a href="visualizer.html">Visualize</a>
-        </ul>
-</nav>
+//close sidebar
+function closeNav() {
+	document.getElementById("mySidebar").style.width = "0";
+	document.getElementById("main").style.marginLeft= "0"
+	sidebarOpened = false;
+}
 
-<h1>Home</h1>
+	const cookieBox = document.querySelector(".wrapper");
+	acceptBtn = cookieBox.querySelector(".buttons button");
+	
+	acceptBtn.onclick = ()=>{
+		document.cookie = "Cookie=Darkmode; max-age="+60*60*24; //set cookie popup for 24 hours
+		if(document.cookie){
+			cookieBox.classList.add("hide")
+		}else{
+			alert("Cookies can't be set, please check your settings");
 
-<!-- If someone reads this please say whether we can use the paparse file, because i think
-it is beyond the scope of the course to write this ourselves, will ask this to sam next meeting-->
+		}
+		}
+		let checkCookie = document.cookie.indexOf("Cookie=Darkmode");
+		var tSwitcher = document.getElementById('theme-switcher');
+		let element = document.body;
+		let onpageLoad = localStorage.getItem("theme") || "";
+		
+		if(checkCookie != -1){ 
+			if(onpageLoad != null && onpageLoad  == 'dark-mode'){
+				var tSwitcher = document.getElementById('theme-switcher');
+				tSwitcher.checked = true;
+				cookieBox.classList.add("hide");
+				element.classList.add(onpageLoad);
+			}else if(onpageLoad != null && onpageLoad  != 'dark-mode'){
+				var tSwitcher = document.getElementById('theme-switcher');
+				tSwitcher.checked = false;
+				cookieBox.classList.add("hide");
+				element.classList.add(onpageLoad);
+			}}else{
+		cookieBox.classList.remove("hide");
+		}
 
-
-<script type="text/javascript" src="JS/papaparse.min.js"></script>
-<script src="https://d3js.org/d3.v6.min.js"></script>
-<script type="module" src="JS/TabMenu.js"></script>
+function myFunction() {
+  	if(tSwitcher.checked){
+      localStorage.setItem('theme', 'dark-mode');
+        element.classList.add('dark-mode');
+    } else {
+      localStorage.setItem('theme', '');
+        element.classList.remove('dark-mode');
+    }
+}
+</script>
 
 </body>
 
-</html>
+</html>	
+
+
+
+
+
+
+
+
+
+
