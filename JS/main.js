@@ -380,6 +380,19 @@ function fileInfo(data){
 
 }
 
+
+function createNegativity(data) {
+    /*
+    for each node in data:
+        get mean sentiment
+        gather all toIds stemming from node
+        for each toIds:
+            get mean sentiment, and sum to a counter
+        spreadCoefficient = counter/mean sentiment of node
+        somehow return spreadCoefficient to visualization
+    * 
+    */
+}
 /* function createUGTest(data){
 
     const links = d3.csv(data, function(data) {
@@ -388,4 +401,5 @@ function fileInfo(data){
             console.log(data[i].toId);
         }
     });
-} */
+} 
+*/
