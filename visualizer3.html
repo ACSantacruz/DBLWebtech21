@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html>
+	<body>
+	
+	<head>
+		<title> Visualizations</title>
+		<link rel=stylesheet href=CSS/styleVisualizations.css>
+	</head>
+
+	<div id="mySidebar" class="sidebar">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">x</a>
+		<a href=index.html>Home</a>
+		<a href="">Visualizations</a>		
+		<a href=About.html>About us</a>
+		<div id=darkbox>
+			<img src="Images/lightMode.png" width = "34" height = "34">
+			<label class="switch">
+				<input type="checkbox" onclick="myFunction()" id="theme-switcher">
+				<span class="slider round"></span>
+			</label>
+			<div id=image2>
+				<img src="Images/darkMode.png" width = "34" height = "34">
+			</div>
+		</div>
+	</div>
+
+
+	<script src="Libraries/http_d3js.org_d3.v6.js"></script>
+	<script type="text/javascript" src="JS/main.js"></script>
+	<script data-require="d3@3.5.3" data-semver="3.5.3" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.js"></script>
+	<script src="https://d3js.org/d3-scale.v3.min.js"></script>
+	<script src="https://d3js.org/d3-timer.v2.min.js"></script>
+	<script src="https://d3js.org/d3-force.v2.min.js"></script>
+
+
+	<div id="main">
+
+		<button class="openbtn" onclick="checkMenu()">Menu</button>
+		
+		<input type="file" id="csvUploader" accept=".csv" onchange="loadFile()" hidden/>
+			<label class="uploadbutton"for="csvUploader">Upload file</label>
+		<!--	<div id="file-upload-filename"></div> -->
+		
+		<div class="topper">	
+			<div class="title">
+				<div>Visualizations </div>
+			</div>
+		</div>
+
+	
+		
+		<div class=bigbox>
+
+			<div id="box1">
+				<div class="dropdown">
+					<button class="dropbutton">Choose Visualization</button>
+					<div class="dropdown-content">
+						<a href="#">Table</a>
+						<a href="#">Visualization 2</a>
+						<a href="#">Visualization 3</a>
+					</div>
+				</div>	
+					<button id="buttonleftFull"  onclick = "FunctionleftFull()" ></button>		
+					<button id="buttonleftSmall" onclick = "FunctionleftSmall()" ></button>
+				<div class="scroll">
+
+					<!-- IF STATEMENT BELOW TO SELECT WHETHER TO SHOW TABLE OR SOMETHING ELSE. -->
+
+				<table id="table"></table>
+				</div>
+			</div>
+
+		
+			<div id="box2">
+				<div class="dropdown">
+					<button class="dropbutton">Choose Visualization</button>
+					<div class="dropdown-content">
+						<a href="#">Sentiment heat map</a>
+						<a href="#">Visualization 2</a>
+						<a href="#">Visualization 3</a>
+					</div>
+				</div>
+					<button id="buttonrightFull"  onclick = "FunctionrightFull()" ></button>		
+					<button id="buttonrightSmall" onclick = "FunctionrightSmall()" ></button>		
+				<div class="scroll">
+					<div id="Negativity">
+
+					</div>
+				</div>
+			</div>
+		
+			<div id="box3">
+				<h2>
+				Info about your selected visualization will be displayed here, upload your dataset (upload button is in the top left) 
+				and choose a visualization to get started.
+				</h2>
+			</div>
+	
+		</div>
+
+		<div class="wrapper">
+			<div class="content">
+				<header>Our Cookie Policy</header>
+					<p>This website uses cookies to ensure you get the best experience on our website.</p>
+				<div class="buttons">
+					<button class="item">Accept cookies</button>
+				
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+
+
+ 
+<script>
+
+sidebarOpened = false;
+
+//check whether sidebar is opened or closed to determine whether the menu button
+//	should open or close it
+function checkMenu() {
+	if(sidebarOpened == false){
+		openNav();
+	} else if(sidebarOpened == true){
+		closeNav();
+	}
+}
+
+//open sidebar
+function openNav() {
+	document.getElementById("mySidebar").style.width = "210px";
+	document.getElementById("main").style.marginLeft = "210px";
+	sidebarOpened = true;
+}
+
+//close sidebar
+function closeNav() {
+	document.getElementById("mySidebar").style.width = "0";
+	document.getElementById("main").style.marginLeft= "0";
+	sidebarOpened = false;
+}
+
+	var elementA = document.getElementById("buttonleftSmall");
+	var elementB = document.getElementById("buttonrightSmall");
+	var elementC = document.getElementById("buttonleftFull");
+	var elementD = document.getElementById("buttonrightFull");
+	var tSwitcher = document.getElementById('theme-switcher');
+	let element = document.body;
+	let checkCookie = document.cookie.indexOf("Cookie=Darkmode");
+	let onpageLoad = localStorage.getItem("theme") || "";
+	const cookieBox = document.querySelector(".wrapper");
+	acceptBtn = cookieBox.querySelector(".buttons button");
+	
+	acceptBtn.onclick = ()=>{
+		document.cookie = "Cookie=Darkmode; max-age="+60*60*24; //set cookie popup for 24 hours
+		if(document.cookie){
+			cookieBox.classList.add("hide")
+		}else{
+			alert("Cookies can't be set, please check your settings");
+
+		}
+		}
+		if(checkCookie != -1){ 
+			if(onpageLoad != null && onpageLoad  == 'dark-mode'){
+				var tSwitcher = document.getElementById('theme-switcher');
+				tSwitcher.checked = true;
+				cookieBox.classList.add("hide");
+				element.classList.add(onpageLoad);
+				elementA.classList.add("dark");
+				elementB.classList.add("dark");
+				elementC.classList.add("dark");
+				elementD.classList.add("dark");
+			}else if(onpageLoad != null && onpageLoad  != 'dark-mode'){
+				var tSwitcher = document.getElementById('theme-switcher');
+				tSwitcher.checked = false;
+				cookieBox.classList.add("hide");
+				element.classList.add(onpageLoad);
+				elementA.classList.remove("dark");
+				elementB.classList.remove("dark");
+				elementC.classList.remove("dark");
+				elementD.classList.remove("dark");
+			}}else{
+		cookieBox.classList.remove("hide");
+		}
+
+	
+function myFunction() {
+	var elementA = document.getElementById("buttonleftSmall");
+	var elementB = document.getElementById("buttonrightSmall");
+	var elementC = document.getElementById("buttonleftFull");
+	var elementD = document.getElementById("buttonrightFull");
+	var element = document.body;
+	element.classList.toggle("dark-mode");
+
+  if(tSwitcher.checked){
+      localStorage.setItem('theme', 'dark-mode');
+        element.classList.add('dark-mode');
+		elementA.classList.add("dark");
+		elementB.classList.add("dark");
+		elementC.classList.add("dark");
+		elementD.classList.add("dark");
+    } else {
+      localStorage.setItem('theme', '');
+		element.classList.remove('dark-mode');
+		elementA.classList.remove("dark");
+		elementB.classList.remove("dark");
+		elementC.classList.remove("dark");
+		elementD.classList.remove("dark");
+    }
+}
+
+function FunctionleftSmall(){
+	var element1 = document.getElementById("box1");
+	var element2 = document.getElementById("box2");
+	var element3 = document.getElementById("box3");
+	var arrow = document.getElementById("buttonleftSmall");
+	element1.classList.toggle("leftSmall");
+	element2.classList.toggle("leftSmall");
+	element3.classList.toggle("leftSmall");
+	arrow.classList.toggle("leftSmall");
+}
+
+function FunctionleftFull(){
+	var element1 = document.getElementById("box1");
+	var element2 = document.getElementById("box2");
+	var element3 = document.getElementById("box3");
+	var arrow = document.getElementById("buttonleftSmall");
+	var arrowA = document.getElementById("buttonleftFull");
+	element1.classList.toggle("leftFull");
+	element2.classList.toggle("leftFull");
+	element3.classList.toggle("leftFull");
+	arrow.classList.toggle("Hide");
+	arrowA.classList.toggle("leftFull");
+}
+
+function FunctionrightSmall(){
+	var element1 = document.getElementById("box1");
+	var element2 = document.getElementById("box2");
+	var element3 = document.getElementById("box3");
+	var arrow = document.getElementById("buttonrightSmall");
+	element1.classList.toggle("rightSmall");
+	element2.classList.toggle("rightSmall");
+	element3.classList.toggle("rightSmall");
+	arrow.classList.toggle("rightSmall");
+}
+
+function FunctionrightFull(){
+	var element1 = document.getElementById("box1");
+	var element2 = document.getElementById("box2");
+	var element3 = document.getElementById("box3");
+	var arrow = document.getElementById("buttonrightSmall");
+	var arrowA = document.getElementById("buttonrightFull");
+	element1.classList.toggle("rightFull");
+	element2.classList.toggle("rightFull");
+	element3.classList.toggle("rightFull");
+	arrow.classList.toggle("Hide");
+	arrowA.classList.toggle("rightFull");
+}
+
+
+var input = document.getElementById( 'csvUploader' );
+var infoArea = document.getElementById( 'file-upload-filename' );
+input.addEventListener( 'change', showFileName );
+function showFileName( event ) {
+  var input = event.srcElement;
+  var fileName = input.files[0].name;
+  infoArea.textContent = 'File name: ' + fileName;
+}
+</script>
+
+
+</body>
+
+</html>	
