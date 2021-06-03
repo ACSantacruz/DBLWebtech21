@@ -18,7 +18,7 @@ function parseFile(){
     fileInfo(data)
     createTable(data);
     createHeatMap(data);
-    createUniqueness(data);
+    createAdjacency(data);
     //createNegativity(data);
     //createUniqueGraph(data); unfinished
     //createUGTest(data);
@@ -335,7 +335,7 @@ function createUniqueGraph(data) {//https://observablehq.com/@d3/force-directed-
 }
 */
 
-function createUniqueness(data) {
+function createAdjacency(data) {
 
 
 
