@@ -19,6 +19,7 @@ function parseFile(){
     createTable(data);
     createHeatMap(data);
     createAdjacency(data);
+    //createLineChart(data);
     //createNegativity(data);
     //createUniqueGraph(data); unfinished
     //createUGTest(data);
@@ -207,6 +208,25 @@ function createHeatMap(data) {
             .on("mousemove", textDisplay)
             .on("mouseleave", mouseOffSquare);
 }
+/*
+function createLineChart(data) {
+    var parsedDates = Date.parse(data[0]);
+    console.log(data[0]);
+
+    var parsedDates = Date.parse(data[0]);
+    console.log(data[0].match(\b\d{2}\b));
+
+    var parseTime = d3.timeParse("%Y, %B, %d");
+    console.log(parseTime);
+
+    var sentimentAvg = d3.mean(data, function(d) { return d.sentiment; });
+    console.log(sentimentAvg);
+
+    var meanJan = d3.mean(data.filter(d => d.data === "01"), d => d.sentiment);
+    console.log(meanJan);
+}
+*/
+
 
 /*
 function createUniqueGraph(data) {//https://observablehq.com/@d3/force-directed-graph
