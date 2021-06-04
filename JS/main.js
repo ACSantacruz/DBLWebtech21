@@ -18,7 +18,8 @@ function parseFile(){
     fileInfo(data)
     createTable(data);
     createHeatMap(data);
-    createUniqueness(data);
+    createAdjacency(data);
+    //createNegativity(data);
     //createUniqueGraph(data); unfinished
     //createUGTest(data);
 }
@@ -78,6 +79,8 @@ function createTable(data) {
         .enter().append("td")
         .text(function(d) { return d; })
 }
+
+
 
 
 function createHeatMap(data) {
@@ -332,7 +335,12 @@ function createUniqueGraph(data) {//https://observablehq.com/@d3/force-directed-
 }
 */
 
-function createUniqueness(data) {
+function createAdjacency(data) {
+
+
+
+
+    // Using the standard Size thing from JS does anyone know how to convert this to scale to the size of the boxes>?
     var margin = {top: 80, right: 25, bottom: 30, left: 40},
         width = 600 - margin.left - margin.right,
         height = 600 - margin.top - margin.bottom;
@@ -345,22 +353,114 @@ function createUniqueness(data) {
         .attr("height", height + margin.top + margin.bottom)
         .style("background-color", "white")
         .append("g")
-        .attr("viewBox", [0, 0, width, height]);
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    // There is an easier way to do this by using d.fromJobTitle and taking the keys, but then it has to be sorted to make sure they are in the same order.
+    // So I believe this is faster.
+    var fromTitle = d3.map(data, function(d){return d.fromEmail;}).keys()
+    var toTitle = d3.map(data, function(d){return d.toEmail;}).keys()
+
+    //This is to make the x- axis and to make the grid layout scalable But does not work
+    var xAxis = d3.scaleBand()
+        .range([ 0, width ])
+        .domain(fromTitle)
+        .padding(0.03);
+
+    //This is to make the y- axis and to make the grid layout scalable But does not work
+    var yAxis = d3.scaleBand()
+        .range([ height, 0 ])
+        .domain(toTitle)
+        .padding(0.03);
 
 
+    //To colour in the heatmap, can someb
+    var ColourHM = d3.scaleLinear()
+        .range(["#d2d2d2", "#000aff", "#ff7400", "#ff0000"])
+        .domain([0, 4, 5, 8])
 
-    var nodes = svg.selectAll()
+    // For When the mouse goes on a square
+    var mouseHover = d3.select("#Uniqueness")
+        .append("div")
+        .style("opacity", 0)
+        .attr("class", "tooltip")
+
+        .style("background-color", "#b6b6b6")
+        .style("border", "solid")
+        .style("border-width", "3px")
+        .style("border-radius", "20px")
+        .style("padding", "10px")
+        .style("width", "300px")
+
+
+    //When the mouse is over the square.
+    var mouseOnSquare = function(d) {
+        mouseHover
+            .style("opacity", 1)
+        d3.select(this)
+            .style("stroke", "black")
+            .style("opacity", 1)
+    }
+
+
+    //Putting the text down
+    var textDisplay = function(d) {
+        mouseHover
+            .html( "[" + d.fromEmail+" : "+ d.toEmail + "]  "+"  amount: " + Math.round(d.sentiment*100));
+    }
+
+
+    //Return it to the original form what it was before mouse hover
+    var mouseOffSquare = function(d) {
+        mouseHover
+            .style("opacity", 0)
+        d3.select(this)
+            .style("stroke", "none")
+            .style("opacity", 0.8)
+    }
+
+// A title for the visualization, maybe do this for all vis?
+    svg.append("text")
+        .style("font-size", "24px")
+        .style("font-family", "Verdana")
+        .text("Emails sent between adresses.");
+
+
+    //Adding the squares
+    svg.selectAll()
         .data(data, function(d) {
-            return d.fromId;
+            return d.fromEmail+':'+d.toEmail;
+        })
+        .enter()
+
+        .append("rect")
+        .attr("x", function(d) {
+            return xAxis(d.fromEmail)
+        })
+        .attr("y", function(d) {
+            return yAxis(d.toEmail)
         })
 
-    var node = svg.append("g")
-        .attr("stroke", "#ff0000")
-        .attr("stroke-width", 1.5)
-        .selectAll("circle")
-        .data(nodes)
-        .join("circle")
+        .attr("rx", 1)
+        .attr("ry", 1)
 
+
+        .style("stroke-width", 1)
+        .style("opacity", 0.9)
+
+        .attr("width", xAxis.bandwidth() )
+        .attr("height", yAxis.bandwidth() )
+
+        //Using the colour heatmap function made earlier to give the squares "heat"
+        .style("fill", function(d) {
+            return ColourHM(Math.abs(Math.round(d.sentiment*100)))
+        })
+
+
+
+        //d3 built in mouse interactivity stuff
+        .on("mouseover", mouseOnSquare)
+        .on("mousemove", textDisplay)
+        .on("mouseleave", mouseOffSquare);
 }
 
 function fileInfo(data){
@@ -381,25 +481,3 @@ function fileInfo(data){
 }
 
 
-function createNegativity(data) {
-    /*
-    for each node in data:
-        get mean sentiment
-        gather all toIds stemming from node
-        for each toIds:
-            get mean sentiment, and sum to a counter
-        spreadCoefficient = counter/mean sentiment of node
-        somehow return spreadCoefficient to visualization
-    * 
-    */
-}
-/* function createUGTest(data){
-
-    const links = d3.csv(data, function(data) {
-        for (var i = 0; i < data.length; i++) {
-            console.log(data[i].fromId);
-            console.log(data[i].toId);
-        }
-    });
-} 
-*/
