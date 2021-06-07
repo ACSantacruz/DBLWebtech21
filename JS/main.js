@@ -19,6 +19,7 @@ function parseFile(){
     createTable(data);
     createHeatMap(data);
     createAdjacency(data);
+    createLineGraph(data);
     //createNegativity(data);
     //createUniqueGraph(data); unfinished
     //createUGTest(data);
@@ -481,3 +482,63 @@ function fileInfo(data){
 }
 
 
+function createLineGraph(data) {
+
+
+
+
+    // Using the standard Size thing from JS does anyone know how to convert this to scale to the size of the boxes>?
+    var margin = {top: 80, right: 25, bottom: 30, left: 40},
+        width = 600 - margin.left - margin.right,
+        height = 600 - margin.top - margin.bottom;
+
+
+    //Printing the field, still using the margin set above.
+    var svg = d3.select("#LineGraph")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .style("background-color", "white")
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+        
+        d3.csv(data,
+
+  // When reading the csv, I must format variables:
+  function(d){
+    return { date : d3.timeParse("%Y-%m-%d")(d.date), sentiment : d.sentiment }
+  },
+
+  // Now I can use this dataset:
+  function(data) {
+
+    // Add X axis --> it is a date format
+    var x = d3.scaleTime()
+      .domain(d3.extent(data, function(d) { return d.date; }))
+      .range([ 0, width ]);
+    svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
+
+    // Add Y axis
+    var y = d3.scaleLinear()
+      .domain([0, d3.max(data, function(d) { return +d.sentiment; })])
+      .range([ height, 0 ]);
+    svg.append("g")
+      .call(d3.axisLeft(y));
+
+    // Add the line
+    svg.append("path")
+      .datum(data)
+      .attr("fill", "none")
+      .attr("stroke", "steelblue")
+      .attr("stroke-width", 1.5)
+      .attr("d", d3.line()
+        .x(function(d) { return x(d.date) })
+        .y(function(d) { return y(d.sentiment) })
+        )
+
+})
+}
