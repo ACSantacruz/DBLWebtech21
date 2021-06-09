@@ -21,9 +21,11 @@ function parseFile(){
     createAdjacency(data);
     createLineGraph(data);
     //createLineChart(data);
+    //createPieGraph(data);
+
     //createNegativity(data);
     //createUniqueGraph(data); unfinished
-    //createUGTest(data);
+    
 }
 
 function createTable(data) {
