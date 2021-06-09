@@ -523,16 +523,28 @@ function createLineGraph(data) {
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     var parseDate = d3.timeParse("%Y-%m-%d");
+    var formatMonth = d3.timeFormat("%B")
     d3.csv("enron-v1.csv") // does NOT work with 'data' only manually filling in the csv file
-        .row(function(d) {return {date:parseDate(d.date),sentiment:Number(d.sentiment.trim().slice(1))};})
+        .row(function(d) {return {date:parseDate(d.date),sentiment:Number(d.sentiment)};})
+        // When changed to 'date:formatMonth(d.date)', the graph shows just a vertical line
+        
+        /*
+        .sort(function(a, b) {
+            return d3.descending(a.date, b.date);
+        }) 
+        */    
+        //This sort function does not work, why?
+
         .get(function(error,data){
             console.log(data)
 
             
             var maxDate = d3.max(data, function(d) { return d.date;});
             var minDate = d3.min(data, function(d) { return d.date;});
+            console.log(maxDate, minDate); 
+            //^ console prints <empty string> <empty string> so probably this does not work. When changed to parseDate(d.date), console prints undefined
             var maxSentiment = d3.max(data, function(d) { return d.sentiment;});
-
+            
 
             var y = d3.scaleLinear()
                     .domain([0,maxSentiment])
@@ -542,20 +554,21 @@ function createLineGraph(data) {
                     .range([0, width]);
             var yAxis = d3.axisLeft(y);
             var xAxis = d3.axisBottom(x);
-
-            var svg = d3.select('body').append('svg')
-                    .attr('height','100%')
-                    .attr('width','100%');
+            svg.append('svg')  
+                .attr('height','100%')
+                .attr('width','100%');
             var chartGroup = svg.append('g')
-                    .attr('transform','translate(50,50)');
+                .attr('transform','translate(50,50)');
             var line = d3.svg.line()
-                    .x(function(d){ return x(d.date);})
-                    .y(function(d){ return y(d.sentiment);});
+                .x(function(d){ return x(d.date);})
+                .y(function(d){ return y(d.sentiment);});
             chartGroup.append('path').attr('d',line(data));
             chartGroup.append('g').attr('class','x axis').attr('transform','translate(0,'+height+')').call(xAxis);
             chartGroup.append('g').attr('class','y axis').call(yAxis);
-            
-
+            svg.append("text")
+                .style("font-size", "24px")
+                .style("font-family", "Verdana")
+                .text("Line chart");
         });}
 
 
