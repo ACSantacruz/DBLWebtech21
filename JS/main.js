@@ -539,7 +539,7 @@ function createLineGraph(data) {
 
         .get(function(error,data){
             console.log(data)
-
+    
             
             var maxDate = d3.max(data, function(d) { return d.date;});
             var minDate = d3.min(data, function(d) { return d.date;});
