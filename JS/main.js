@@ -361,8 +361,6 @@ function createUniqueGraph(data) {//https://observablehq.com/@d3/force-directed-
 function createAdjacency(data) {
 
 
-
-
     // Using the standard Size thing from JS does anyone know how to convert this to scale to the size of the boxes>?
     var margin = {top: 80, right: 25, bottom: 30, left: 40},
         width = 600 - margin.left - margin.right,
@@ -507,8 +505,6 @@ function fileInfo(data){
 function createLineGraph(data) {
 
 
-
-
     // Using the standard Size thing from JS does anyone know how to convert this to scale to the size of the boxes>?
     var margin = {top: 80, right: 25, bottom: 30, left: 40},
         width = 600 - margin.left - margin.right,
@@ -546,10 +542,11 @@ function createLineGraph(data) {
             console.log(maxDate, minDate); 
             //^ console prints <empty string> <empty string> so probably this does not work. When changed to parseDate(d.date), console prints undefined
             var maxSentiment = d3.max(data, function(d) { return d.sentiment;});
-            
+            var minSentiment = d3.min(data, function(d) { return d.sentiment;});
+
 
             var y = d3.scaleLinear()
-                    .domain([0,maxSentiment])
+                    .domain([minSentiment,maxSentiment])
                     .range([height,0]);
             var x = d3.scaleTime()
                     .domain([minDate, maxDate])
