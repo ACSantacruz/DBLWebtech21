@@ -560,7 +560,7 @@ function createLineGraph(data) {
                 .attr('height','100%')
                 .attr('width','100%');
             var chartGroup = svg.append('g')
-                .attr('transform','translate(50,50)');
+                .attr('transform','translate(50%,50%)');
             var line = d3.svg.line()
                 .x(function(d){ return x(d.date);})
                 .y(function(d){ return y(d.sentiment);});
