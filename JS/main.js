@@ -1,12 +1,17 @@
 let reader = new FileReader();
 
+
+
 function loadFile() {
     const file = document.querySelector('input[type=file]').files[0];
     reader.addEventListener("load", parseFile, false);
     if (file) {
         reader.readAsText(file);
+        console.log(file)
+
     }
 }
+
 
 function parseFile(){
     let doesColumnExist = false;
@@ -504,7 +509,12 @@ function fileInfo(data){
 
 
 function createLineGraph(data) {
-
+    
+        var input = document.getElementById( 'csvUploader' );
+        var fileName = input.files[0].name;
+        console.log(fileName)
+        
+        
 
     // Using the standard Size thing from JS does anyone know how to convert this to scale to the size of the boxes>?
     var margin = {top: 80, right: 25, bottom: 30, left: 40},
@@ -527,7 +537,7 @@ function createLineGraph(data) {
 
     var parseDate = d3.timeParse("%Y-%m-%d");
     var formatMonth = d3.timeFormat("%B")
-    d3.csv("enron-v1.csv") // does NOT work with 'data' only manually filling in the csv file
+    d3.csv(fileName) // does NOT work with 'data' only manually filling in the csv file
         .row(function(d) {return {date:parseDate(d.date),sentiment:Number(d.sentiment)};})
         // When changed to 'date:formatMonth(d.date)', the graph shows just a vertical line
 
@@ -542,8 +552,17 @@ function createLineGraph(data) {
             console.log(data)
     
             data = data.slice().sort((a,b) => d3.ascending(a.date , b.date));
-
-
+/*
+            var allGroup = d3.map(data, function(d){return(d.date)}).keys()
+            
+            d3.select("#selectButton")
+            .selectAll('myOptions')
+               .data(allGroup)
+            .enter()
+              .append('option')
+            .text(function (d) { return d; }) // text showed in the menu
+            .attr("sentiment", function (d) { return d; }) // corresponding value returned by the button
+*/
             var maxDate = d3.max(data, function(d) { return d.date;});
             var minDate = d3.min(data, function(d) { return d.date;});
             console.log(maxDate, minDate);
