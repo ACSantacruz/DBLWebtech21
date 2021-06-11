@@ -411,7 +411,7 @@ function createLineGraph(data) {
 
     var parseDate = d3.timeParse("%Y-%m-%d");
     var formatMonth = d3.timeFormat("%B")
-    d3.csv(fileName) // does NOT work with 'data' only manually filling in the csv file
+    d3.csv(fileName)    
         .row(function(d) {return {date:parseDate(d.date),sentiment:Number(d.sentiment)};})
         // When changed to 'date:formatMonth(d.date)', the graph shows just a vertical line
 
