@@ -519,6 +519,10 @@ function createLineGraph(data) {
         .style("background-color", "white")
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        
+   
+  
+    
 
     var parseDate = d3.timeParse("%Y-%m-%d");
     var formatMonth = d3.timeFormat("%B")
@@ -536,7 +540,7 @@ function createLineGraph(data) {
         .get(function(error,data){
             console.log(data)
     
-            
+            data = data.slice().sort((a,b) => d3.ascending(a.date , b.date));
             var maxDate = d3.max(data, function(d) { return d.date;});
             var minDate = d3.min(data, function(d) { return d.date;});
             console.log(maxDate, minDate); 
