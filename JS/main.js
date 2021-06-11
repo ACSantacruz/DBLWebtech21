@@ -21,7 +21,7 @@ function parseFile(){
     createAdjacency(data);
     createLineGraph(data);
     //createLineChart(data);
-    //createPieGraph(data);
+    createPieGraph(data);
 
     //createNegativity(data);
     //createUniqueGraph(data); unfinished
@@ -211,6 +211,7 @@ function createHeatMap(data) {
             .on("mousemove", textDisplay)
             .on("mouseleave", mouseOffSquare);
 }
+
 /*
 function createLineChart(data) {
     var parsedDates = Date.parse(data[0]);
@@ -529,21 +530,23 @@ function createLineGraph(data) {
     d3.csv("enron-v1.csv") // does NOT work with 'data' only manually filling in the csv file
         .row(function(d) {return {date:parseDate(d.date),sentiment:Number(d.sentiment)};})
         // When changed to 'date:formatMonth(d.date)', the graph shows just a vertical line
-        
+
         /*
         .sort(function(a, b) {
             return d3.descending(a.date, b.date);
-        }) 
-        */    
+        })
+        */
         //This sort function does not work, why?
 
         .get(function(error,data){
             console.log(data)
     
             data = data.slice().sort((a,b) => d3.ascending(a.date , b.date));
+
+
             var maxDate = d3.max(data, function(d) { return d.date;});
             var minDate = d3.min(data, function(d) { return d.date;});
-            console.log(maxDate, minDate); 
+            console.log(maxDate, minDate);
             //^ console prints <empty string> <empty string> so probably this does not work. When changed to parseDate(d.date), console prints undefined
             var maxSentiment = d3.max(data, function(d) { return d.sentiment;});
             var minSentiment = d3.min(data, function(d) { return d.sentiment;});
@@ -557,7 +560,7 @@ function createLineGraph(data) {
                     .range([0, width]);
             var yAxis = d3.axisLeft(y);
             var xAxis = d3.axisBottom(x);
-            svg.append('svg')  
+            svg.append('svg')
                 .attr('height','100%')
                 .attr('width','100%');
             var chartGroup = svg.append('g')
@@ -580,11 +583,12 @@ function createLineGraph(data) {
 
 function createPieGraph(data) { //https://observablehq.com/@d3/donut-chart
     // dimensions
+
     var margin = {top: 80, right: 25, bottom: 30, left: 40},
         width = 600 - margin.left - margin.right,
         height = 600 - margin.top - margin.bottom;
 
-    var svg = d3.select("#pie")
+    var svg = d3.select("#PieGraph")
         .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
@@ -596,7 +600,7 @@ function createPieGraph(data) { //https://observablehq.com/@d3/donut-chart
         .domain(data.map(d => d.fromId))
         //using interpolateWarm rather than interpolateSpectral for aesthetic and visibility reasons
         .range(d3.quantize(t => d3.interpolateWarm(t * 0.8 + 0.1), data.length).reverse());
-    
+
     const radius = Math.min(width, height) / 2;
     const arc =  d3.arc()
         .innerRadius(radius * 0.67)
@@ -610,7 +614,7 @@ function createPieGraph(data) { //https://observablehq.com/@d3/donut-chart
     const arcs = pie(data);
     
     //printing the field
-    var svg = d3.select('#pie')
+    var svg = d3.select('#PieGraph')
         .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
