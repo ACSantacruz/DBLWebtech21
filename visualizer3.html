@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!--Line Graph-->
 <meta charset="utf-8">
 <html>
 	<body>
@@ -58,11 +58,11 @@
 
 			<div id="box1">
 				<div class="dropdown">
-					<button class="dropbutton">Choose Visualization</button>
+					<button class="dropbutton">Line graph of sentiment.</button>
 					<div class="dropdown-content">
-						<a href="#">Table</a>
-						<a href="visualizer4.html">Pie chart</a>
-						<a href="#">Visualization 3</a>
+						<a href="visualizer.html">Table [Dataset/LineGraph]</a>
+						<a href="visualizer2.html">Heatmap [Heatmap/Adjacency]</a>
+						<a href="visualizer3.html">Line Graph [LineGraph/Heatmap]</a>
 					</div>
 				</div>	
 					<button id="buttonleftFull"  onclick = "FunctionleftFull()" ></button>		
@@ -71,24 +71,28 @@
 
 					<!-- IF STATEMENT BELOW TO SELECT WHETHER TO SHOW TABLE OR SOMETHING ELSE. -->
 
-				<table id="table"></table>
+				<div id = "LineGraph">
+
 				</div>
+
+				</div>
+
 			</div>
 
 		
 			<div id="box2">
 				<div class="dropdown">
-					<button class="dropbutton">Choose Visualization</button>
+					<button class="dropbutton">Heatmap of sentiment.</button>
 					<div class="dropdown-content">
-						<a href="visualizer.html">Sentiment heat map</a>
-						<a href="visualizer2.html">Adjacency matrix</a>
-						<a href="visualizer3.html">Line Graph</a>
+						<a href="visualizer.html">Line graph [Dataset/LineGraph]</a>
+						<a href="visualizer2.html">Adjacency matrix [Heatmap/Adjacency]</a>
+						<a href="#">Heatmap  [LineGraph/Heatmap]</a>
 					</div>
 				</div>
 					<button id="buttonrightFull"  onclick = "FunctionrightFull()" ></button>		
 					<button id="buttonrightSmall" onclick = "FunctionrightSmall()" ></button>		
 				<div class="scroll">
-					<div id="LineGraph">
+					<div id="heatMap">
 
 					</div>
 				</div>

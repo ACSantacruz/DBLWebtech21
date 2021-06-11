@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!--sentiment heatmap (for now)-->
 
 <html>
 	<body>
@@ -30,11 +30,11 @@
 	<script type="text/javascript" src="JS/main.js"></script>
 	<script data-require="d3@3.5.3" data-semver="3.5.3" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.js"></script>
 	<script src="https://d3js.org/d3-scale.v3.min.js"></script>
-	<script src="https://d3js.org/d3-dispatch.v2.min.js"></script>
-	<script src="https://d3js.org/d3-quadtree.v2.min.js"></script>
 	<script src="https://d3js.org/d3-timer.v2.min.js"></script>
 	<script src="https://d3js.org/d3-force.v2.min.js"></script>
-	<script src="https://d3js.org/d3-axis.v2.min.js"></script>
+	<script src="https://d3js.org/d3-time.v2.min.js"></script>
+	<script src="https://d3js.org/d3-time-format.v3.min.js"></script>
+	<script src = "https://d3js.org/d3-axis.v1.min.js"></script>
 
 
 	<div id="main">
@@ -57,11 +57,11 @@
 
 			<div id="box1">
 				<div class="dropdown">
-					<button class="dropbutton">Choose Visualization</button>
+					<button class="dropbutton">Dataset in a table.</button>
 					<div class="dropdown-content">
-						<a href="#">Table</a>
-						<a href="visualizer4.html">Pie chart</a>
-						<a href="#">Visualization 3</a>
+						<a href="visualizer.html">Table [Dataset/LineGraph]</a>
+						<a href="visualizer2.html">Heatmap [Heatmap/Adjacency]</a>
+						<a href="visualizer3.html">Line Graph [LineGraph/Heatmap]</a>
 					</div>
 				</div>	
 					<button id="buttonleftFull"  onclick = "FunctionleftFull()" ></button>		
@@ -77,17 +77,17 @@
 		
 			<div id="box2">
 				<div class="dropdown">
-					<button class="dropbutton">Choose Visualization</button>
+					<button class="dropbutton">Line graph of sentiment.</button>
 					<div class="dropdown-content">
-						<a href="visualizer.html">Sentiment heat map</a>
-						<a href="visualizer2.html">Adjacency matrix</a>
-						<a href="visualizer3.html">Line Graph</a>
+						<a href="#">Line graph [Dataset/LineGraph]</a>
+						<a href="visualizer2.html">Adjacency matrix [Heatmap/Adjacency]</a>
+						<a href="visualizer3.html">Heatmap  [LineGraph/Heatmap]</a>
 					</div>
 				</div>
 					<button id="buttonrightFull"  onclick = "FunctionrightFull()" ></button>		
 					<button id="buttonrightSmall" onclick = "FunctionrightSmall()" ></button>		
 				<div class="scroll">
-					<div id="heatMap">
+					<div id="LineGraph">
 
 					</div>
 				</div>
