@@ -492,7 +492,7 @@ function createLineGraph(data) {
 
 
 */
-            var jobTitles = ["Employee", "Trader", "In House Lawyer", "Manager", "Managing Director", "Director", "Vice President", "President", "CEO", "Unknown"]
+            var jobTitles = d3.map(data, function(d){return d.fromJobtitle;}).keys()
             var maxDate = d3.max(data, function(d) { return d.date;});
             var minDate = d3.min(data, function(d) { return d.date;});
             console.log(maxDate, minDate);
@@ -558,6 +558,13 @@ function createLineGraph(data) {
                 .on('mousemove', mousemove)
                 .on('mouseout', mouseout);
 
+            svg.append("text")
+                .style("font-size", "24px")
+                .style("font-family", "Verdana")
+                .text("Line graph of sentiment over time.")
+                .attr("y", -20)
+                .attr("x", width/10);
+
 
             //alles zichtbaar maken.
             function mouseover() {
@@ -575,8 +582,8 @@ function createLineGraph(data) {
                     .attr("cy", y(xCord.sentiment))
                 focusText
                     .html("Date: " + xCord.date + "  /  " + "Sent: " + Math.round(xCord.sentiment * 1000)/1000)
-                    .attr("x", -30)
-                    .attr("y", -30)
+                    .attr("x", -35)
+                    .attr("y", height - 10)
             }
 
             //onzichtbaar als muis het vierkant verlaat.
