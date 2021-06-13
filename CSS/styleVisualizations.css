@@ -707,11 +707,7 @@ line{
 	stroke-width:3;
 }
 
-path{
-	stroke:blue;
-	stroke-width: 3;
-	fill:none;
-}
+
 g.hidden line,
 g.hidden path{
 	display:none;

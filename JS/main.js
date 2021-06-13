@@ -490,7 +490,7 @@ function createLineGraph(data) {
         .style("background-color", "white")
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-        
+
    
         var parseDate = d3.timeParse("%Y-%m-%d");
         var formatMonth = d3.timeFormat("%B")
@@ -545,12 +545,32 @@ function createLineGraph(data) {
             
             var y = d3.scaleLinear()
                     .domain([minSentiment,maxSentiment])
-                    .range([height,0]);
+                    .range([height,0])
             var x = d3.scaleTime()
                     .domain([minDate, maxDate])
                     .range([0, width]);
+            xAxis = svg.append("g")
+                .attr("transform", "translate(0," + height + ")")
+                .call(d3.axisBottom(x));
             var yAxis = d3.axisLeft(y);
-            var xAxis = d3.axisBottom(x);
+    // Set the gradient
+    svg.append("linearGradient")
+        .attr("id", "line-gradient")
+        .attr("gradientUnits", "userSpaceOnUse")
+        .attr("x1", 0)
+        .attr("y1", y(minSentiment))
+        .attr("x2", 0)
+        .attr("y2", y(maxSentiment))
+        .selectAll("stop")
+        .data([
+            {offset: "0%", color: "#001eb4"},
+            {offset: "35%", color: "#003aff"},
+            {offset: "45%", color: "#ff3800"},
+            {offset: "100%", color: "#ff0000"}
+        ])
+        .enter().append("stop")
+        .attr("offset", function(d) { return d.offset; })
+        .attr("stop-color", function(d) { return d.color; });
 
             //Getting the line no matter where the mouse
             var bisect = d3.bisector(function(d) { return d.date; }).left;
@@ -595,8 +615,7 @@ function createLineGraph(data) {
                 .attr('transform','translate(50%,50%)');
             
             var line = d3.svg.line()
-                .x(function(d){ return x(d.date);})
-                .y(function(d){ return y(d.sentiment);});
+
 
             //hit box to activate mouse hover.
             svg
@@ -643,19 +662,29 @@ function createLineGraph(data) {
                 focusText.style("opacity", 0)
             }
 
-            chartGroup.append('path').attr('d',line(data22));
+            svg.append("path")
+                .datum(data22)
+                .attr("fill", "none")
+                .attr("stroke", "url(#line-gradient)" )
+                .attr("stroke-width", 2)
+                .attr("d", d3.svg.line()
+                    .x(function(d) { return x(d.date) })
+                    .y(function(d) { return y(d.sentiment) })
+                )
 
-            // Add the brushing
+
+    // Add the brushing
             //chartGroup
             //.attr("clip-path", "url(#clip)")
             //.attr("class", "brush").call(brush);
 
-            chartGroup.append('g').attr('class','x axis').attr('transform','translate(0,'+height+')').call(xAxis);
             chartGroup.append('g').attr('class','y axis').call(yAxis);
             svg.append("text")
                 .style("font-size", "24px")
                 .style("font-family", "Verdana")
                 .text("Line chart");
+
+
     /* // A function that set idleTimeOut to null
     var idleTimeout
     function idled() { idleTimeout = null; }
