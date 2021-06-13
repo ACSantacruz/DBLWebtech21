@@ -503,17 +503,17 @@ function createLineGraph(data) {
                 sentiment:d[1]
             };
         });
-        console.log(data22)
-
-    d3.csv(fileName)    
+     /*   d3.csv(fileName)    
         .row(function(d) {return {date:parseDate(d.date),sentiment:Number(d.sentiment)};})
         // When changed to 'date:formatMonth(d.date)', the graph shows just a vertical line
 
         
         .get(function(error,data){
+*/
+
     
-            data = data.slice().sort((a,b) => d3.ascending(a.date , b.date));
-            
+            data22 = data22.slice().sort((a,b) => d3.ascending(a.date , b.date));
+            console.log(data22)
 /*
             var allGroup = d3.map(data, function(d){return(d.date)}).keys()
             
@@ -528,11 +528,11 @@ function createLineGraph(data) {
 
 */
             var jobTitles = ["Unknown", "Employee", "Trader", "In House Lawyer", "Manager", "Managing Director", "Director", "Vice President", "President", "CEO"]
-            var maxDate = d3.max(data, function(d) { return d.date;});
-            var minDate = d3.min(data, function(d) { return d.date;});
+            var maxDate = d3.max(data22, function(d) { return d.date;});
+            var minDate = d3.min(data22, function(d) { return d.date;});
             //^ console prints <empty string> <empty string> so probably this does not work. When changed to parseDate(d.date), console prints undefined
-            var maxSentiment = d3.max(data, function(d) { return d.sentiment;});
-            var minSentiment = d3.min(data, function(d) { return d.sentiment;});
+            var maxSentiment = d3.max(data22, function(d) { return d.sentiment;});
+            var minSentiment = d3.min(data22, function(d) { return d.sentiment;});
 
 
             d3.select("#selectButton")
@@ -643,7 +643,7 @@ function createLineGraph(data) {
                 focusText.style("opacity", 0)
             }
 
-            chartGroup.append('path').attr('d',line(data));
+            chartGroup.append('path').attr('d',line(data22));
 
             // Add the brushing
             //chartGroup
@@ -676,7 +676,7 @@ function createLineGraph(data) {
       } */
             
 
-        });}
+        ;}
     
 
 function createPieGraph(data) { //https://observablehq.com/@d3/donut-chart
