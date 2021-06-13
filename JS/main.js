@@ -230,7 +230,9 @@ function createHeatMap(data) {
     svg.append("text")
         .style("font-size", "24px")
         .style("font-family", "Verdana")
-        .text("Sentiment Heatmap");
+        .text("Sentiment Heatmap")
+        .attr("y", -20)
+        .attr("x", width/4);
 
         //Adding the squares
         svg.selectAll()
@@ -356,7 +358,7 @@ function createAdjacency(data) {
     //Putting the text down
     var textDisplay = function(d) {
         mouseHover
-            .html( "[" + d.fromEmail+" : "+ d.toEmail + "]  "+"  amount: " + Math.round(d.sentiment*100));
+            .html( "[" + d.fromEmail+" : "+ d.toEmail + "]  "+"  amount: " + Math.abs(Math.round(d.sentiment*100)));
     }
 
 
@@ -373,7 +375,9 @@ function createAdjacency(data) {
     svg.append("text")
         .style("font-size", "24px")
         .style("font-family", "Verdana")
-        .text("Emails sent between adresses.");
+        .text("Emails sent between adresses.")
+        .attr("y", -20)
+        .attr("x", width/8);
 
 
     //Adding the squares
@@ -485,7 +489,10 @@ function createLineGraph(data) {
               .append('option')
             .text(function (d) { return d; }) // text showed in the menu
             .attr("sentiment", function (d) { return d; }) // corresponding value returned by the button
+
+
 */
+            var jobTitles = ["Employee", "Trader", "In House Lawyer", "Manager", "Managing Director", "Director", "Vice President", "President", "CEO", "Unknown"]
             var maxDate = d3.max(data, function(d) { return d.date;});
             var minDate = d3.min(data, function(d) { return d.date;});
             console.log(maxDate, minDate);
@@ -493,6 +500,14 @@ function createLineGraph(data) {
             var maxSentiment = d3.max(data, function(d) { return d.sentiment;});
             var minSentiment = d3.min(data, function(d) { return d.sentiment;});
 
+
+            d3.select("#selectButton")
+                .selectAll('myOptions')
+                .data(jobTitles)
+                .enter()
+                .append('option')
+                .text(function (d) { return d; }) // text showed in the menu
+                .attr("value", function (d) { return d; }) // corresponding value returned by the button
 
             var y = d3.scaleLinear()
                     .domain([minSentiment,maxSentiment])
@@ -502,6 +517,27 @@ function createLineGraph(data) {
                     .range([0, width]);
             var yAxis = d3.axisLeft(y);
             var xAxis = d3.axisBottom(x);
+
+            //Getting the line no matter where the mouse
+            var bisect = d3.bisector(function(d) { return d.date; }).left;
+
+            // Indicator for where you selected data.
+            var focus = svg
+                .append('g')
+                .append('circle')
+                .style("fill", "red")
+                .attr("stroke", "black")
+                .attr('r', 8.5)
+                .style("opacity", 0)
+
+            // Text element maken
+            var focusText = svg
+                .append('g')
+                .append('text')
+                .style("opacity", 0)
+                .attr("text-anchor", "left")
+                .attr("alignment-baseline", "middle")
+
             svg.append('svg')
                 .attr('height','100%')
                 .attr('width','100%');
@@ -510,6 +546,45 @@ function createLineGraph(data) {
             var line = d3.svg.line()
                 .x(function(d){ return x(d.date);})
                 .y(function(d){ return y(d.sentiment);});
+
+            //hit box to activate mouse hover.
+            svg
+                .append('rect')
+                .style("fill", "none")
+                .style("pointer-events", "all")
+                .attr('width', width)
+                .attr('height', height)
+                .on('mouseover', mouseover)
+                .on('mousemove', mousemove)
+                .on('mouseout', mouseout);
+
+
+            //alles zichtbaar maken.
+            function mouseover() {
+                focus.style("opacity", 1)
+                focusText.style("opacity",1)
+            }
+
+            function mousemove() {
+                // De values pakken
+                var x0 = x.invert(d3.mouse(this)[0]);
+                var i = bisect(data, x0, 1);
+                xCord = data[i]
+                focus
+                    .attr("cx", x(xCord.date))
+                    .attr("cy", y(xCord.sentiment))
+                focusText
+                    .html("Date: " + xCord.date + "  /  " + "Sent: " + Math.round(xCord.sentiment * 1000)/1000)
+                    .attr("x", -30)
+                    .attr("y", -30)
+            }
+
+            //onzichtbaar als muis het vierkant verlaat.
+            function mouseout() {
+                focus.style("opacity", 0)
+                focusText.style("opacity", 0)
+            }
+
             chartGroup.append('path').attr('d',line(data));
             chartGroup.append('g').attr('class','x axis').attr('transform','translate(0,'+height+')').call(xAxis);
             chartGroup.append('g').attr('class','y axis').call(yAxis);
@@ -517,6 +592,7 @@ function createLineGraph(data) {
                 .style("font-size", "24px")
                 .style("font-family", "Verdana")
                 .text("Line chart");
+
         });}
 
 function createPieGraph(data) { //https://observablehq.com/@d3/donut-chart
