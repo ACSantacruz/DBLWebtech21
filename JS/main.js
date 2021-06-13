@@ -435,6 +435,8 @@ function fileInfo(data){
 
 }
 
+
+
 function createLineGraph(data) {
     
         var input = document.getElementById( 'csvUploader' );
@@ -459,26 +461,30 @@ function createLineGraph(data) {
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
         
    
-  
+        var parseDate = d3.timeParse("%Y-%m-%d");
+        var formatMonth = d3.timeFormat("%B")
     
+        data2 = d3.rollups(data,  v => d3.mean(v,d => d.sentiment), d => d.date)
 
-    var parseDate = d3.timeParse("%Y-%m-%d");
-    var formatMonth = d3.timeFormat("%B")
+        var data22 = data2.map(function(d){
+            return{
+                date:parseDate(d[0]),
+                sentiment:d[1]
+            };
+        });
+        console.log(data22)
+
     d3.csv(fileName)    
         .row(function(d) {return {date:parseDate(d.date),sentiment:Number(d.sentiment)};})
         // When changed to 'date:formatMonth(d.date)', the graph shows just a vertical line
 
-        /*
-        .sort(function(a, b) {
-            return d3.descending(a.date, b.date);
-        })
-        */
-        //This sort function does not work, why?
-
+        
         .get(function(error,data){
             console.log(data)
-    
+          
+            
             data = data.slice().sort((a,b) => d3.ascending(a.date , b.date));
+            
 /*
             var allGroup = d3.map(data, function(d){return(d.date)}).keys()
             
@@ -601,6 +607,7 @@ function createLineGraph(data) {
                 .text("Line chart");
 
         });}
+    
 
 function createPieGraph(data) { //https://observablehq.com/@d3/donut-chart
     // dimensions
