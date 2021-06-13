@@ -507,7 +507,6 @@ function createLineGraph(data) {
         //This sort function does not work, why?
 
         .get(function(error,data){
-            console.log(data)
     
             data = data.slice().sort((a,b) => d3.ascending(a.date , b.date));
 /*
@@ -523,10 +522,9 @@ function createLineGraph(data) {
 
 
 */
-            var jobTitles = d3.map(data, function(d){return d.fromJobtitle;}).keys()
+            var jobTitles = ["Unknown", "Employee", "Trader", "In House Lawyer", "Manager", "Managing Director", "Director", "Vice President", "President", "CEO"]
             var maxDate = d3.max(data, function(d) { return d.date;});
             var minDate = d3.min(data, function(d) { return d.date;});
-            console.log(maxDate, minDate);
             //^ console prints <empty string> <empty string> so probably this does not work. When changed to parseDate(d.date), console prints undefined
             var maxSentiment = d3.max(data, function(d) { return d.sentiment;});
             var minSentiment = d3.min(data, function(d) { return d.sentiment;});
@@ -539,7 +537,7 @@ function createLineGraph(data) {
                 .append('option')
                 .text(function (d) { return d; }) // text showed in the menu
                 .attr("value", function (d) { return d; }) // corresponding value returned by the button
-
+            
             var y = d3.scaleLinear()
                     .domain([minSentiment,maxSentiment])
                     .range([height,0]);
