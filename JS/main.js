@@ -489,9 +489,7 @@ function createLineGraph(data) {
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
         
-   
-  
-    
+
 
     var parseDate = d3.timeParse("%Y-%m-%d");
     var formatMonth = d3.timeFormat("%B")
