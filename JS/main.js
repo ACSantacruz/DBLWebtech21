@@ -135,7 +135,7 @@ function createTable(data) {
 function createHeatMap(data) {
 
     // Using the standard Size thing from JS does anyone know how to convert this to scale to the size of the boxes>?
-    var margin = {top: 80, right: 25, bottom: 30, left: 40},
+    var margin = {top: 80, right: 30, bottom: 80, left: 80},
         width = 600 - margin.left - margin.right,
         height = 600 - margin.top - margin.bottom;
 
@@ -159,15 +159,46 @@ function createHeatMap(data) {
         .range([ 0, width ])
         .domain(fromTitle)
         .padding(0.03);
+    svg.append("g")
+        .style("font-size", 10)
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(xAxis).tickSize(0))
+    .selectAll("text")
+        .attr("transform", "translate(-10,10)rotate(-45)")
+        .style("text-anchor", "end")
+        .style("font-size", 10)
+        .style("fill", "#0163ac")
+    svg.append("text")
+        .attr("text-anchor", "end")
+        .attr("x", width)
+        .attr("y", height + margin.top - 20)
+        .text("From job title.");
+
+
+
 
     //This is to make the y- axis and to make the grid layout scalable But does not work
         var yAxis = d3.scaleBand()
             .range([ height, 0 ])
             .domain(toTitle)
             .padding(0.03);
+        svg.append("g")
+            .style("font-size", 15)
+            .call(d3.axisLeft(yAxis).tickSize(0))
+            .selectAll("text")
+            .attr("transform", "translate(-10,10)rotate(-45)")
+            .style("text-anchor", "end")
+            .style("font-size", 10)
+            .style("fill", "#0163ac")
+        svg.append("text")
+            .attr("text-anchor", "end")
+            .attr("transform", "rotate(-90)")
+            .attr("y", -margin.left+30)
+            .attr("x", 0)
+            .text("To job title.")
 
 
-        //To colour in the heatmap, can someb
+    //To colour in the heatmap, can someb
         var ColourHM = d3.scaleLinear()
             .range(["#0041ff", "#ffffff", "#ffbe00", "#ff0000"])
             .domain([-0.07, -0.03, 0.03, 0.07])
