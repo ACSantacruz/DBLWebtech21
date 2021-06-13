@@ -135,7 +135,7 @@ function createTable(data) {
 function createHeatMap(data) {
 
     // Using the standard Size thing from JS does anyone know how to convert this to scale to the size of the boxes>?
-    var margin = {top: 80, right: 25, bottom: 30, left: 40},
+    var margin = {top: 80, right: 30, bottom: 80, left: 80},
         width = 600 - margin.left - margin.right,
         height = 600 - margin.top - margin.bottom;
 
@@ -159,15 +159,46 @@ function createHeatMap(data) {
         .range([ 0, width ])
         .domain(fromTitle)
         .padding(0.03);
+    svg.append("g")
+        .style("font-size", 10)
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(xAxis).tickSize(10))
+    .selectAll("text")
+        .attr("transform", "translate(-10, 0)rotate(-45)")
+        .style("text-anchor", "end")
+        .style("font-size", 10)
+        .style("fill", "#0163ac")
+    svg.append("text")
+        .attr("text-anchor", "end")
+        .attr("x", width)
+        .attr("y", height + margin.top - 20)
+        .text("From job title.");
+
+
+
 
     //This is to make the y- axis and to make the grid layout scalable But does not work
         var yAxis = d3.scaleBand()
             .range([ height, 0 ])
             .domain(toTitle)
             .padding(0.03);
+        svg.append("g")
+            .style("font-size", 15)
+            .call(d3.axisLeft(yAxis).tickSize(10))
+            .selectAll("text")
+            .attr("transform", "translate(-5,-10)rotate(-45)")
+            .style("text-anchor", "end")
+            .style("font-size", 10)
+            .style("fill", "#0163ac")
+        svg.append("text")
+            .attr("text-anchor", "end")
+            .attr("transform", "rotate(-90)")
+            .attr("y", -margin.left+30)
+            .attr("x", 0)
+            .text("To job title.")
 
 
-        //To colour in the heatmap, can someb
+    //To colour in the heatmap, can someb
         var ColourHM = d3.scaleLinear()
             .range(["#0041ff", "#ffffff", "#ffbe00", "#ff0000"])
             .domain([-0.07, -0.03, 0.03, 0.07])
@@ -480,9 +511,7 @@ function createLineGraph(data) {
 
         
         .get(function(error,data){
-            console.log(data)
-          
-            
+    
             data = data.slice().sort((a,b) => d3.ascending(a.date , b.date));
             
 /*
@@ -498,10 +527,9 @@ function createLineGraph(data) {
 
 
 */
-            var jobTitles = d3.map(data, function(d){return d.fromJobtitle;}).keys()
+            var jobTitles = ["Unknown", "Employee", "Trader", "In House Lawyer", "Manager", "Managing Director", "Director", "Vice President", "President", "CEO"]
             var maxDate = d3.max(data, function(d) { return d.date;});
             var minDate = d3.min(data, function(d) { return d.date;});
-            console.log(maxDate, minDate);
             //^ console prints <empty string> <empty string> so probably this does not work. When changed to parseDate(d.date), console prints undefined
             var maxSentiment = d3.max(data, function(d) { return d.sentiment;});
             var minSentiment = d3.min(data, function(d) { return d.sentiment;});
@@ -514,7 +542,7 @@ function createLineGraph(data) {
                 .append('option')
                 .text(function (d) { return d; }) // text showed in the menu
                 .attr("value", function (d) { return d; }) // corresponding value returned by the button
-
+            
             var y = d3.scaleLinear()
                     .domain([minSentiment,maxSentiment])
                     .range([height,0]);
@@ -547,8 +575,25 @@ function createLineGraph(data) {
             svg.append('svg')
                 .attr('height','100%')
                 .attr('width','100%');
+            
+            // Add a clipPath: everything out of this area won't be drawn.
+            var clip = svg.append("defs").append("svg:clipPath")
+            .attr("id", "clip")
+            .append("svg:rect")
+            .attr("width", width )
+            .attr("height", height )
+            .attr("x", 0)
+            .attr("y", 0);
+
+            //add brushing
+            //var brush = d3.brushX()
+            //.extent( [ [0,0], [width,height] ] )
+            //.on("end", updateChart)
+
+            
             var chartGroup = svg.append('g')
                 .attr('transform','translate(50%,50%)');
+            
             var line = d3.svg.line()
                 .x(function(d){ return x(d.date);})
                 .y(function(d){ return y(d.sentiment);});
@@ -599,12 +644,37 @@ function createLineGraph(data) {
             }
 
             chartGroup.append('path').attr('d',line(data));
+
+            // Add the brushing
+            //chartGroup
+            //.attr("clip-path", "url(#clip)")
+            //.attr("class", "brush").call(brush);
+
             chartGroup.append('g').attr('class','x axis').attr('transform','translate(0,'+height+')').call(xAxis);
             chartGroup.append('g').attr('class','y axis').call(yAxis);
             svg.append("text")
                 .style("font-size", "24px")
                 .style("font-family", "Verdana")
                 .text("Line chart");
+    /* // A function that set idleTimeOut to null
+    var idleTimeout
+    function idled() { idleTimeout = null; }
+
+    // A function that update the chart for given boundaries
+    function updateChart() {
+
+      // What are the selected boundaries?
+      extent = d3.event.selection
+
+      // If no selection, back to initial coordinate. Otherwise, update X axis domain
+      if(!extent){
+        if (!idleTimeout) return idleTimeout = setTimeout(idled, 350); // This allows to wait a little bit
+        x.domain([ 4,8])
+      }else{
+        x.domain([ x.invert(extent[0]), x.invert(extent[1]) ])
+        line.select(".brush").call(brush.move, null) // This remove the grey brush area as soon as the selection has been done
+      } */
+            
 
         });}
     
