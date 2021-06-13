@@ -491,8 +491,6 @@ function createLineGraph(data) {
         
 
 
-    
-
     var parseDate = d3.timeParse("%Y-%m-%d");
     var formatMonth = d3.timeFormat("%B")
     d3.csv(fileName)    
