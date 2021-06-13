@@ -570,8 +570,25 @@ function createLineGraph(data) {
             svg.append('svg')
                 .attr('height','100%')
                 .attr('width','100%');
+            
+            // Add a clipPath: everything out of this area won't be drawn.
+            var clip = svg.append("defs").append("svg:clipPath")
+            .attr("id", "clip")
+            .append("svg:rect")
+            .attr("width", width )
+            .attr("height", height )
+            .attr("x", 0)
+            .attr("y", 0);
+
+            //add brushing
+            //var brush = d3.brushX()
+            //.extent( [ [0,0], [width,height] ] )
+            //.on("end", updateChart)
+
+            
             var chartGroup = svg.append('g')
                 .attr('transform','translate(50%,50%)');
+            
             var line = d3.svg.line()
                 .x(function(d){ return x(d.date);})
                 .y(function(d){ return y(d.sentiment);});
@@ -622,12 +639,37 @@ function createLineGraph(data) {
             }
 
             chartGroup.append('path').attr('d',line(data));
+
+            // Add the brushing
+            //chartGroup
+            //.attr("clip-path", "url(#clip)")
+            //.attr("class", "brush").call(brush);
+
             chartGroup.append('g').attr('class','x axis').attr('transform','translate(0,'+height+')').call(xAxis);
             chartGroup.append('g').attr('class','y axis').call(yAxis);
             svg.append("text")
                 .style("font-size", "24px")
                 .style("font-family", "Verdana")
                 .text("Line chart");
+    /* // A function that set idleTimeOut to null
+    var idleTimeout
+    function idled() { idleTimeout = null; }
+
+    // A function that update the chart for given boundaries
+    function updateChart() {
+
+      // What are the selected boundaries?
+      extent = d3.event.selection
+
+      // If no selection, back to initial coordinate. Otherwise, update X axis domain
+      if(!extent){
+        if (!idleTimeout) return idleTimeout = setTimeout(idled, 350); // This allows to wait a little bit
+        x.domain([ 4,8])
+      }else{
+        x.domain([ x.invert(extent[0]), x.invert(extent[1]) ])
+        line.select(".brush").call(brush.move, null) // This remove the grey brush area as soon as the selection has been done
+      } */
+            
 
         });}
 
