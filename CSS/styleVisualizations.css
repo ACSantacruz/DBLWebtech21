@@ -703,7 +703,7 @@ html, body{
 }
 
 line{
-	stroke: brown;
+	stroke: #0c0c0c;
 	stroke-width:3;
 }
 
@@ -727,10 +727,11 @@ g.grp0 circle{
 }
 
 g.tick line{
-	stroke:green;
+	stroke: #4c4c4c;
 }
 
 g.tick text{
 	font-size: 12px;
-	fill:blue;
+	fill: #006bbb;
 }
+
