@@ -626,8 +626,8 @@ function createLineGraph(data) {
             function mousemove() {
                 // De values pakken
                 var x0 = x.invert(d3.mouse(this)[0]);
-                var i = bisect(data, x0, 1);
-                xCord = data[i]
+                var i = bisect(data22, x0, 1);
+                xCord = data22[i]
                 focus
                     .attr("cx", x(xCord.date))
                     .attr("cy", y(xCord.sentiment))
