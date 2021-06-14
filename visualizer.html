@@ -164,7 +164,7 @@ function closeNav() {
 	acceptBtn = cookieBox.querySelector(".buttons button");
 	
 	acceptBtn.onclick = ()=>{
-		document.cookie = "Cookie=Darkmode; max-age="+60*60*24; //set cookie popup for 24 hours
+		document.cookie = "Cookie=Darkmode; max-age="+60*60; //set cookie popup for 24 hours
 		if(document.cookie){
 			cookieBox.classList.add("hide")
 		}else{
