@@ -2,18 +2,37 @@
 let reader = new FileReader();
 var dateFmt = d3.timeParse("%Y-%m-%d");
 
+function formatFileSize(bytes,decimalPoint) {
+    if(bytes == 0) return '0 Bytes';
+    var k = 1000,
+        dm = decimalPoint || 2,
+        sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+        i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+ }
 
+ 
 function loadFile() {
     const file = document.querySelector('input[type=file]').files[0];
     reader.addEventListener("load", parseFile, false);
     if (file) {
         reader.readAsText(file);
         console.log(file)
-
+        console.log(document.getElementById('csvUploader').files[0].name);
+        console.log(formatFileSize(document.getElementById('csvUploader').files[0].size))
+        console.log(document.getElementById('csvUploader').files[0].type)
+        console.log(document.getElementById('csvUploader').files[0].lastModifiedDate)
+        document.getElementById("p1").innerHTML = "File name: "+ document.getElementById('csvUploader').files[0].name;
+        document.getElementById("p2").innerHTML = "File size: "+ formatFileSize(document.getElementById('csvUploader').files[0].size);
+        document.getElementById("p3").innerHTML = "File type: "+ document.getElementById('csvUploader').files[0].type;
+        document.getElementById("p4").innerHTML = "Last modified: "+ document.getElementById('csvUploader').files[0].lastModifiedDate;
+        
+   
     }
     fileName = file.name;
     
 }
+
 
 function parseFile(){
     let doesColumnExist = false;
@@ -472,7 +491,7 @@ function createLineGraph(data) {
     
         var input = document.getElementById( 'csvUploader' );
         var fileName = input.files[0].name;
-        console.log(fileName)
+      
         
         
 
