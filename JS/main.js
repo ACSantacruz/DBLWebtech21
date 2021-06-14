@@ -563,10 +563,10 @@ function createLineGraph(data) {
         .attr("y2", y(maxSentiment))
         .selectAll("stop")
         .data([
-            {offset: "0%", color: "#001eb4"},
-            {offset: "35%", color: "#003aff"},
-            {offset: "45%", color: "#ff3800"},
-            {offset: "100%", color: "#ff0000"}
+            {offset: "0%", color: "#ff0000"},
+            {offset: "35%", color: "#ff3d00"},
+            {offset: "45%", color: "#094fc7"},
+            {offset: "100%", color: "#0023a8"}
         ])
         .enter().append("stop")
         .attr("offset", function(d) { return d.offset; })
