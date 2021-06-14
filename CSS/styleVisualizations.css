@@ -1,3 +1,7 @@
+html, body{
+	font-family: Arial, Helvetica, sans-serif;
+}
+
 body{
 	background-image:url("ImagesCSS/lightBG.png");
 	background-size:33.32% 55%;
