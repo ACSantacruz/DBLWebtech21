@@ -470,16 +470,17 @@ function createAdjacency(data) {
 
 function fileInfo(data){
    //Does not work for some reason?
-   console.log(d3.keys(data[0]) )
-    if (d3.keys(data[0]) == "date", "fromId", "fromEmail", "fromJobtitle", "toId", "toEmail", "toJobtitle", "messageType", "sentiment") {
+ 
+     var NewUpload = d3.keys(data[0]);
+     var CorrectFile = ["date", "fromId", "fromEmail", "fromJobtitle", "toId", "toEmail", "toJobtitle", "messageType", "sentiment", "Timestamp"];
+    console.log(NewUpload )
+     if (JSON.stringify(NewUpload) === JSON.stringify(CorrectFile)) {
 
     
             document.getElementById("p5").innerHTML = "The uploaded file: " + fileName + "  is in the correct format. " ;
     } else {
-        console.log(d3.keys(data[0]) )
-        var svg = d3.select("#box3")
-        svg.append("text")
-            .text("ERROR!! The file: " + fileName +  " Is not the correct format, this might cause issues!.");
+  
+            document.getElementById("p5").innerHTML = "ERROR!! The file: " + fileName +  " Is not the correct format, this might cause issues!" ;
     }
 }
 
