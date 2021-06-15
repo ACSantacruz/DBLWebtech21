@@ -638,10 +638,10 @@ function createLineGraph(data) {
             var chartGroup = svg.append('g')
                 .attr('transform','translate(50%,50%)');
             
-            var line = d3.svg.line()
+
 
     console.log(jobTitles[0])
-            line = svg
+            var line = svg
                 .append('g')
                 .append("path")
                 .datum(data.filter(function(d){return d.fromJobtitle==jobTitles[0]}))
