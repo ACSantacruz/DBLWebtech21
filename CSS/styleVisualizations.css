@@ -748,3 +748,25 @@ g.tick text{
 	fill: #006bbb;
 }
 
+
+
+#message{
+	position: absolute;
+	bottom: 0px;
+	width:95%;
+	text-align:center;
+	left: 50%;
+	-ms-transform: translate(-50%);
+	transform: translate(-50%);
+}
+
+#p5{
+	font-size:14px;
+	font-weight: bold;
+}
+
+#General{
+	
+	bottom:0px;
+	margin: 0 auto;
+}

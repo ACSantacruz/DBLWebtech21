@@ -17,11 +17,6 @@ function loadFile() {
     reader.addEventListener("load", parseFile, false);
     if (file) {
         reader.readAsText(file);
-        console.log(file)
-        console.log(document.getElementById('csvUploader').files[0].name);
-        console.log(formatFileSize(document.getElementById('csvUploader').files[0].size))
-        console.log(document.getElementById('csvUploader').files[0].type)
-        console.log(document.getElementById('csvUploader').files[0].lastModifiedDate)
         document.getElementById("p1").innerHTML = "File name: "+ document.getElementById('csvUploader').files[0].name;
         document.getElementById("p2").innerHTML = "File size: "+ formatFileSize(document.getElementById('csvUploader').files[0].size);
         document.getElementById("p3").innerHTML = "File type: "+ document.getElementById('csvUploader').files[0].type;
@@ -470,19 +465,19 @@ function createAdjacency(data) {
 
 function fileInfo(data){
    //Does not work for some reason?
-   console.log(d3.keys(data[0]) )
-    if (d3.keys(data[0]) == "date", "fromId", "fromEmail", "fromJobtitle", "toId", "toEmail", "toJobtitle", "messageType", "sentiment") {
+   d3.csv(fileName, function(error, data) {
+    var NewUpload = d3.keys(data[0]);
+    var CorrectFile = ["date", "fromId", "fromEmail", "fromJobtitle", "toId", "toEmail", "toJobtitle", "messageType", "sentiment"];
+   console.log(NewUpload )
+    if (JSON.stringify(NewUpload) === JSON.stringify(CorrectFile)) {
 
-        var svg = d3.select("#box3")
-        svg.append("text")
-            .text("The file: " + fileName + "  is in the correct format. " + d3.keys(data[0]));
+    
+            document.getElementById("p5").innerHTML = "The uploaded file: " + fileName + "  is in the correct format. " ;
     } else {
-        console.log(d3.keys(data[0]) )
-        var svg = d3.select("#box3")
-        svg.append("text")
-            .text("ERROR!! The file: " + fileName +  " Is not the correct format, this might cause issues!.");
+        document.getElementById("p5").innerHTML = "ERROR!! The file: " + fileName +  " Is not the correct format, this might cause issues!";
+           
     }
-}
+});}
 
 
 
