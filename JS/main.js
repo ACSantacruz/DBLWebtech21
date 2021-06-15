@@ -565,6 +565,7 @@ function createLineGraph(data) {
                 .append('option')
                 .text(function (d) { return d; }) // text showed in the menu
                 .attr("value", function (d) { return d; }) // corresponding value returned by the button
+
             
             var y = d3.scaleLinear()
                     .domain([minSentiment,maxSentiment])
@@ -639,6 +640,16 @@ function createLineGraph(data) {
             
             var line = d3.svg.line()
 
+    console.log(jobTitles[0])
+            line = svg
+                .append('g')
+                .append("path")
+                .datum(data.filter(function(d){return d.fromJobtitle==jobTitles[0]}))
+                .attr("d", d3.svg.line()
+                    .x(function(d) { return x(d.date) })
+                    .y(function(d) { return y(+d.sentiment) })
+                )
+
 
             //hit box to activate mouse hover.
             svg
@@ -657,6 +668,31 @@ function createLineGraph(data) {
                 .text("Line graph of sentiment over time.")
                 .attr("y", -20)
                 .attr("x", width/10);
+
+
+    function update(selectedGroup) {
+
+        // Create new data with the selection?
+        var dataFilter = data.filter(function(d){return d.fromJobtitle==selectedGroup})
+
+        // Give these new data to update line
+        line = svg
+            .datum(dataFilter)
+            .transition()
+            .duration(1000)
+            .attr("d", d3.svg.line()
+                .x(function(d) { return x(d.date) })
+                .y(function(d) { return y(+d.sentiment) })
+            )
+    }
+
+    // When the button is changed, run the updateChart function
+    d3.select("#selectButton").on("change", function(d) {
+        // recover the option that has been chosen
+        var selectedOption = d3.select(this).property("value")
+        // run the updateChart function with this selected option
+        update(selectedOption)
+    })
 
 
             //alles zichtbaar maken.
