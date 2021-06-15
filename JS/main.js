@@ -471,7 +471,7 @@ function createAdjacency(data) {
 function fileInfo(data){
    //Does not work for some reason?
    console.log(d3.keys(data[0]) )
-    if (d3.keys(data[0]) == "date", "fromId", "fromEmail", "fromJobtitle", "toId", "toEmail", "toJobtitle", "messageType", "sentiment", "Timestamp") {
+    if (d3.keys(data[0]) == "date", "fromId", "fromEmail", "fromJobtitle", "toId", "toEmail", "toJobtitle", "messageType", "sentiment") {
 
     
             document.getElementById("p5").innerHTML = "The uploaded file: " + fileName + "  is in the correct format. " ;
