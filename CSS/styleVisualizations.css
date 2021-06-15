@@ -589,15 +589,13 @@ p{
 
 #heatMap {
 
-	overflow: hidden;
 	font-family: sans-serif;
 	font-weight: bold;
 	font-size: 14px;
 }
 
 #Uniqueness {
-	
-	overflow: hidden;
+
 	font-family: sans-serif;
 	font-weight: bold;
 	font-size: 14px;
