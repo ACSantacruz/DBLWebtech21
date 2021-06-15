@@ -474,11 +474,8 @@ function fileInfo(data){
     
             document.getElementById("p5").innerHTML = "The uploaded file: " + fileName + "  is in the correct format. " ;
     } else {
-        console.log(d3.keys(data[0]) )
-        console.log(["date", "fromId", "fromEmail", "fromJobtitle", "toId", "toEmail", "toJobtitle", "messageType", "sentiment", "Timestamp"])
-        var svg = d3.select("#box3")
-        svg.append("text")
-            .text("ERROR!! The file: " + fileName +  " Is not the correct format, this might cause issues!.");
+        document.getElementById("p5").innerHTML = "ERROR!! The file: " + fileName +  " Is not the correct format, this might cause issues!";
+           
     }
 });}
 
