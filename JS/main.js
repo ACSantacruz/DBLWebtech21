@@ -153,11 +153,13 @@ function createTable(data) {
 
 function createHeatMap(data) {
 
+
     // Using the standard Size thing from JS does anyone know how to convert this to scale to the size of the boxes>?
     var margin = {top: 80, right: 30, bottom: 80, left: 80},
         width = 600 - margin.left - margin.right,
         height = 600 - margin.top - margin.bottom;
 
+    d3.select('#heatMap').selectAll('*').remove();
 
     //Printing the field, still using the margin set above.
     var svg = d3.select("#heatMap")
@@ -348,6 +350,7 @@ function createAdjacency(data) {
         width = 600 - margin.left - margin.right,
         height = 600 - margin.top - margin.bottom;
 
+    d3.select('#Uniqueness').selectAll('*').remove();
 
     //Printing the field, still using the margin set above.
     var svg = d3.select("#Uniqueness")
@@ -487,12 +490,14 @@ function fileInfo(data){
 
 
 function createLineGraph(data) {
-    
+
+
+
         var input = document.getElementById( 'csvUploader' );
         var fileName = input.files[0].name;
-      
-        
-        
+
+
+    d3.select('#LineGraph').selectAll('*').remove();
 
     // Using the standard Size thing from JS does anyone know how to convert this to scale to the size of the boxes>?
     var margin = {top: 80, right: 25, bottom: 30, left: 40},
