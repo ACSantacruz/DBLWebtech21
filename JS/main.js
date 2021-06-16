@@ -592,7 +592,7 @@ function createLineGraph(data) {
 
             //add brushing
             var brush = d3.brushX()
-            .extent( [ [0,0], [width,height] ] )
+            .extent( [ [0,0], [width,height] ] );
             //.on("end", updateChart);
             
     // Set the gradient
@@ -639,20 +639,22 @@ function createLineGraph(data) {
                 .attr('width','100%');
             
 
-            
-            
-
 
     console.log(jobTitles[0])
-            var line = svg
-                .append('g')
-                .append("path")
+
+            var line = svg.append('g')
+                .attr("clip-path", "url(#clip)")
+
+
+                line.append("path")
+                .attr("class", "line")
                 .datum(data.filter(function(d){return d.fromJobtitle==jobTitles[0]}))
                 .attr("d", d3.svg.line()
                     .x(function(d) { return x(d.date) })
                     .y(function(d) { return y(+d.sentiment) })
                 )
 
+            
 
             //hit box to activate mouse hover.
             svg
@@ -672,6 +674,10 @@ function createLineGraph(data) {
                 .attr("y", -20)
                 .attr("x", width/10);
 
+            // Add the brushing
+            line.append("g")
+            .attr("class", "brush")
+            .call(brush);
 
     function update(selectedGroup) {
 
@@ -687,6 +693,7 @@ function createLineGraph(data) {
                 .x(function(d) { return x(d.date) })
                 .y(function(d) { return y(+d.sentiment) })
             )
+        
     }
 
     // When the button is changed, run the updateChart function
@@ -736,14 +743,7 @@ function createLineGraph(data) {
 
 
     
-    /*  var line = svg.append('g')
-        .attr("clip-path", "url(#clip)") */
-            /*
-
-        // Add the brushing
-        line.append("g")
-        .attr("class", "brush")
-        .call(brush); */
+    
 
 
     /* // A function that set idleTimeOut to null
