@@ -221,7 +221,7 @@ function createHeatMap(data) {
 
     //To colour in the heatmap, can someb
         var ColourHM = d3.scaleLinear()
-            .range(["#0041ff", "#ffffff", "#ffbe00", "#ff0000"])
+            .range(["#ff0000", "#ffbe00","#ffffff", "#0041ff"])
             .domain([-0.07, -0.03, 0.03, 0.07])
 
         var mouseGetOver = function(_){
