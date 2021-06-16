@@ -567,16 +567,19 @@ function createLineGraph(data) {
                 .attr("value", function (d) { return d; }) // corresponding value returned by the button
 
             
-            var y = d3.scaleLinear()
-                    .domain([minSentiment,maxSentiment])
-                    .range([height,0])
+            
             var x = d3.scaleTime()
-                    .domain([minDate, maxDate])
-                    .range([0, width]);
+                .domain([minDate, maxDate])
+                .range([0, width]);
             xAxis = svg.append("g")
                 .attr("transform", "translate(0," + height + ")")
                 .call(d3.axisBottom(x));
+            
+            var y = d3.scaleLinear()
+                .domain([minSentiment,maxSentiment])
+                .range([height,0])
             var yAxis = d3.axisLeft(y);
+        
     // Set the gradient
     svg.append("linearGradient")
         .attr("id", "line-gradient")
