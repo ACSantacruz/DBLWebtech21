@@ -490,11 +490,107 @@ function fileInfo(data){
 
 
 function createLineGraph(data) {
+    
+    var parseDate = d3.timeParse("%Y-%m-%d");
+    var formatMonth = d3.timeFormat("%B")
+    var input = document.getElementById( 'csvUploader' );
+    var fileName = input.files[0].name;
+ //   ["Unknown", "Employee", "Trader", "In House Lawyer", "Manager", "Managing Director", "Director", "Vice President", "President", "CEO"]
+    data100 = d3.group(data, d => d.fromJobtitle)
+    
+    dataA1 = data100.get("Unknown");
+    dataB1 = data100.get("Employee");
+    dataC1 = data100.get("Trader");
+    dataD1 = data100.get("In House Lawyer");
+    dataE1 = data100.get("Manager");
+    dataF1 = data100.get("Managing Director");
+    dataG1 = data100.get("Director");
+    dataH1 = data100.get("Vice President");
+    dataI1 = data100.get("President");
+    dataJ1 = data100.get("CEO");
+
+      
+      data2 = d3.rollups(data,  v => d3.mean(v,d => d.sentiment), d => d.date)
+      var data22 = data2.map(function(d){
+        return{
+            date:parseDate(d[0]),
+            sentiment:d[1]
+        };
+    });
 
 
-
-        var input = document.getElementById( 'csvUploader' );
-        var fileName = input.files[0].name;
+      dataA2 = d3.rollups(dataA1,  v => d3.mean(v,d => d.sentiment), d => d.date)
+      var dataA3 = dataA2.map(function(d){
+          return{
+              date:parseDate(d[0]),
+              sentiment:d[1]
+          };
+      });
+      dataB2 = d3.rollups(dataB1,  v => d3.mean(v,d => d.sentiment), d => d.date)
+      var dataB3 = dataB2.map(function(d){
+          return{
+              date:parseDate(d[0]),
+              sentiment:d[1]
+          };
+      });
+      dataC2 = d3.rollups(dataC1,  v => d3.mean(v,d => d.sentiment), d => d.date)
+      var dataC3 = dataC2.map(function(d){
+          return{
+              date:parseDate(d[0]),
+              sentiment:d[1]
+          };
+      });
+      dataD2 = d3.rollups(dataD1,  v => d3.mean(v,d => d.sentiment), d => d.date)
+      var dataD3 = dataD2.map(function(d){
+          return{
+              date:parseDate(d[0]),
+              sentiment:d[1]
+          };
+      });
+      dataE2 = d3.rollups(dataE1,  v => d3.mean(v,d => d.sentiment), d => d.date)
+      var dataE3 = dataE2.map(function(d){
+          return{
+              date:parseDate(d[0]),
+              sentiment:d[1]
+          };
+      });
+      dataF2 = d3.rollups(dataF1,  v => d3.mean(v,d => d.sentiment), d => d.date)
+      var dataF3 = dataF2.map(function(d){
+          return{
+              date:parseDate(d[0]),
+              sentiment:d[1]
+          };
+      });
+      dataG2 = d3.rollups(dataG1,  v => d3.mean(v,d => d.sentiment), d => d.date)
+      var dataG3 = dataG2.map(function(d){
+          return{
+              date:parseDate(d[0]),
+              sentiment:d[1]
+          };
+      });
+      dataH2 = d3.rollups(dataH1,  v => d3.mean(v,d => d.sentiment), d => d.date)
+      var dataH3 = dataH2.map(function(d){
+          return{
+              date:parseDate(d[0]),
+              sentiment:d[1]
+          };
+      });
+      dataI2 = d3.rollups(dataI1,  v => d3.mean(v,d => d.sentiment), d => d.date)
+      var dataI3 = dataI2.map(function(d){
+          return{
+              date:parseDate(d[0]),
+              sentiment:d[1]
+          };
+      });
+      dataJ2 = d3.rollups(dataJ1,  v => d3.mean(v,d => d.sentiment), d => d.date)
+      var dataJ3 = dataJ2.map(function(d){
+          return{
+              date:parseDate(d[0]),
+              sentiment:d[1]
+          };
+      });
+console.log(dataJ3)
+console.log(dataG3)
 
 
     d3.select('#LineGraph').selectAll('*').remove();
@@ -513,19 +609,11 @@ function createLineGraph(data) {
         .style("background-color", "white")
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
+       
    
-        var parseDate = d3.timeParse("%Y-%m-%d");
-        var formatMonth = d3.timeFormat("%B")
-    
-        data2 = d3.rollups(data,  v => d3.mean(v,d => d.sentiment), d => d.date)
 
-        var data22 = data2.map(function(d){
-            return{
-                date:parseDate(d[0]),
-                sentiment:d[1]
-            };
-        });
+    
+ 
      /*   d3.csv(fileName)    
         .row(function(d) {return {date:parseDate(d.date),sentiment:Number(d.sentiment)};})
         // When changed to 'date:formatMonth(d.date)', the graph shows just a vertical line
