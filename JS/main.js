@@ -517,7 +517,8 @@ function createLineGraph(data) {
             sentiment:d[1]
         };
     });
-
+    data22 = data22.slice().sort((a,b) => d3.ascending(a.date , b.date));
+    
 
       dataA2 = d3.rollups(dataA1,  v => d3.mean(v,d => d.sentiment), d => d.date)
       var dataA3 = dataA2.map(function(d){
@@ -526,6 +527,8 @@ function createLineGraph(data) {
               sentiment:d[1]
           };
       });
+      dataA3 = dataA3.slice().sort((a,b) => d3.ascending(a.date , b.date));
+    
       dataB2 = d3.rollups(dataB1,  v => d3.mean(v,d => d.sentiment), d => d.date)
       var dataB3 = dataB2.map(function(d){
           return{
@@ -533,6 +536,8 @@ function createLineGraph(data) {
               sentiment:d[1]
           };
       });
+      dataB3 = dataB3.slice().sort((a,b) => d3.ascending(a.date , b.date));
+
       dataC2 = d3.rollups(dataC1,  v => d3.mean(v,d => d.sentiment), d => d.date)
       var dataC3 = dataC2.map(function(d){
           return{
@@ -540,6 +545,8 @@ function createLineGraph(data) {
               sentiment:d[1]
           };
       });
+      dataC3 = dataC3.slice().sort((a,b) => d3.ascending(a.date , b.date));
+
       dataD2 = d3.rollups(dataD1,  v => d3.mean(v,d => d.sentiment), d => d.date)
       var dataD3 = dataD2.map(function(d){
           return{
@@ -547,6 +554,8 @@ function createLineGraph(data) {
               sentiment:d[1]
           };
       });
+      dataD3 = dataD3.slice().sort((a,b) => d3.ascending(a.date , b.date));
+
       dataE2 = d3.rollups(dataE1,  v => d3.mean(v,d => d.sentiment), d => d.date)
       var dataE3 = dataE2.map(function(d){
           return{
@@ -554,6 +563,8 @@ function createLineGraph(data) {
               sentiment:d[1]
           };
       });
+      dataE3 = dataE3.slice().sort((a,b) => d3.ascending(a.date , b.date));
+
       dataF2 = d3.rollups(dataF1,  v => d3.mean(v,d => d.sentiment), d => d.date)
       var dataF3 = dataF2.map(function(d){
           return{
@@ -561,6 +572,8 @@ function createLineGraph(data) {
               sentiment:d[1]
           };
       });
+      dataF3 = dataF3.slice().sort((a,b) => d3.ascending(a.date , b.date));
+
       dataG2 = d3.rollups(dataG1,  v => d3.mean(v,d => d.sentiment), d => d.date)
       var dataG3 = dataG2.map(function(d){
           return{
@@ -568,6 +581,8 @@ function createLineGraph(data) {
               sentiment:d[1]
           };
       });
+      dataG3 = dataG3.slice().sort((a,b) => d3.ascending(a.date , b.date));
+
       dataH2 = d3.rollups(dataH1,  v => d3.mean(v,d => d.sentiment), d => d.date)
       var dataH3 = dataH2.map(function(d){
           return{
@@ -575,6 +590,8 @@ function createLineGraph(data) {
               sentiment:d[1]
           };
       });
+      dataH3 = dataH3.slice().sort((a,b) => d3.ascending(a.date , b.date));
+
       dataI2 = d3.rollups(dataI1,  v => d3.mean(v,d => d.sentiment), d => d.date)
       var dataI3 = dataI2.map(function(d){
           return{
@@ -582,6 +599,8 @@ function createLineGraph(data) {
               sentiment:d[1]
           };
       });
+      dataI3 = dataI3.slice().sort((a,b) => d3.ascending(a.date , b.date));
+
       dataJ2 = d3.rollups(dataJ1,  v => d3.mean(v,d => d.sentiment), d => d.date)
       var dataJ3 = dataJ2.map(function(d){
           return{
@@ -589,8 +608,7 @@ function createLineGraph(data) {
               sentiment:d[1]
           };
       });
-console.log(dataJ3)
-console.log(dataG3)
+      dataJ3 = dataJ3.slice().sort((a,b) => d3.ascending(a.date , b.date));
 
 
     d3.select('#LineGraph').selectAll('*').remove();
@@ -623,8 +641,7 @@ console.log(dataG3)
 */
 
     
-            data22 = data22.slice().sort((a,b) => d3.ascending(a.date , b.date));
-            console.log(data22)
+ 
 /*
             var allGroup = d3.map(data, function(d){return(d.date)}).keys()
             
