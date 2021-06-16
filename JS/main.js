@@ -519,7 +519,7 @@ function createLineGraph(data) {
     });
     data22 = data22.slice().sort((a,b) => d3.ascending(a.date , b.date));
     
-
+    //Dataset for Unknown
       dataA2 = d3.rollups(dataA1,  v => d3.mean(v,d => d.sentiment), d => d.date)
       var dataA3 = dataA2.map(function(d){
           return{
@@ -528,7 +528,8 @@ function createLineGraph(data) {
           };
       });
       dataA3 = dataA3.slice().sort((a,b) => d3.ascending(a.date , b.date));
-    
+
+    //Dataset for Employee
       dataB2 = d3.rollups(dataB1,  v => d3.mean(v,d => d.sentiment), d => d.date)
       var dataB3 = dataB2.map(function(d){
           return{
@@ -538,6 +539,7 @@ function createLineGraph(data) {
       });
       dataB3 = dataB3.slice().sort((a,b) => d3.ascending(a.date , b.date));
 
+    //Dataset for Trader
       dataC2 = d3.rollups(dataC1,  v => d3.mean(v,d => d.sentiment), d => d.date)
       var dataC3 = dataC2.map(function(d){
           return{
@@ -547,6 +549,7 @@ function createLineGraph(data) {
       });
       dataC3 = dataC3.slice().sort((a,b) => d3.ascending(a.date , b.date));
 
+    //Dataset for In House Lawyer
       dataD2 = d3.rollups(dataD1,  v => d3.mean(v,d => d.sentiment), d => d.date)
       var dataD3 = dataD2.map(function(d){
           return{
@@ -556,6 +559,7 @@ function createLineGraph(data) {
       });
       dataD3 = dataD3.slice().sort((a,b) => d3.ascending(a.date , b.date));
 
+      //Dataset for Manager
       dataE2 = d3.rollups(dataE1,  v => d3.mean(v,d => d.sentiment), d => d.date)
       var dataE3 = dataE2.map(function(d){
           return{
@@ -565,6 +569,7 @@ function createLineGraph(data) {
       });
       dataE3 = dataE3.slice().sort((a,b) => d3.ascending(a.date , b.date));
 
+      //Dataset for Managing Director
       dataF2 = d3.rollups(dataF1,  v => d3.mean(v,d => d.sentiment), d => d.date)
       var dataF3 = dataF2.map(function(d){
           return{
@@ -574,6 +579,7 @@ function createLineGraph(data) {
       });
       dataF3 = dataF3.slice().sort((a,b) => d3.ascending(a.date , b.date));
 
+      //Dataset for Director
       dataG2 = d3.rollups(dataG1,  v => d3.mean(v,d => d.sentiment), d => d.date)
       var dataG3 = dataG2.map(function(d){
           return{
@@ -583,6 +589,7 @@ function createLineGraph(data) {
       });
       dataG3 = dataG3.slice().sort((a,b) => d3.ascending(a.date , b.date));
 
+      //Dataset for Vice President
       dataH2 = d3.rollups(dataH1,  v => d3.mean(v,d => d.sentiment), d => d.date)
       var dataH3 = dataH2.map(function(d){
           return{
@@ -592,6 +599,7 @@ function createLineGraph(data) {
       });
       dataH3 = dataH3.slice().sort((a,b) => d3.ascending(a.date , b.date));
 
+      //Dataset for President
       dataI2 = d3.rollups(dataI1,  v => d3.mean(v,d => d.sentiment), d => d.date)
       var dataI3 = dataI2.map(function(d){
           return{
@@ -601,6 +609,7 @@ function createLineGraph(data) {
       });
       dataI3 = dataI3.slice().sort((a,b) => d3.ascending(a.date , b.date));
 
+      //Dataset for CEO
       dataJ2 = d3.rollups(dataJ1,  v => d3.mean(v,d => d.sentiment), d => d.date)
       var dataJ3 = dataJ2.map(function(d){
           return{
@@ -787,8 +796,11 @@ function createLineGraph(data) {
     function update(selectedGroup) {
 
         // Create new data with the selection?
-        var dataFilter = data.filter(function(d){return d.fromJobtitle==selectedGroup})
-
+        if(selectedGroup == "Employee"){
+            var dataFilter = dataB3
+        }
+       // var dataFilter = data.filter(function(d){return d.fromJobtitle==selectedGroup})
+        console.log(selectedGroup)
         // Give these new data to update line
         line = svg
             .datum(dataFilter)
