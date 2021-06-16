@@ -740,7 +740,6 @@ function createLineGraph(data) {
             //.attr("clip-path", "url(#clip)")
             //.attr("class", "brush").call(brush);
 
-            chartGroup.append('g').attr('class','y axis').call(yAxis);
             svg.append("text")
                 .style("font-size", "24px")
                 .style("font-family", "Verdana")
