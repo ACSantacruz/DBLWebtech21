@@ -579,7 +579,22 @@ function createLineGraph(data) {
                 .domain([minSentiment,maxSentiment])
                 .range([height,0])
             var yAxis = d3.axisLeft(y);
+            //svg.append("g").call(yAxis);
         
+            // Add a clipPath: everything out of this area won't be drawn.
+            var clip = svg.append("defs").append("svg:clipPath")
+            .attr("id", "clip")
+            .append("svg:rect")
+            .attr("width", width )
+            .attr("height", height )
+            .attr("x", 0)
+            .attr("y", 0);
+
+            //add brushing
+            var brush = d3.brushX()
+            .extent( [ [0,0], [width,height] ] )
+            //.on("end", updateChart);
+            
     // Set the gradient
     svg.append("linearGradient")
         .attr("id", "line-gradient")
@@ -623,23 +638,8 @@ function createLineGraph(data) {
                 .attr('height','100%')
                 .attr('width','100%');
             
-            // Add a clipPath: everything out of this area won't be drawn.
-            var clip = svg.append("defs").append("svg:clipPath")
-            .attr("id", "clip")
-            .append("svg:rect")
-            .attr("width", width )
-            .attr("height", height )
-            .attr("x", 0)
-            .attr("y", 0);
-
-            //add brushing
-            //var brush = d3.brushX()
-            //.extent( [ [0,0], [width,height] ] )
-            //.on("end", updateChart)
 
             
-            var chartGroup = svg.append('g')
-                .attr('transform','translate(50%,50%)');
             
 
 
@@ -735,15 +735,15 @@ function createLineGraph(data) {
                 )
 
 
-    // Add the brushing
-            //chartGroup
-            //.attr("clip-path", "url(#clip)")
-            //.attr("class", "brush").call(brush);
+    
+    /*  var line = svg.append('g')
+        .attr("clip-path", "url(#clip)") */
+            /*
 
-            svg.append("text")
-                .style("font-size", "24px")
-                .style("font-family", "Verdana")
-                .text("Line chart");
+        // Add the brushing
+        line.append("g")
+        .attr("class", "brush")
+        .call(brush); */
 
 
     /* // A function that set idleTimeOut to null
