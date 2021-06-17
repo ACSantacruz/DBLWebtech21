@@ -790,12 +790,17 @@ function createLineGraph(data) {
         line.append("path")
             .attr("class", "line")
             .datum(dataFilter)
+            .attr("fill", "none")
+            .attr("stroke", "url(#line-gradient)" )
+            .attr("stroke-width", 2)
             .attr("d", d3.svg.line()
                 .x(function(d) { return x(d.date) })
                 .y(function(d) { return y(+d.sentiment) })
             )
-        
+
+
     }
+
 
     // When the button is changed, run the updateChart function
     d3.select("#selectButton").on("change", function(d) {
