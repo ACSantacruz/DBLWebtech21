@@ -655,9 +655,9 @@ function createLineGraph(data) {
             //svg.append("g").call(yAxis);
         
             // Add a clipPath: everything out of this area won't be drawn.
-            var clip = svg.append("defs").append("svg:clipPath")
-            .attr("id", "clip")
-            .append("svg:rect")
+            var clip = svg.append("defs").append("clipPath")
+            .attr("id", "clip-path-zoom")
+            .append("rect")
             .attr("width", width )
             .attr("height", height )
             .attr("x", 0)
@@ -716,7 +716,7 @@ function createLineGraph(data) {
     console.log(jobTitles[0])
 
             var line = svg.append('g')
-                .attr("clip-path", "url(#clip)")
+                .attr("clip-path", "url(#clip-path-zoom)")
 
 
                 line.append("path")
@@ -792,6 +792,8 @@ function createLineGraph(data) {
                 .x(function(d) { return x(d.date) })
                 .y(function(d) { return y(+d.sentiment) })
             )
+            .attr("class", "brush")
+            .call(brush);
 
         xAxis = svg.append("g")
             .attr("transform", "translate(0," + height + ")")
