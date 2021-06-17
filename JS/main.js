@@ -779,11 +779,6 @@ function createLineGraph(data) {
             dataFilter = data22
         }
 
-        console.log(dataFilter + "pizza")
-
-       // var dataFilter = data.filter(function(d){return d.fromJobtitle==selectedGroup})
-        console.log(selectedGroup)
-        // Give these new data to update line
 
 
         svg.selectAll("path").remove()
@@ -797,6 +792,10 @@ function createLineGraph(data) {
                 .x(function(d) { return x(d.date) })
                 .y(function(d) { return y(+d.sentiment) })
             )
+
+        xAxis = svg.append("g")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x));
 
 
     }
