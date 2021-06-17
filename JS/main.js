@@ -323,25 +323,6 @@ function createHeatMap(data) {
             // .on("mouseout", mouseGetOut);
 }
 
-/*
-function createLineChart(data) {
-    var parsedDates = Date.parse(data[0]);
-    console.log(data[0]);
-
-    var parsedDates = Date.parse(data[0]);
-    console.log(data[0].match(\b\d{2}\b));
-
-    var parseTime = d3.timeParse("%Y, %B, %d");
-    console.log(parseTime);
-
-    var sentimentAvg = d3.mean(data, function(d) { return d.sentiment; });
-    console.log(sentimentAvg);
-
-    var meanJan = d3.mean(data.filter(d => d.data === "01"), d => d.sentiment);
-    console.log(meanJan);
-}
-*/
-
 function createAdjacency(data) {
 
 
@@ -488,13 +469,14 @@ function fileInfo(data){
 }
 
 
-
 function createLineGraph(data) {
     
     var parseDate = d3.timeParse("%Y-%m-%d");
     var formatMonth = d3.timeFormat("%B")
     var input = document.getElementById( 'csvUploader' );
     var fileName = input.files[0].name;
+
+
  //   ["Unknown", "Employee", "Trader", "In House Lawyer", "Manager", "Managing Director", "Director", "Vice President", "President", "CEO"]
     data100 = d3.group(data, d => d.fromJobtitle)
     
@@ -518,6 +500,8 @@ function createLineGraph(data) {
         };
     });
     data22 = data22.slice().sort((a,b) => d3.ascending(a.date , b.date));
+
+    var dataFilter = data22
     
     //Dataset for Unknown
       dataA2 = d3.rollups(dataA1,  v => d3.mean(v,d => d.sentiment), d => d.date)
@@ -639,32 +623,7 @@ function createLineGraph(data) {
        
    
 
-    
- 
-     /*   d3.csv(fileName)    
-        .row(function(d) {return {date:parseDate(d.date),sentiment:Number(d.sentiment)};})
-        // When changed to 'date:formatMonth(d.date)', the graph shows just a vertical line
-
-        
-        .get(function(error,data){
-*/
-
-    
- 
-/*
-            var allGroup = d3.map(data, function(d){return(d.date)}).keys()
-            
-            d3.select("#selectButton")
-            .selectAll('myOptions')
-               .data(allGroup)
-            .enter()
-              .append('option')
-            .text(function (d) { return d; }) // text showed in the menu
-            .attr("sentiment", function (d) { return d; }) // corresponding value returned by the button
-
-
-*/
-            var jobTitles = ["Unknown", "Employee", "Trader", "In House Lawyer", "Manager", "Managing Director", "Director", "Vice President", "President", "CEO"]
+            var jobTitles = ["all", "Unknown", "Employee", "Trader", "In House Lawyer", "Manager", "Managing Director", "Director", "Vice President", "President", "CEO"]
             var maxDate = d3.max(data22, function(d) { return d.date;});
             var minDate = d3.min(data22, function(d) { return d.date;});
             //^ console prints <empty string> <empty string> so probably this does not work. When changed to parseDate(d.date), console prints undefined
@@ -762,7 +721,7 @@ function createLineGraph(data) {
 
                 line.append("path")
                 .attr("class", "line")
-                .datum(data.filter(function(d){return d.fromJobtitle==jobTitles[0]}))
+                .data(dataFilter)
                 .attr("d", d3.svg.line()
                     .x(function(d) { return x(d.date) })
                     .y(function(d) { return y(+d.sentiment) })
@@ -796,16 +755,41 @@ function createLineGraph(data) {
     function update(selectedGroup) {
 
         // Create new data with the selection?
-        if(selectedGroup == "Employee"){
-            var dataFilter = dataB3
+        if(selectedGroup == "Unknown"){
+                dataFilter = dataA3
+            } else if(selectedGroup == "Employee"){
+            dataFilter = dataB3
+        }  else if(selectedGroup == "Trader"){
+            dataFilter = dataC3
+        } else if(selectedGroup == "In House Lawyer"){
+            dataFilter = dataD3
+        } else if(selectedGroup == "Manager"){
+            dataFilter = dataE3
+        } else if(selectedGroup == "Managing Director"){
+            dataFilter = dataF3
+        } else if(selectedGroup == "Director"){
+            dataFilter = dataG3
+        } else if(selectedGroup == "Vice President"){
+            dataFilter = dataH3
+        } else if(selectedGroup == "President"){
+            dataFilter = dataI3
+        }else if(selectedGroup == "CEO"){
+            dataFilter = dataJ3
+        } else if(selectedGroup == "all"){
+            dataFilter = data22
         }
+
+        console.log(dataFilter + "pizza")
+
        // var dataFilter = data.filter(function(d){return d.fromJobtitle==selectedGroup})
         console.log(selectedGroup)
         // Give these new data to update line
-        line = svg
+
+
+        svg.selectAll("path").remove()
+        line.append("path")
+            .attr("class", "line")
             .datum(dataFilter)
-            .transition()
-            .duration(1000)
             .attr("d", d3.svg.line()
                 .x(function(d) { return x(d.date) })
                 .y(function(d) { return y(+d.sentiment) })
@@ -831,8 +815,8 @@ function createLineGraph(data) {
             function mousemove() {
                 // De values pakken
                 var x0 = x.invert(d3.mouse(this)[0]);
-                var i = bisect(data22, x0, 1);
-                xCord = data22[i]
+                var i = bisect(dataFilter, x0, 1);
+                xCord = dataFilter[i]
                 focus
                     .attr("cx", x(xCord.date))
                     .attr("cy", y(xCord.sentiment))
@@ -849,7 +833,7 @@ function createLineGraph(data) {
             }
 
             svg.append("path")
-                .datum(data22)
+                .datum(dataFilter)
                 .attr("fill", "none")
                 .attr("stroke", "url(#line-gradient)" )
                 .attr("stroke-width", 2)
@@ -858,9 +842,6 @@ function createLineGraph(data) {
                     .y(function(d) { return y(d.sentiment) })
                 )
 
-
-    
-    
 
 
     /* // A function that set idleTimeOut to null
