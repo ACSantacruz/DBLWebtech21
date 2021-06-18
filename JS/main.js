@@ -711,6 +711,11 @@ function createLineGraph(data) {
 
     console.log(jobTitles[0])
 
+            //add brush
+            var brush = d3.brushX()
+            .extent( [ [0,0], [width,height] ] )
+            .on("end", updateChart);
+
             var line = svg.append('g')
                 //.attr("clip-path", "url(#clip-path-zoom)")
 
@@ -723,7 +728,11 @@ function createLineGraph(data) {
                     .y(function(d) { return y(+d.sentiment) })
                 )
 
-            
+            // Add the brushing
+            line.append("g")
+            .attr("class", "brush")
+            .call(brush);
+
 
             //hit box to activate mouse hover.
             svg
@@ -743,15 +752,9 @@ function createLineGraph(data) {
                 .attr("y", -20)
                 .attr("x", width/10);
 
-            //add brush
-            var brush = d3.brushX()
-            .extent( [ [0,0], [width,height] ] )
-            .on("end", updateChart);
+             
 
-            // Add the brushing
-            line.append("g")
-            .attr("class", "brush")
-            .call(brush);
+             
 
     function update(selectedGroup) {
 
@@ -794,7 +797,7 @@ function createLineGraph(data) {
                 .y(function(d) { return y(+d.sentiment) })
             )
             .attr("class", "brush")
-            .call(brush);
+            .call(brush); 
 
         xAxis = svg.append("g")
             .attr("transform", "translate(0," + height + ")")
@@ -871,7 +874,7 @@ function createLineGraph(data) {
       } 
             
 
-        ;}
+        ;} 
 }
 
 function createPieGraph(data) { //https://observablehq.com/@d3/donut-chart
