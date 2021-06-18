@@ -655,18 +655,14 @@ function createLineGraph(data) {
             //svg.append("g").call(yAxis);
         
             // Add a clipPath: everything out of this area won't be drawn.
-            var clip = svg.append("defs").append("clipPath")
+           /* var clip = svg.append("defs").append("clipPath")
             .attr("id", "clip-path-zoom")
             .append("rect")
             .attr("width", width )
             .attr("height", height )
             .attr("x", 0)
-            .attr("y", 0);
+            .attr("y", 0); */
 
-            //add brushing
-            var brush = d3.brushX()
-            .extent( [ [0,0], [width,height] ] );
-            //.on("end", updateChart);
             
     // Set the gradient
     svg.append("linearGradient")
@@ -716,7 +712,7 @@ function createLineGraph(data) {
     console.log(jobTitles[0])
 
             var line = svg.append('g')
-                .attr("clip-path", "url(#clip-path-zoom)")
+                //.attr("clip-path", "url(#clip-path-zoom)")
 
 
                 line.append("path")
@@ -746,6 +742,11 @@ function createLineGraph(data) {
                 .text("Line graph of sentiment over time.")
                 .attr("y", -20)
                 .attr("x", width/10);
+
+            //add brush
+            var brush = d3.brushX()
+            .extent( [ [0,0], [width,height] ] )
+            .on("end", updateChart);
 
             // Add the brushing
             line.append("g")
@@ -850,7 +851,7 @@ function createLineGraph(data) {
 
 
 
-    /* // A function that set idleTimeOut to null
+     // A function that set idleTimeOut to null
     var idleTimeout
     function idled() { idleTimeout = null; }
 
@@ -867,11 +868,11 @@ function createLineGraph(data) {
       }else{
         x.domain([ x.invert(extent[0]), x.invert(extent[1]) ])
         line.select(".brush").call(brush.move, null) // This remove the grey brush area as soon as the selection has been done
-      } */
+      } 
             
 
         ;}
-    
+}
 
 function createPieGraph(data) { //https://observablehq.com/@d3/donut-chart
     // dimensions
