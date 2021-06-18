@@ -611,6 +611,10 @@ function createLineGraph(data) {
         width = 600 - margin.left - margin.right,
         height = 600 - margin.top - margin.bottom;
 
+      //add brush
+      var brush = d3.brushX()
+      .extent( [ [0,0], [width,height] ] )
+      .on("end", updateChart);
 
     //Printing the field, still using the margin set above.
     var svg = d3.select("#LineGraph")
@@ -620,7 +624,7 @@ function createLineGraph(data) {
         .style("background-color", "white")
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-       
+        
    
 
             var jobTitles = ["all", "Unknown", "Employee", "Trader", "In House Lawyer", "Manager", "Managing Director", "Director", "Vice President", "President", "CEO"]
@@ -706,15 +710,12 @@ function createLineGraph(data) {
             svg.append('svg')
                 .attr('height','100%')
                 .attr('width','100%');
+                
+
+
+            console.log(jobTitles[0])
+
             
-
-
-    console.log(jobTitles[0])
-
-            //add brush
-            var brush = d3.brushX()
-            .extent( [ [0,0], [width,height] ] )
-            .on("end", updateChart);
 
             var line = svg.append('g')
                 //.attr("clip-path", "url(#clip-path-zoom)")
@@ -727,11 +728,12 @@ function createLineGraph(data) {
                     .x(function(d) { return x(d.date) })
                     .y(function(d) { return y(+d.sentiment) })
                 )
-
+                .attr("class", "brush")
+                .call(brush);
             // Add the brushing
-            line.append("g")
+            /* line.append("g")
             .attr("class", "brush")
-            .call(brush);
+            .call(brush); */
 
 
             //hit box to activate mouse hover.
@@ -796,13 +798,15 @@ function createLineGraph(data) {
                 .x(function(d) { return x(d.date) })
                 .y(function(d) { return y(+d.sentiment) })
             )
-            .attr("class", "brush")
-            .call(brush); 
+            
 
         xAxis = svg.append("g")
             .attr("transform", "translate(0," + height + ")")
             .call(d3.axisBottom(x));
-
+        
+        /*line.append("g")
+            .attr("class", "brush")
+            .call(brush);*/
 
     }
 
