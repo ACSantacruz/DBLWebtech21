@@ -728,12 +728,11 @@ function createLineGraph(data) {
                     .x(function(d) { return x(d.date) })
                     .y(function(d) { return y(+d.sentiment) })
                 )
-                .attr("class", "brush")
-                .call(brush);
+        
             // Add the brushing
-            /* line.append("g")
+             line.append("g")
             .attr("class", "brush")
-            .call(brush); */
+            .call(brush); 
 
 
             //hit box to activate mouse hover.
