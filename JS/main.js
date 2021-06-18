@@ -830,13 +830,23 @@ function createLineGraph(data) {
                 var x0 = x.invert(d3.mouse(this)[0]);
                 var i = bisect(dataFilter, x0, 1);
                 xCord = dataFilter[i]
+                var string = xCord.date.toLocaleString('en-US', {
+                    weekday: 'short', // long, short, narrow
+                    day: 'numeric', // numeric, 2-digit
+                    year: 'numeric', // numeric, 2-digit
+                    month: 'long', // numeric, 2-digit, long, short, narrow
+                    hour: 'numeric', // numeric, 2-digit
+                    minute: 'numeric', // numeric, 2-digit
+                    second: 'numeric', // numeric, 2-digit
+                });
                 focus
                     .attr("cx", x(xCord.date))
                     .attr("cy", y(xCord.sentiment))
                 focusText
-                    .html("Date: " + xCord.date + "  /  " + "Sent: " + Math.round(xCord.sentiment * 1000)/1000)
-                    .attr("x", -35)
+                    .html("Date: " + string + "  |  " + "Sentiment: " + Math.round(xCord.sentiment * 1000)/1000)
+                    .attr("x", 45)
                     .attr("y", height - 10)
+                    
             }
 
             //onzichtbaar als muis het vierkant verlaat.
