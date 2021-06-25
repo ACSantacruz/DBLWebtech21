@@ -784,7 +784,17 @@ function createLineGraph(data) {
             dataFilter = data22
         }
 
-
+        var maxDate = d3.max(dataFilter, function(d) { return d.date;});
+        var minDate = d3.min(dataFilter, function(d) { return d.date;});
+        var x = d3.scaleTime()
+        .domain([minDate, maxDate])
+        .range([0, width]);
+        
+            xAxis.remove()
+        xAxis = svg.append("g")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x).ticks(d3.timeMonth.every(3)));
+            
 
         svg.selectAll("path").remove()
         line.append("path")
@@ -797,11 +807,13 @@ function createLineGraph(data) {
                 .x(function(d) { return x(d.date) })
                 .y(function(d) { return y(+d.sentiment) })
             )
+
             
 
-        xAxis = svg.append("g")
-            .attr("transform", "translate(0," + height + ")")
-            .call(d3.axisBottom(x));
+     
+
+        
+     
         
         /*line.append("g")
             .attr("class", "brush")
