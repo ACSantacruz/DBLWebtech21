@@ -35,13 +35,14 @@ function loadFile() {
 
 
 function parseFile(){
-    let doesColumnExist = false;
+    var doesColumnExist = false;
     const data = d3.csv.parse(reader.result, function(d){
         doesColumnExist = d.hasOwnProperty("area");
         d.Timestamp = dateFmt(d.Timestamp);
         return d;
     });
     var lines = data.length;
+    console.log(data.slice(0,2));
     var setting = {
         roots: document.querySelector('.my-js-slider'),
         type: 'range',
@@ -49,10 +50,25 @@ function parseFile(){
         limits: { minLimit: 0, maxLimit: lines},
         rangeValue: {
             minValue: 0,
-            maxValue: lines*0.25,
-        },
+            maxValue: lines*0.25
+        }
     };
     var slider = wRunner(setting);
+    var datasort = data.sort(function(a, b) {
+        return d3.ascending(a.date, b.date);
+    });
+    slider.onValueUpdate(function(values){
+        createTable(datasort.slice(slider.getValue().minValue, slider.getValue().maxValue));
+        createHeatMap(datasort.slice(slider.getValue().minValue, slider.getValue().maxValue));
+        createAdjacency(datasort.slice(slider.getValue().minValue, slider.getValue().maxValue));
+        createLineGraph(datasort.slice(slider.getValue().minValue, slider.getValue().maxValue));
+    });
+
+    /* HOW TO GET MAX AND MIN VALUES
+    // slider.onValueUpdate(function(values){
+    //     console.log(slider.getValue().maxValue);
+    // });
+    */
         // function (err, data) {
         //     if (err) throw err;
 
@@ -247,25 +263,6 @@ function createHeatMap(data) {
             .style("padding", "10px")
             .style("width", "300px")
 
-        // var mouseGetOver = function(_){
-        //     mouseHover
-        //         .style("opacity", 1)
-        //     d3.select(this)
-        //         .style("stroke", "black")
-        //         .style("opacity", 1)
-        //     if (!arguments.length) return mouseGetOver;
-        //     mouseGetOver = _;
-        //     parseFile.update();
-        // }
-        // var mouseGetOut = function(_){
-        //     mouseHover
-        //         .style("opacity", 0)
-        //     d3.select(this)
-        //         .style("stroke", "none")
-        //         .style("opacity", 0.8)
-        //     if (!arguments.length) return mouseGetOut;
-        //     mouseGetOut = _;
-        // }
 
         //When the mouse is over the square.
         var mouseOnSquare = function(d) {
@@ -543,11 +540,11 @@ function createLineGraph(data) {
                 sentiment:d[1]
             };
         });
-     /*   d3.csv(fileName)    
+     /*   d3.csv(fileName)
         .row(function(d) {return {date:parseDate(d.date),sentiment:Number(d.sentiment)};})
         // When changed to 'date:formatMonth(d.date)', the graph shows just a vertical line
 
-        
+
         .get(function(error,data){
 */
 
@@ -556,7 +553,7 @@ function createLineGraph(data) {
             console.log(data22)
 /*
             var allGroup = d3.map(data, function(d){return(d.date)}).keys()
-            
+
             d3.select("#selectButton")
             .selectAll('myOptions')
                .data(allGroup)
