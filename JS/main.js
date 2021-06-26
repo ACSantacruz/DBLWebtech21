@@ -651,7 +651,7 @@ function createLineGraph(data) {
         .data([
             {offset: "0%", color: "#ff0000"},
             {offset: "35%", color: "#ff3d00"},
-            {offset: "45%", color: "#094fc7"},
+            {offset: "48%", color: "#094fc7"},
             {offset: "100%", color: "#0023a8"}
         ])
         .enter().append("stop")
