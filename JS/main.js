@@ -50,7 +50,7 @@ function parseFile(){
         limits: { minLimit: 0, maxLimit: lines},
         rangeValue: {
             minValue: 0,
-            maxValue: lines*0.25
+            maxValue: lines
         }
     };
     var slider = wRunner(setting);
@@ -64,54 +64,7 @@ function parseFile(){
         createLineGraph(datasort.slice(slider.getValue().minValue, slider.getValue().maxValue));
     });
 
-    /* HOW TO GET MAX AND MIN VALUES
-    // slider.onValueUpdate(function(values){
-    //     console.log(slider.getValue().maxValue);
-    // });
-    */
-        // function (err, data) {
-        //     if (err) throw err;
 
-            // var csData = crossfilter(data);
-            //
-            // // // We create dimensions for each attribute we want to filter by
-            // csData.dimDate = csData.dimension(function (d) { return d.Timestamp; });
-            // csData.dimJobTitle = csData.dimension(function (d) { return d["fromJobtitle"]; });
-            //
-            //
-            // // We bin each dimension
-            // csData.dateByYear = csData.dimDate.group(d3.timeYear)
-            // csData.jobTitle = csData.dimJobTitle.group();
-            // //     csData.timesByHour = csData.dimTime.group(d3.timeHour);
-            // //     csData.carTypes = csData.dimCarType.group();
-            // //     csData.gateNames = csData.dimGateName.group();
-            //
-            // createHeatMap().onMouseOver(function (d) {
-            //     csData.dimJobTitle.filter(d.key);
-            //     update();
-            // }).onMouseOut(function () {
-            //     // Clear the filter
-            //     csData.dimJobTitle.filterAll();
-            //     update();
-            // });
-            //
-            // function update() {
-            //     d3.select("#LineGraph")
-            //         .datum()
-            //         // .call(createLineGraph());
-            //     d3.select("#Uniqueness")
-            //         // .datum()
-            //         .call(createAdjacency(csData.jobTitle));
-            //
-            //     d3.select("#heatMap")
-            //         .datum()
-            //         .call(createHeatMap(csData.jobTitle));
-            //
-            //     d3.select("#table")
-            //         .datum()
-            //         .call(createTable(parseFile().data));
-            // }
-    // });
     fileInfo(data);
     createTable(data);
     createHeatMap(data);
@@ -279,6 +232,9 @@ function createHeatMap(data) {
                     + d3.mean(data.filter(d => d.fromJobtitle === d.fromJobtitle,
                     d.toJobtitle === d.toJobtitle),
                         d => d.sentiment))
+                .style("left", (d3.mouse(this)[0]+30) + "px")
+                .style("top", (d3.mouse(this)[1]) + "px");
+
         }
 
 
