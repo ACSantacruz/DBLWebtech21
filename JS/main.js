@@ -253,13 +253,12 @@ function createHeatMap(data) {
         var mouseHover = d3.select("#heatMap")
             .append("div")
             .style("opacity", 0)
-            .attr("class", "tooltip")
+            .attr("class", "mouseHover")
             .style("background-color", "white")
             .style("border", "solid")
             .style("border-width", "2px")
             .style("border-radius", "5px")
             .style("padding", "5px")
-            .style("max-width", 10)
 
 
         //When the mouse is over the square.
