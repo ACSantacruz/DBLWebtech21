@@ -35,58 +35,84 @@ function loadFile() {
 
 
 function parseFile(){
-    let doesColumnExist = false;
+    var doesColumnExist = false;
     const data = d3.csv.parse(reader.result, function(d){
         doesColumnExist = d.hasOwnProperty("area");
         d.Timestamp = dateFmt(d.Timestamp);
         return d;
-    },
-        function (err, data) {
-            if (err) throw err;
-    
-            var csData = crossfilter(data);
-    
-            // // We create dimensions for each attribute we want to filter by
-            csData.dimDate = csData.dimension(function (d) { return d.Timestamp; });
-            csData.dimJobTitle = csData.dimension(function (d) { return d["job_title"]; });
-
-    
-            // We bin each dimension
-            csData.dateByYear = csData.dimDate.group(d3.timeYear)
-            csData.jobTitle = csData.dimJobTitle.group();
-            //     csData.timesByHour = csData.dimTime.group(d3.timeHour);
-            //     csData.carTypes = csData.dimCarType.group();
-            //     csData.gateNames = csData.dimGateName.group();
-
-            heatmapGraph.onMouseOver(function (d) {
-                csData.dimJobTitle.filter(d.key);
-                update();
-            }).onMouseOut(function () {
-                // Clear the filter
-                csData.dimJobTitle.filterAll();
-                update();
-            });
-            
-            function update() {
-                d3.select("#LineGraph")
-                    .datum()
-                    .call(createLineGraph());
-    
-                d3.select("#Uniqueness")
-                    // .datum()
-                    .call(createAdjacency(csData.jobTitle));
-    
-                d3.select("#heatMap")
-                    .datum()
-                    .call(createHeatMap(csData.jobTitle));
-    
-                d3.select("#table")
-                    .datum()
-                    .call(createTable(parseFile().data));
-            }
-
     });
-    fileInfo(data)
+    var lines = data.length;
+    console.log(data.slice(0,2));
+    var setting = {
+        roots: document.querySelector('.my-js-slider'),
+        type: 'range',
+        step: 1,
+        limits: { minLimit: 0, maxLimit: lines},
+        rangeValue: {
+            minValue: 0,
+            maxValue: lines*0.25
+        }
+    };
+    var slider = wRunner(setting);
+    var datasort = data.sort(function(a, b) {
+        return d3.ascending(a.date, b.date);
+    });
+    slider.onValueUpdate(function(values){
+        createTable(datasort.slice(slider.getValue().minValue, slider.getValue().maxValue));
+        createHeatMap(datasort.slice(slider.getValue().minValue, slider.getValue().maxValue));
+        createAdjacency(datasort.slice(slider.getValue().minValue, slider.getValue().maxValue));
+        createLineGraph(datasort.slice(slider.getValue().minValue, slider.getValue().maxValue));
+    });
+
+    /* HOW TO GET MAX AND MIN VALUES
+    // slider.onValueUpdate(function(values){
+    //     console.log(slider.getValue().maxValue);
+    // });
+    */
+        // function (err, data) {
+        //     if (err) throw err;
+
+            // var csData = crossfilter(data);
+            //
+            // // // We create dimensions for each attribute we want to filter by
+            // csData.dimDate = csData.dimension(function (d) { return d.Timestamp; });
+            // csData.dimJobTitle = csData.dimension(function (d) { return d["fromJobtitle"]; });
+            //
+            //
+            // // We bin each dimension
+            // csData.dateByYear = csData.dimDate.group(d3.timeYear)
+            // csData.jobTitle = csData.dimJobTitle.group();
+            // //     csData.timesByHour = csData.dimTime.group(d3.timeHour);
+            // //     csData.carTypes = csData.dimCarType.group();
+            // //     csData.gateNames = csData.dimGateName.group();
+            //
+            // createHeatMap().onMouseOver(function (d) {
+            //     csData.dimJobTitle.filter(d.key);
+            //     update();
+            // }).onMouseOut(function () {
+            //     // Clear the filter
+            //     csData.dimJobTitle.filterAll();
+            //     update();
+            // });
+            //
+            // function update() {
+            //     d3.select("#LineGraph")
+            //         .datum()
+            //         // .call(createLineGraph());
+            //     d3.select("#Uniqueness")
+            //         // .datum()
+            //         .call(createAdjacency(csData.jobTitle));
+            //
+            //     d3.select("#heatMap")
+            //         .datum()
+            //         .call(createHeatMap(csData.jobTitle));
+            //
+            //     d3.select("#table")
+            //         .datum()
+            //         .call(createTable(parseFile().data));
+            // }
+    // });
+    fileInfo(data);
     createTable(data);
     createHeatMap(data);
     createAdjacency(data);
@@ -223,16 +249,6 @@ function createHeatMap(data) {
             .range(["#ff0000", "#ffbe00","#ffffff", "#0041ff"])
             .domain([-0.07, -0.03, 0.03, 0.07])
 
-        var mouseGetOver = function(_){
-            if (!arguments.length) return mouseGetOver;
-            mouseGetOver = _;
-            parseFile.update;
-        }
-        var mouseGetOut = function(_){
-            if (!arguments.length) return mouseGetOut;
-            mouseGetOut = _;
-        }
-
         // For When the mouse goes on a square
         var mouseHover = d3.select("#heatMap")
             .append("div")
@@ -316,7 +332,7 @@ function createHeatMap(data) {
             //d3 built in mouse interactivity stuff
             .on("mouseover", mouseOnSquare)
             .on("mousemove", textDisplay)
-            .on("mouseleave", mouseOffSquare)
+            .on("mouseleave", mouseOffSquare);
             // .on("mouseover", mouseGetOver)
             // .on("mouseout", mouseGetOut);
 }
