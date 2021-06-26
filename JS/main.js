@@ -155,8 +155,8 @@ function createHeatMap(data) {
 
     // Using the standard Size thing from JS does anyone know how to convert this to scale to the size of the boxes>?
     var margin = {top: 80, right: 30, bottom: 80, left: 80},
-        width = 600 - margin.left - margin.right,
-        height = 600 - margin.top - margin.bottom;
+        width = 550 - margin.left - margin.right,
+        height = 550 - margin.top - margin.bottom;
 
     d3.select('#heatMap').selectAll('*').remove();
 
@@ -238,13 +238,12 @@ function createHeatMap(data) {
             .append("div")
             .style("opacity", 0)
             .attr("class", "tooltip")
-
-            .style("background-color", "#b6b6b6")
+            .style("background-color", "white")
             .style("border", "solid")
-            .style("border-width", "3px")
-            .style("border-radius", "20px")
-            .style("padding", "10px")
-            .style("width", "300px")
+            .style("border-width", "2px")
+            .style("border-radius", "5px")
+            .style("padding", "5px")
+            .style("max-width", 10)
 
 
         //When the mouse is over the square.
@@ -261,7 +260,7 @@ function createHeatMap(data) {
         var textDisplay = function(d) {
             mouseHover
                 //d3.mean(data.filter(d => d.fromJobtitle === "Employee"), (d => d.toJobtitle === "Employee"),d => d.sentiment)
-                .html( "[" + d.fromJobtitle+" : "+ d.toJobtitle + "]  "+"  value: " + d.sentiment +  "  mean: "
+                .html( "[" + d.fromJobtitle+" : "+ d.toJobtitle + "]  <br>"+"  value: " + d.sentiment + "<br>  mean: "
                     + d3.mean(data.filter(d => d.fromJobtitle === d.fromJobtitle,
                     d.toJobtitle === d.toJobtitle),
                         d => d.sentiment))
@@ -327,8 +326,8 @@ function createAdjacency(data) {
 
     // Using the standard Size thing from JS does anyone know how to convert this to scale to the size of the boxes>?
     var margin = {top: 80, right: 25, bottom: 30, left: 40},
-        width = 600 - margin.left - margin.right,
-        height = 600 - margin.top - margin.bottom;
+        width = 550 - margin.left - margin.right,
+        height = 550 - margin.top - margin.bottom;
 
     d3.select('#Uniqueness').selectAll('*').remove();
 
@@ -369,13 +368,11 @@ function createAdjacency(data) {
         .append("div")
         .style("opacity", 0)
         .attr("class", "tooltip")
-
-        .style("background-color", "#b6b6b6")
+        .style("background-color", "white")
         .style("border", "solid")
-        .style("border-width", "3px")
-        .style("border-radius", "20px")
-        .style("padding", "10px")
-        .style("width", "300px")
+        .style("border-width", "2px")
+        .style("border-radius", "5px")
+        .style("padding", "5px")
 
 
     //When the mouse is over the square.
@@ -391,7 +388,9 @@ function createAdjacency(data) {
     //Putting the text down
     var textDisplay = function(d) {
         mouseHover
-            .html( "[" + d.fromEmail+" : "+ d.toEmail + "]  "+"  amount: " + Math.abs(Math.round(d.sentiment*100)));
+            .html( "[" + d.fromEmail+" : "+ d.toEmail + "]  "+"<br>  amount: " + Math.abs(Math.round(d.sentiment*100)))
+            .style("left", (d3.mouse(this)[0]+70) + "px")
+            .style("top", (d3.mouse(this)[1]) + "px");
     }
 
 
@@ -403,6 +402,8 @@ function createAdjacency(data) {
             .style("stroke", "none")
             .style("opacity", 0.8)
     }
+
+
 
 // A title for the visualization, maybe do this for all vis?
     svg.append("text")
@@ -607,8 +608,8 @@ function createLineGraph(data) {
 
     // Using the standard Size thing from JS does anyone know how to convert this to scale to the size of the boxes>?
     var margin = {top: 80, right: 25, bottom: 30, left: 40},
-        width = 600 - margin.left - margin.right,
-        height = 600 - margin.top - margin.bottom;
+        width = 575 - margin.left - margin.right,
+        height = 575 - margin.top - margin.bottom;
 
       //add brush
       var brush = d3.brushX()
