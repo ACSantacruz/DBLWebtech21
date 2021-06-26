@@ -91,7 +91,6 @@ function parseFile(){
     createHeatMap(data);
     createAdjacency(data);
     createLineGraph(data);
-    // createPieGraph(data);
     
 }
 
@@ -789,14 +788,15 @@ function createLineGraph(data) {
         var x = d3.scaleTime()
         .domain([minDate, maxDate])
         .range([0, width]);
-        
-            xAxis.remove()
+
+        xAxis.remove()
+        svg.selectAll("path").remove()
         xAxis = svg.append("g")
             .attr("transform", "translate(0," + height + ")")
             .call(d3.axisBottom(x).ticks(d3.timeMonth.every(3)));
             
 
-        svg.selectAll("path").remove()
+
         line.append("path")
             .attr("class", "line")
             .datum(dataFilter)
@@ -900,73 +900,4 @@ function createLineGraph(data) {
             
 
         ;} 
-}
-
-function createPieGraph(data) { //https://observablehq.com/@d3/donut-chart
-    // dimensions
-
-    var margin = {top: 80, right: 25, bottom: 30, left: 40},
-        width = 600 - margin.left - margin.right,
-        height = 600 - margin.top - margin.bottom;
-
-    var svg = d3.select("#PieGraph")
-        .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .style("background-color", "white")
-        .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-    
-    var color = d3.scaleOrdinal()
-        .domain(data.map(d => d.fromId))
-        //using interpolateWarm rather than interpolateSpectral for aesthetic and visibility reasons
-        .range(d3.quantize(t => d3.interpolateWarm(t * 0.8 + 0.1), data.length).reverse());
-
-    const radius = Math.min(width, height) / 2;
-    const arc =  d3.arc()
-        .innerRadius(radius * 0.67)
-        .outerRadius(radius - 1);
-
-    var pie = d3.pie()
-        .padAngle(0.005) //very slight angle for visibility, perhaps this is an issue when scaling?
-        .sort(null)
-        .value(d => d.sentiment);//this returns only the first sentiment (i expect), need to figure out how to return the mean
-
-    const arcs = pie(data);
-    
-    //printing the field
-    var svg = d3.select('#PieGraph')
-        .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .style("background-color", "white")
-        .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-    svg.selectAll("path")
-    .data(arcs)
-    .join("path")
-        .attr("fill", d => color(d.data.fromId))//dont think this syntax checks out
-        .attr("d", arc)
-    .append("title")
-        .text(d => `${d.data.fromId}: ${d.data.sentiment.toLocaleString()}`);//dont know how to make this the mean
-
-    svg.append("g")
-        .attr("font-family", "Verdana")
-        .attr("font-size", "12")
-        .attr("text-anchor", "middle")//this makes the text appear in center of arc
-    .selectAll("text")
-    .data(arcs)
-    .join("text")
-        .attr("transform", d => `translate(${arc.centroid(d)})`)
-        .call(text => text.append("tspan")
-            .attr("y", "-0.4em")
-            .attr("font-weight", "bold")
-            .text(d => d.data.fromId))
-        .call(text => text.filter(d => (d.endAngle - d.startAngle) > 0.25).append("tspan")
-            .attr("x", 0)
-            .attr("y", "0.7em")
-            .attr("fill-opacity", 0.7)
-            .text(d => d.data.sentiment.toLocaleString()));
-        
 }
