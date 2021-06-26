@@ -1,3 +1,10 @@
+:root{
+	--colour_1: #c266ff;
+	--colour_2: #9900ff;
+	--colour_3: #6b00b3;
+  --colour_n: #ae41f7;
+}
+
 /*
 @Author: whiteGloom (Evgeniy Miller)
 @Date of publication: 30.06.2019
@@ -14,7 +21,7 @@
 }
 
 .wrunner__division_theme_default.wrunner__division {
-  background-color: #cb73a4;
+  background-color: var(--colour_1);
 }
 
 .wrunner__divisions_theme_default.wrunner__divisions_direction_horizontal {
@@ -51,7 +58,7 @@
   height: 1.25rem;
   width: 1.25rem;
   border-radius: 40%;
-  background-color: #cf579a;
+  background-color: var(--colour_n);
   transition-duration: 0.2s;
   transition-property: transform, background-color, border-radius;
   cursor: pointer;
@@ -60,12 +67,12 @@
 .wrunner__handle_theme_default.wrunner__handle:hover {
   transform: scale(1.1);
   border-radius: 50%;
-  background-color: #c54a8e;
+  background-color: var(--colour_2);
 }
 .wrunner__handle_theme_default.wrunner__handle:active {
   transform: scale(0.9);
   border-radius: 50%;
-  background-color: #aa3d9c;
+  background-color: var(--colour_3);
 }
 
 .wrunner__outer_theme_default.wrunner__outer_direction_horizontal {
@@ -98,7 +105,7 @@
 
 .wrunner__path_theme_default.wrunner__path {
   position: absolute;
-  background-color: rgba(205,205,205,0.75);
+  background-color: rgba(168, 168, 168, 0.75);
   border-radius: 0.25rem;
   cursor: pointer;
 }
@@ -114,7 +121,7 @@
 
 .wrunner__pathPassed_theme_default.wrunner__pathPassed {
   position: absolute;
-  background-color: #cb73a4;
+  background-color: var(--colour_1);
   border-radius: 0.25rem;
 }
 
@@ -128,7 +135,7 @@
   margin-left: -0.25rem;
   bottom: -0.5rem;
   border: 0.25rem solid transparent;
-  border-top-color: #c54a8e;
+  border-top-color: var(--colour_2);
 }
 
 .wrunner__valueNote_theme_default.wrunner__valueNote_direction_vertical {
@@ -141,7 +148,7 @@
   margin-top: -0.25rem;
   left: -0.5rem;
   border: 0.25rem solid transparent;
-  border-right-color: #c54a8e;
+  border-right-color: var(--colour_2);
 }
 
 .wrunner__valueNote_theme_default.wrunner__valueNote_display_hidden {
@@ -155,7 +162,7 @@
 .wrunner__valueNote_theme_default.wrunner__valueNote {
   position: absolute;
   padding: 0.35rem;
-  background-color: #c54a8e;
+  background-color: var(--colour_2);
   text-align: center;
   color: #fff;
   font-size: 0.75rem;
