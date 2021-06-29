@@ -797,16 +797,13 @@ function createLineGraph(data) {
                     day: 'numeric', // numeric, 2-digit
                     year: 'numeric', // numeric, 2-digit
                     month: 'long', // numeric, 2-digit, long, short, narrow
-                    hour: 'numeric', // numeric, 2-digit
-                    minute: 'numeric', // numeric, 2-digit
-                    second: 'numeric', // numeric, 2-digit
                 });
                 focus
                     .attr("cx", x(xCord.date))
                     .attr("cy", y(xCord.sentiment))
                 focusText
                     .html("Date: " + string + "  |  " + "Sentiment: " + Math.round(xCord.sentiment * 1000)/1000)
-                    .attr("x", 45)
+                    .attr("x", 60)
                     .attr("y", height - 10)
                     
             }
