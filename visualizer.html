@@ -63,21 +63,23 @@
 		<div class=bigbox>
 
 			<div id="box1">
-				<div class="dropdown">
-					<button class="dropbutton">Dataset in a table.</button>
-					<div class="dropdown-content">
-						<a href="javascript:;">Table [Dataset/LineGraph]</a>
-						<a href="visualizer2.html">Heatmap [Heatmap/Adjacency]</a>
-						<a href="visualizer3.html">Line Graph [LineGraph/Heatmap]</a>
-					</div>
-				</div>	
-					<button id="buttonleftFull"  onclick = "FunctionleftFull()" ></button>		
+				<button id="buttonleftFull"  onclick = "FunctionleftFull()" ></button>
+				<div class= "contain">		
+				<div class="btn-group">
+					<a href="javascript:void(0)"><button id= "vizTable" onclick="functionTable();loadFile();functionHide()">Table</button></a>
+					<a href="javascript:void(0)"><button id= "vizAdjacencymap" onclick="functionAdjacencymap();loadFile();functionHide()">Adjacency Map</button></a>
+					<a href="javascript:void(0)"><button id= "vizHeatmap" onclick="functionHeatmap();loadFile();functionHide()">Heatmap</button></a>
+					<a href="javascript:void(0)"><button id= "vizLinegraph" onclick="functionLinegraph();loadFile();functionShow()" >Line Graph</button></a>
+				  </div>
+				</div>
+				
 					<button id="buttonleftSmall" onclick = "FunctionleftSmall()" ></button>
 				<div class="scroll">
-
+					<select id="selectButton"></select>
 					<!-- IF STATEMENT BELOW TO SELECT WHETHER TO SHOW TABLE OR SOMETHING ELSE. -->
 
-				<table id="table"></table>
+				<div id="Selector1"></div>
+				<table id="Table"></table>
 				</div>
 			</div>
 
@@ -97,7 +99,7 @@
 
 					<select id="selectButton"></select>
 
-					<div id="LineGraph">
+					<div id="Selector2">
 
 					</div>
 				</div>
@@ -304,6 +306,43 @@ function showFileName( event ) {
   var fileName = input.files[0].name;
   infoArea.textContent = 'File name: ' + fileName;
 }
+document.getElementById("selectButton").style.display = "none";;
+
+
+function functionTable(){
+	var VizSelector = "table";
+	document.getElementById("Table").setAttribute("id", VizSelector);
+}
+
+function functionAdjacencymap(){
+	var VizSelector = "Uniqueness";
+	document.getElementById("Selector1").setAttribute("id", VizSelector);
+}
+
+function functionHeatmap(){
+	var VizSelector = "heatMap";
+	document.getElementById("Selector1").setAttribute("id", VizSelector);
+}
+
+function functionLinegraph(){
+	var VizSelector = "LineGraph";
+	document.getElementById("Selector1").setAttribute("id", VizSelector);
+}
+
+function functionShow(){
+	var x = document.getElementById("selectButton");
+	 if (x.style.display === "none") {
+    x.style.display = "block";
+  } 
+}
+
+function functionHide(){
+	var x = document.getElementById("selectButton");
+	 if (x.style.display != "none") {
+    x.style.display = "none";
+  } 
+}
+
 </script>
 
 

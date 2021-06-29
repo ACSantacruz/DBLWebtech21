@@ -368,6 +368,8 @@ input:checked + .slider:before {
 
 #buttonleftFull{
 	float:right;
+	top:0;
+	right:0;
 	margin:0;
 	background-color:#ffffff00 ;
 	border:none;
@@ -738,3 +740,36 @@ g.tick text{
 	bottom:0px;
 	margin: 0 auto;
 }
+.btn-group button {
+	background-image: var(--grad_1);
+	color:white;
+	padding: 10px 24px; 
+	cursor: pointer; 
+	float: left;
+	background-image: var(--grad_1);
+	border:none;
+	border-radius:3px;
+	margin-left:0.5%;
+	font-size: 0.9vw;
+	position: relative;
+  }
+  
+
+  .btn-group:after {
+	content: "";
+	clear: both;
+	display: table;
+  }
+  
+  .btn-group button:not(:last-child) {
+	border-right: none; 
+  }
+  
+ 
+  .btn-group button:hover {
+	color: black;
+  }
+
+  .contain{
+	  margin-top:0.5%;
+  }
