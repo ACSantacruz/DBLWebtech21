@@ -803,8 +803,9 @@ function createLineGraph(data) {
                     .attr("cy", y(xCord.sentiment))
                 focusText
                     .html("Date: " + string + "  |  " + "Sentiment: " + Math.round(xCord.sentiment * 1000)/1000)
-                    .attr("x", 60)
-                    .attr("y", height - 10)
+                    .attr("x", width/2)
+                    .attr("text-anchor", "middle")
+                    .attr("y", height - 10);
                     
             }
 
