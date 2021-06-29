@@ -622,7 +622,7 @@ function createLineGraph(data) {
                 .range([0, width]);
             xAxis = svg.append("g")
                 .attr("transform", "translate(0," + height + ")")
-                .attr("stroke-width", 2)
+                .attr("stroke-width", "2")
                 .call(d3.axisBottom(x));
             
             var y = d3.scaleLinear()
@@ -805,7 +805,7 @@ function createLineGraph(data) {
         svg.selectAll("path").remove()
         xAxis = svg.append("g")
             .attr("transform", "translate(0," + height + ")")
-            .attr("stroke-width", 2)
+            .attr("stroke-width", "2")
             .call(d3.axisBottom(x).ticks(d3.timeMonth.every(3)));
             
 
