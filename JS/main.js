@@ -724,14 +724,14 @@ function createLineGraph(data) {
                 .style("font-size", "12px")
                 .style("font-family", "Verdana")
                 .text("0.15")
-                .attr("y", 4)
+                .attr("y", 5)
                 .attr("x", -35);
 
             svg.append("text")
                 .style("font-size", "12px")
                 .style("font-family", "Verdana")
                 .text("-0.15")
-                .attr("y", 468)
+                .attr("y", 469)
                 .attr("x", -39);
 
             svg.append("text")
@@ -753,17 +753,17 @@ function createLineGraph(data) {
                 .style("stroke", "black")
                 .style("stroke-width", 1)
                 .attr("x1", 0)
-                .attr("y1", 0)
+                .attr("y1", 1)
                 .attr("x2", -6)
-                .attr("y2", 0);
+                .attr("y2", 1);
 
             svg.append('line')
                 .style("stroke", "black")
                 .style("stroke-width", 1)
                 .attr("x1", 0)
-                .attr("y1", 464)
+                .attr("y1", 465)
                 .attr("x2", -6)
-                .attr("y2", 464);
+                .attr("y2", 465);
 
 
 
