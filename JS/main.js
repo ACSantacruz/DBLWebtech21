@@ -711,9 +711,17 @@ function createLineGraph(data) {
                 .attr("y", -20)
                 .attr("x", width/10);
 
-             
+    svg.append('line')
+        .style("stroke", "black")
+        .style("stroke-width", 1)
+        .attr("x1", 0)
+        .attr("y1", 0)
+        .attr("x2", 0)
+        .attr("y2", 466);
 
-             
+
+
+
 
     function update(selectedGroup) {
 
