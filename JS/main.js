@@ -56,16 +56,7 @@ function parseFile(){
     var datasort = data.sort(function(a, b) {
         return d3.ascending(a.date, b.date);
     });
-    var jobTitles = ["all", "Unknown", "Employee", "Trader", "In House Lawyer", "Manager", "Managing Director", "Director", "Vice President", "President", "CEO"]
 
-
-    d3.select("#selectButton")
-        .selectAll('myOptions')
-        .data(jobTitles)
-        .enter()
-        .append('option')
-        .text(function (d) { return d; }) // text showed in the menu
-        .attr("value", function (d) { return d; }) // corresponding value returned by the button
 
     slider.onValueUpdate(function(values){
         createTable(datasort.slice(slider.getValue().minValue, slider.getValue().maxValue));
@@ -607,19 +598,15 @@ function createLineGraph(data) {
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
         
-
+        var jobTitles = ["all", "Unknown", "Employee", "Trader", "In House Lawyer", "Manager", "Managing Director", "Director", "Vice President", "President", "CEO"]
             var maxDate = d3.max(data22, function(d) { return d.date;});
             var minDate = d3.min(data22, function(d) { return d.date;});
             //^ console prints <empty string> <empty string> so probably this does not work. When changed to parseDate(d.date), console prints undefined
             var maxSentiment = 0.15;
             var minSentiment = -0.15;
-
-<<<<<<< Updated upstream
-            //deze moet maar 1 keer
-
-=======
+            
             document.getElementById("selectButton").innerHTML = "";
-        
+
             d3.select("#selectButton")
                 .selectAll('myOptions')
                 .data(jobTitles)
@@ -627,7 +614,6 @@ function createLineGraph(data) {
                 .append('option')
                 .text(function (d) { return d; }) // text showed in the menu
                 .attr("value", function (d) { return d; }) // corresponding value returned by the button
->>>>>>> Stashed changes
 
             
             
