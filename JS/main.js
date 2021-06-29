@@ -622,6 +622,7 @@ function createLineGraph(data) {
                 .range([0, width]);
             xAxis = svg.append("g")
                 .attr("transform", "translate(0," + height + ")")
+                .attr("stroke-width", 2)
                 .call(d3.axisBottom(x));
             
             var y = d3.scaleLinear()
@@ -711,13 +712,58 @@ function createLineGraph(data) {
                 .attr("y", -20)
                 .attr("x", width/10);
 
-    svg.append('line')
-        .style("stroke", "black")
-        .style("stroke-width", 1)
-        .attr("x1", 0)
-        .attr("y1", 0)
-        .attr("x2", 0)
-        .attr("y2", 466);
+            svg.append('line')
+                .style("stroke", "black")
+                .style("stroke-width", 2)
+                .attr("x1", 0.5)
+                .attr("y1", 0)
+                .attr("x2", 0.5)
+                .attr("y2", 466);
+
+            svg.append("text")
+                .style("font-size", "12px")
+                .style("font-family", "Verdana")
+                .text("0.15")
+                .attr("y", 4)
+                .attr("x", -35);
+
+            svg.append("text")
+                .style("font-size", "12px")
+                .style("font-family", "Verdana")
+                .text("-0.15")
+                .attr("y", 468)
+                .attr("x", -39);
+
+            svg.append("text")
+                .style("font-size", "12px")
+                .style("font-family", "Verdana")
+                .text("0")
+                .attr("y", 237)
+                .attr("x", -20);
+
+            svg.append('line')
+                .style("stroke", "black")
+                .style("stroke-width", 1)
+                .attr("x1", 0)
+                .attr("y1", 232)
+                .attr("x2", -10)
+                .attr("y2", 232);
+
+            svg.append('line')
+                .style("stroke", "black")
+                .style("stroke-width", 1)
+                .attr("x1", 0)
+                .attr("y1", 0)
+                .attr("x2", -6)
+                .attr("y2", 0);
+
+            svg.append('line')
+                .style("stroke", "black")
+                .style("stroke-width", 1)
+                .attr("x1", 0)
+                .attr("y1", 464)
+                .attr("x2", -6)
+                .attr("y2", 464);
 
 
 
@@ -759,6 +805,7 @@ function createLineGraph(data) {
         svg.selectAll("path").remove()
         xAxis = svg.append("g")
             .attr("transform", "translate(0," + height + ")")
+            .attr("stroke-width", 2)
             .call(d3.axisBottom(x).ticks(d3.timeMonth.every(3)));
             
 
