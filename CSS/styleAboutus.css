@@ -415,6 +415,7 @@ input:checked + .slider:before {
 .photo{
 
 	height:75%;
+	border-radius:10px;
 }
 
 .teaminfo{
@@ -431,7 +432,7 @@ input:checked + .slider:before {
 }
 
 .line{
-		width:50%;
+		width:80%;
 		border: 0.5px solid transparent;
 		border-image: var(--grad_2) 5 round;
 		left: 50%;
@@ -439,5 +440,5 @@ input:checked + .slider:before {
 		transform: translate(-50%);
 		position:relative;
 		background-image: var(--grad);
-		margin-top:2px;
+		margin-top:2%;
 	}
