@@ -742,8 +742,7 @@ function createLineGraph(data) {
             dataFilter = data22
         }
 
-        var maxDate = d3.max(dataFilter, function(d) { return d.date;});
-        var minDate = d3.min(dataFilter, function(d) { return d.date;});
+
         var x = d3.scaleTime()
         .domain([minDate, maxDate])
         .range([0, width]);
@@ -767,6 +766,7 @@ function createLineGraph(data) {
                 .y(function(d) { return y(+d.sentiment) })
             )
 
+            bisect = d3.bisector(function(d) { return d.date; }).left;
 
 
     }
