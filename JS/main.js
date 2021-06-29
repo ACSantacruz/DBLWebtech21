@@ -614,8 +614,20 @@ function createLineGraph(data) {
             var maxSentiment = 0.15;
             var minSentiment = -0.15;
 
+<<<<<<< Updated upstream
             //deze moet maar 1 keer
 
+=======
+            document.getElementById("selectButton").innerHTML = "";
+        
+            d3.select("#selectButton")
+                .selectAll('myOptions')
+                .data(jobTitles)
+                .enter()
+                .append('option')
+                .text(function (d) { return d; }) // text showed in the menu
+                .attr("value", function (d) { return d; }) // corresponding value returned by the button
+>>>>>>> Stashed changes
 
             
             
