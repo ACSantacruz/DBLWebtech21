@@ -602,8 +602,8 @@ function createLineGraph(data) {
             var maxDate = d3.max(data22, function(d) { return d.date;});
             var minDate = d3.min(data22, function(d) { return d.date;});
             //^ console prints <empty string> <empty string> so probably this does not work. When changed to parseDate(d.date), console prints undefined
-            var maxSentiment = d3.max(data22, function(d) { return d.sentiment;});
-            var minSentiment = d3.min(data22, function(d) { return d.sentiment;});
+            var maxSentiment = 0.15;
+            var minSentiment = -0.15;
 
 
             d3.select("#selectButton")
@@ -650,8 +650,8 @@ function createLineGraph(data) {
         .selectAll("stop")
         .data([
             {offset: "0%", color: "#ff0000"},
-            {offset: "35%", color: "#ff3d00"},
-            {offset: "48%", color: "#094fc7"},
+            {offset: "45%", color: "#ff3d00"},
+            {offset: "55%", color: "#094fc7"},
             {offset: "100%", color: "#0023a8"}
         ])
         .enter().append("stop")
