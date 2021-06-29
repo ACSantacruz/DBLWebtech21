@@ -585,7 +585,7 @@ function createLineGraph(data) {
       //add brush
       var brush = d3.brushX()
       .extent( [ [0,0], [width,height] ] )
-      .on("end", updateChart);
+      //.on("end", updateChart);
 
     //Printing the field, still using the margin set above.
     var svg = d3.select("#LineGraph")
@@ -830,7 +830,7 @@ function createLineGraph(data) {
                 )
 
 
-
+    /*
      // A function that set idleTimeOut to null
     var idleTimeout
     function idled() { idleTimeout = null; }
@@ -851,5 +851,5 @@ function createLineGraph(data) {
       } 
             
 
-        ;} 
+        ;} */
 }
