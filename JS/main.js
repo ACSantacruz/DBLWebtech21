@@ -329,7 +329,7 @@ function createAdjacency(data) {
     //To colour in the heatmap, can someb
     var ColourHM = d3.scaleLinear()
         .range(["#d2d2d2", "#000aff", "#ff7400", "#ff0000"])
-        .domain([0, 4, 5, 8])
+        .domain([0, 3, 6, 9])
 
     // For When the mouse goes on a square
     var mouseHover = d3.select("#Uniqueness")
@@ -412,7 +412,7 @@ function createAdjacency(data) {
 
         //Using the colour heatmap function made earlier to give the squares "heat"
         .style("fill", function(d) {
-            return ColourHM(Math.abs(Math.round(d.sentiment*100)))
+            return ColourHM(Math.abs(Math.round(d.sentiment*100)+ 1))
         })
 
 
