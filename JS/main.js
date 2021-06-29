@@ -26,8 +26,7 @@ function loadFile() {
         document.getElementById("p2").innerHTML = "File size: "+ formatFileSize(document.getElementById('csvUploader').files[0].size);
         document.getElementById("p3").innerHTML = "File type: "+ document.getElementById('csvUploader').files[0].type;
         document.getElementById("p4").innerHTML = "Last modified: "+ document.getElementById('csvUploader').files[0].lastModifiedDate;
-        
-   
+
     }
     fileName = file.name;
     
@@ -174,8 +173,6 @@ function createHeatMap(data) {
         .text("From job title.");
 
 
-
-
     //This is to make the y- axis and to make the grid layout scalable But does not work
         var yAxis = d3.scaleBand()
             .range([ height, 0 ])
@@ -232,8 +229,10 @@ function createHeatMap(data) {
                     + d3.mean(data.filter(d => d.fromJobtitle === d.fromJobtitle,
                     d.toJobtitle === d.toJobtitle),
                         d => d.sentiment))
-                .style("left", (d3.mouse(this)[0]+30) + "px")
-                .style("top", (d3.mouse(this)[1]) + "px");
+                .attr("x", (d3.mouse(this)[0]+30))
+                .attr("y", (d3.mouse(this)[1]))
+                .style("color", "black")
+                .style("font-family", "Verdana");
 
         }
 
@@ -288,8 +287,6 @@ function createHeatMap(data) {
             .on("mouseover", mouseOnSquare)
             .on("mousemove", textDisplay)
             .on("mouseleave", mouseOffSquare);
-            // .on("mouseover", mouseGetOver)
-            // .on("mouseout", mouseGetOut);
 }
 
 function createAdjacency(data) {
@@ -359,9 +356,12 @@ function createAdjacency(data) {
     //Putting the text down
     var textDisplay = function(d) {
         mouseHover
-            .html( "[" + d.fromEmail+" : "+ d.toEmail + "]  "+"<br>  amount: " + Math.abs(Math.round(d.sentiment*100)))
+            .html( "[" + d.fromEmail+" : "+ d.toEmail + "]  "+"<br>  amount: " + Math.abs(Math.round(d.sentiment*100)+ 1))
             .style("left", (d3.mouse(this)[0]+70) + "px")
-            .style("top", (d3.mouse(this)[1]) + "px");
+            .style("top", (d3.mouse(this)[1]) + "px")
+            .style("color", "black")
+            .style("font-family", "Verdana");
+
     }
 
 
@@ -596,7 +596,6 @@ function createLineGraph(data) {
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
         
-   
 
             var jobTitles = ["all", "Unknown", "Employee", "Trader", "In House Lawyer", "Manager", "Managing Director", "Director", "Vice President", "President", "CEO"]
             var maxDate = d3.max(data22, function(d) { return d.date;});
@@ -605,7 +604,7 @@ function createLineGraph(data) {
             var maxSentiment = 0.15;
             var minSentiment = -0.15;
 
-
+            //deze moet maar 1 keer
             d3.select("#selectButton")
                 .selectAll('myOptions')
                 .data(jobTitles)
@@ -627,16 +626,6 @@ function createLineGraph(data) {
                 .domain([minSentiment,maxSentiment])
                 .range([height,0])
             var yAxis = d3.axisLeft(y);
-            //svg.append("g").call(yAxis);
-        
-            // Add a clipPath: everything out of this area won't be drawn.
-           /* var clip = svg.append("defs").append("clipPath")
-            .attr("id", "clip-path-zoom")
-            .append("rect")
-            .attr("width", width )
-            .attr("height", height )
-            .attr("x", 0)
-            .attr("y", 0); */
 
             
     // Set the gradient
@@ -780,16 +769,7 @@ function createLineGraph(data) {
                 .y(function(d) { return y(+d.sentiment) })
             )
 
-            
 
-     
-
-        
-     
-        
-        /*line.append("g")
-            .attr("class", "brush")
-            .call(brush);*/
 
     }
 
