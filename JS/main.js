@@ -126,6 +126,7 @@ function createTable(data) {
 function createHeatMap(data) {
 
 
+    d3.select('#heatMap').selectAll('*').remove()
     // Using the standard Size thing from JS does anyone know how to convert this to scale to the size of the boxes>?
     var margin = {top: 80, right: 30, bottom: 80, left: 80},
         width = 550 - margin.left - margin.right,
