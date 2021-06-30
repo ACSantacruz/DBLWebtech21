@@ -581,11 +581,11 @@ function createLineGraph(data) {
 
     // Using the standard Size thing from JS does anyone know how to convert this to scale to the size of the boxes>?
     var divHeight = document.getElementById('box1').clientHeight;
-    var divWidth = divHeight;
+    var divWidth = document.getElementById('box1').clientWidth;
 
     var margin = {top: 79, right: 40, bottom: 50, left: 80},
         height = divHeight - margin.top - margin.bottom - (divHeight/3.75),
-        width = divHeight - margin.left - margin.right - 80;
+        width = divWidth - margin.left - margin.right - 10;
 
       //add brush
       var brush = d3.brushX()
@@ -721,7 +721,7 @@ function createLineGraph(data) {
                 .attr("x1", 0.5)
                 .attr("y1", 0)
                 .attr("x2", 0.5)
-                .attr("y2", 466);
+                .attr("y2", height - 1.);
 
             svg.append("text")
                 .style("font-size", "12px")
@@ -734,23 +734,23 @@ function createLineGraph(data) {
                 .style("font-size", "12px")
                 .style("font-family", "Verdana")
                 .text("-0.15")
-                .attr("y", 469)
+                .attr("y", height + 4)
                 .attr("x", -39);
 
             svg.append("text")
                 .style("font-size", "12px")
                 .style("font-family", "Verdana")
                 .text("0")
-                .attr("y", 237)
+                .attr("y", height/2 + 4)
                 .attr("x", -20);
 
             svg.append('line')
                 .style("stroke", "black")
                 .style("stroke-width", 1)
                 .attr("x1", 0)
-                .attr("y1", 232)
+                .attr("y1", height/2)
                 .attr("x2", -10)
-                .attr("y2", 232);
+                .attr("y2", height/2);
 
             svg.append('line')
                 .style("stroke", "black")
@@ -764,9 +764,9 @@ function createLineGraph(data) {
                 .style("stroke", "black")
                 .style("stroke-width", 1)
                 .attr("x1", 0)
-                .attr("y1", 465)
+                .attr("y1", height)
                 .attr("x2", -6)
-                .attr("y2", 465);
+                .attr("y2", height);
 
 
 
