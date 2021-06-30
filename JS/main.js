@@ -11,7 +11,6 @@ function formatFileSize(bytes,decimalPoint) {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
  }
 
- 
 function loadFile() {
     const file = document.querySelector('input[type=file]').files[0];
     reader.addEventListener("load", parseFile, false);
@@ -26,7 +25,6 @@ function loadFile() {
     fileName = file.name;
     
 }
-
 
 function parseFile(){
     var doesColumnExist = false;
@@ -133,6 +131,7 @@ function createHeatMap(data) {
         width = 550 - margin.left - margin.right,
         height = 550 - margin.top - margin.bottom;
 
+    d3.select('#heatMap').selectAll('*').remove();
 
     //Printing the field, still using the margin set above.
     var svg = d3.select("#heatMap")
@@ -325,7 +324,7 @@ function createAdjacency(data) {
     //To colour in the heatmap, can someb
     var ColourHM = d3.scaleLinear()
         .range(["#d2d2d2", "#000aff", "#ff7400", "#ff0000"])
-        .domain([0, 4, 5, 8])
+        .domain([0, 3, 6, 9])
 
     // For When the mouse goes on a square
     var mouseHover = d3.select("#Uniqueness")
@@ -408,7 +407,7 @@ function createAdjacency(data) {
 
         //Using the colour heatmap function made earlier to give the squares "heat"
         .style("fill", function(d) {
-            return ColourHM(Math.abs(Math.round(d.sentiment*100)))
+            return ColourHM(Math.abs(Math.round(d.sentiment*100)+ 1))
         })
 
 
@@ -761,8 +760,6 @@ function createLineGraph(data) {
 
 
 
-
-
     function update(selectedGroup) {
 
         // Create new data with the selection?
@@ -801,7 +798,6 @@ function createLineGraph(data) {
             .attr("transform", "translate(0," + height + ")")
             .attr("stroke-width", "2")
             .call(d3.axisBottom(x).ticks(d3.timeMonth.every(3)));
-            
 
 
         line.append("path")
@@ -816,7 +812,6 @@ function createLineGraph(data) {
             )
 
             bisect = d3.bisector(function(d) { return d.date; }).left;
-
 
     }
 
@@ -874,27 +869,4 @@ function createLineGraph(data) {
                     .y(function(d) { return y(d.sentiment) })
                 )
 
-
-    /*
-     // A function that set idleTimeOut to null
-    var idleTimeout
-    function idled() { idleTimeout = null; }
-
-    // A function that update the chart for given boundaries
-    function updateChart() {
-
-      // What are the selected boundaries?
-      extent = d3.event.selection
-
-      // If no selection, back to initial coordinate. Otherwise, update X axis domain
-      if(!extent){
-        if (!idleTimeout) return idleTimeout = setTimeout(idled, 350); // This allows to wait a little bit
-        x.domain([ 4,8])
-      }else{
-        x.domain([ x.invert(extent[0]), x.invert(extent[1]) ])
-        line.select(".brush").call(brush.move, null) // This remove the grey brush area as soon as the selection has been done
-      } 
-            
-
-        ;} */
 }
