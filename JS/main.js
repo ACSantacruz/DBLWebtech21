@@ -291,11 +291,13 @@ function createHeatMap(data) {
 
 function createAdjacency(data) {
 
+    var divHeight = document.getElementById('box1').clientHeight;
+    var divWidth = divHeight;
 
     // Using the standard Size thing from JS does anyone know how to convert this to scale to the size of the boxes>?
-    var margin = {top: 80, right: 25, bottom: 30, left: 40},
-        width = 550 - margin.left - margin.right,
-        height = 550 - margin.top - margin.bottom;
+    var margin = {top: 79, right: 40, bottom: 75, left: 80},
+        height = divHeight - margin.top - margin.bottom - (divHeight/3.55),
+        width = divHeight - margin.left - margin.right - 80;
 
     d3.select('#Uniqueness').selectAll('*').remove();
 
@@ -578,9 +580,12 @@ function createLineGraph(data) {
     d3.select('#LineGraph').selectAll('*').remove();
 
     // Using the standard Size thing from JS does anyone know how to convert this to scale to the size of the boxes>?
-    var margin = {top: 80, right: 25, bottom: 30, left: 40},
-        width = 575 - margin.left - margin.right,
-        height = 575 - margin.top - margin.bottom;
+    var divHeight = document.getElementById('box1').clientHeight;
+    var divWidth = divHeight;
+
+    var margin = {top: 79, right: 40, bottom: 50, left: 80},
+        height = divHeight - margin.top - margin.bottom - (divHeight/3.75),
+        width = divHeight - margin.left - margin.right - 80;
 
       //add brush
       var brush = d3.brushX()
