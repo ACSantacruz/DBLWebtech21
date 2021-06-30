@@ -132,9 +132,9 @@ function createHeatMap(data) {
     var divWidth = divHeight;
 
     // Using the standard Size thing from JS does anyone know how to convert this to scale to the size of the boxes>?
-    var margin = {top: 80, right: 40, bottom: 80, left: 80},
-        height = divHeight - margin.top - margin.bottom - (divHeight/3.95),
-        width = divHeight - margin.left - margin.right;
+    var margin = {top: 79, right: 40, bottom: 75, left: 80},
+        height = divHeight - margin.top - margin.bottom - (divHeight/3.55),
+        width = divHeight - margin.left - margin.right - 80;
 
     d3.select('#heatMap').selectAll('*').remove();
 
