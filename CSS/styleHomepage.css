@@ -181,7 +181,7 @@ input:checked + .slider:before {
 	border: 5px solid transparent;
 	border-image: var(--grad_1) 5 round;
 	height: 50%;
-	width:63%;
+	width:60%;
 	position: relative;
 	float:right;
 	margin-right:30px;
@@ -193,7 +193,7 @@ input:checked + .slider:before {
 	border-image: var(--grad_2) 5 round;
 	height: 47%;
 	position: relative;
-	width:63%;
+	width:60%;
 	margin-top:1%;
 	float:right;
 	margin-right:30px;
@@ -253,7 +253,6 @@ input:checked + .slider:before {
 }
 
 .image1{
-	border: 2px solid red;
 	height:100%;
 	width:100%;
  	 top: 50%;
@@ -300,13 +299,14 @@ input:checked + .slider:before {
 
 .middle{
 	height:100%;
-	width:70%;
+	width:68%;
 	position: relative;
 	display: inline-block;
 	margin: 0;
 	left: 50%;
 	-ms-transform: translate(-50%);
 	transform: translate(-50%);
+
 
 }
 
@@ -419,3 +419,4 @@ input:checked + .slider:before {
 .buttons button:hover{
 	background-color: #444;
 }
+
