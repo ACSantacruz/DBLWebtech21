@@ -6,6 +6,10 @@ www.marnicktom.nl
 
 # Important!
 
+-When a csv is uploaded a slider will appear underneath the visualisations, moving this will alter the timeframe.
+
+-By adjusting the slider when viewing the line graph in full screen, the line graph will expand giving a better overview of the data.
+
 -Site might lag a bit when uploading.
 
 -It takes some time to load when adjusting the slider, depending on your PC.
