@@ -4,6 +4,12 @@ The link to the website is:
 www.marnicktom.nl
 (temporary till we find a group name)
 
+# Important!
+
+-Site might lag a bit when uploading.
+
+-It takes some time to load when adjusting the slider, depending on your PC.
+
 # Features
 Currently the features are:
 
