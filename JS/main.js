@@ -315,17 +315,58 @@ function createAdjacency(data) {
     var fromTitle = d3.map(data, function(d){return d.fromEmail;}).keys()
     var toTitle = d3.map(data, function(d){return d.toEmail;}).keys()
 
+    var count = 0;
+    for(let i=0; i<fromTitle.length; i++) {
+        count++;
+    }
+
+    var count2 = 0;
+    for(let i=0; i<toTitle.length; i++) {
+        count2++;
+    }
+
     //This is to make the x- axis and to make the grid layout scalable But does not work
     var xAxis = d3.scaleBand()
         .range([ 0, width ])
         .domain(fromTitle)
         .padding(0.03);
+    svg.append("g")
+        .style("font-size", (150/count))
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(xAxis).tickSize(1))
+        .selectAll("text")
+        .attr("transform", "translate(-10, 0)rotate(-45)")
+        .style("text-anchor", "end")
+        .style("font-size", (150/count))
+        .style("fill", "#0163ac");
 
     //This is to make the y- axis and to make the grid layout scalable But does not work
     var yAxis = d3.scaleBand()
         .range([ height, 0 ])
         .domain(toTitle)
         .padding(0.03);
+    svg.append("g")
+        .style("font-size", (150/count2))
+        .call(d3.axisLeft(yAxis).tickSize(1))
+        .selectAll("text")
+        .attr("transform", "translate(-5,-10)rotate(-45)")
+        .style("text-anchor", "end")
+        .style("font-size", (150/count2))
+        .style("fill", "#0163ac");
+
+
+    svg.append("text")
+        .attr("text-anchor", "end")
+        .attr("x", width)
+        .attr("y", height + margin.top - 20)
+        .text("From E-mail adress.");
+
+    svg.append("text")
+        .attr("text-anchor", "end")
+        .attr("transform", "rotate(-90)")
+        .attr("y", -margin.left+30)
+        .attr("x", 0)
+        .text("To E-mail adress.")
 
 
     //To colour in the heatmap, can someb
@@ -581,7 +622,17 @@ function createLineGraph(data) {
 
     // Using the standard Size thing from JS does anyone know how to convert this to scale to the size of the boxes>?
     var divHeight = document.getElementById('box1').clientHeight;
-    var divWidth = document.getElementById('box1').clientWidth;
+
+    if (document.getElementById('box1').clientWidth >= document.getElementById('box2').clientWidth) {
+        var divWidth = document.getElementById('box1').clientWidth;
+        console.log("if");
+    } else if (document.getElementById('box1').clientWidth < document.getElementById('box2').clientWidth) {
+        var divWidth = document.getElementById('box2').clientWidth;
+        console.log("else if");
+    } else {
+        var divWidth = document.getElementById('box2').clientWidth;
+        console.log("else");
+    }
 
     var margin = {top: 79, right: 40, bottom: 50, left: 80},
         height = divHeight - margin.top - margin.bottom - (divHeight/3.75),
