@@ -621,7 +621,17 @@ function createLineGraph(data) {
     d3.select('#LineGraph').selectAll('*').remove();
 
     // Using the standard Size thing from JS does anyone know how to convert this to scale to the size of the boxes>?
-    var divHeight = document.getElementById('box1').clientHeight;
+
+    if (document.getElementById('box1').clientWidth >= document.getElementById('box2').clientHeighth) {
+        var divHeight = document.getElementById('box1').clientHeight;
+        console.log("if");
+    } else if (document.getElementById('box1').clientHeight < document.getElementById('box2').clientHeight) {
+        var divHeight = document.getElementById('box2').clientHeight;
+        console.log("else if");
+    } else {
+        var divHeight = document.getElementById('box2').clientHeight;
+        console.log("else");
+    }
 
     if (document.getElementById('box1').clientWidth >= document.getElementById('box2').clientWidth) {
         var divWidth = document.getElementById('box1').clientWidth;
@@ -635,8 +645,8 @@ function createLineGraph(data) {
     }
 
     var margin = {top: 79, right: 40, bottom: 50, left: 80},
-        height = divHeight - margin.top - margin.bottom - (divHeight/3.75),
-        width = divWidth - margin.left - margin.right - 10;
+        height = divHeight - margin.top - margin.bottom - (divHeight/3.2),
+        width = divWidth - margin.left - margin.right - 40;
 
       //add brush
       var brush = d3.brushX()
