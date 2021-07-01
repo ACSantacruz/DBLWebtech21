@@ -223,7 +223,6 @@ input:checked + .slider:before {
 }
 
 #box1.leftSmall{
-    z-index: 9999; 
     width: 81%; 
     height: 100%; 
     position: relative; 
@@ -231,7 +230,6 @@ input:checked + .slider:before {
  }
  
 #box1.leftFull{
-    z-index: 9999; 
     width: 95%; 
     height: 103%; 
     position: relative; 
@@ -289,8 +287,7 @@ input:checked + .slider:before {
 
 }
 
-#box2.rightSmall{
-    z-index: 9999; 
+#box2.rightSmall{ 
     width: 81%; 
     height: 100%; 
     position: relative; 
@@ -299,7 +296,6 @@ input:checked + .slider:before {
 }
  
 #box2.rightFull{
-    z-index: 9999; 
     width: 95%; 
     height: 103%; 
     position: relative; 
@@ -480,7 +476,7 @@ input:checked + .slider:before {
 .bigbox{
 
 	height:77vh;
-	margin-top:5px;
+	margin-top:15px;
 	
 }
 
