@@ -333,7 +333,7 @@ function createAdjacency(data) {
     svg.append("g")
         .style("font-size", (150/count))
         .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(xAxis).tickSize(1))
+        .call(d3.axisBottom(xAxis).tickSize(2))
         .selectAll("text")
         .attr("transform", "translate(-10, 0)rotate(-45)")
         .style("text-anchor", "end")
@@ -347,7 +347,7 @@ function createAdjacency(data) {
         .padding(0.03);
     svg.append("g")
         .style("font-size", (150/count2))
-        .call(d3.axisLeft(yAxis).tickSize(1))
+        .call(d3.axisLeft(yAxis).tickSize(2))
         .selectAll("text")
         .attr("transform", "translate(-5,-10)rotate(-45)")
         .style("text-anchor", "end")
