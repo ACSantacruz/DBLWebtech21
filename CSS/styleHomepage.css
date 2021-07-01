@@ -181,7 +181,7 @@ input:checked + .slider:before {
 	border: 5px solid transparent;
 	border-image: var(--grad_1) 5 round;
 	height: 50%;
-	width:60%;
+	width:55%;
 	position: relative;
 	float:right;
 	margin-right:30px;
@@ -193,7 +193,7 @@ input:checked + .slider:before {
 	border-image: var(--grad_2) 5 round;
 	height: 47%;
 	position: relative;
-	width:60%;
+	width:55%;
 	margin-top:1%;
 	float:right;
 	margin-right:30px;
@@ -248,8 +248,10 @@ input:checked + .slider:before {
 
 .text2{
 	text-align:center;
-	padding:0px 5px 10px 5px;
+	padding: 0px 7px 10px 7px;
 	font-family: Arial, Helvetica, sans-serif;
+	font-size:1vw;
+	margin-top:-2.1%;
 }
 
 .image1{
@@ -303,7 +305,7 @@ input:checked + .slider:before {
 	position: relative;
 	display: inline-block;
 	margin: 0;
-	left: 50%;
+	left: 45%;
 	-ms-transform: translate(-50%);
 	transform: translate(-50%);
 
