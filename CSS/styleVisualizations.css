@@ -231,7 +231,7 @@ input:checked + .slider:before {
  
 #box1.leftFull{
     width: 93.5%; 
-    height: 102.5%; 
+    height: 101.5%; 
     position: relative; 
 	transition:width 0.8s;
 	transition-delay:-0.2s;
@@ -297,7 +297,7 @@ input:checked + .slider:before {
  
 #box2.rightFull{
     width: 93.5%; 
-    height: 102.5%;  
+    height: 101.5%; 
     position: relative; 
 	transition:width 1s;
 	transition-delay:-0.2s;
