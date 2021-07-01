@@ -442,3 +442,8 @@ input:checked + .slider:before {
 		background-image: var(--grad);
 		margin-top:2%;
 	}
+
+	.text{
+		font-size: 0.595vw;
+		margin-top:-2%;
+	}
