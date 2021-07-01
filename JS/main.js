@@ -687,7 +687,12 @@ function createLineGraph(data) {
             xAxis = svg.append("g")
                 .attr("transform", "translate(0," + height + ")")
                 .attr("stroke-width", "2")
-                .call(d3.axisBottom(x));
+                .call(d3.axisBottom(x))
+            .selectAll("text")
+                    .attr("transform", "translate(-6, 0)rotate(-25)")
+                    .style("text-anchor", "end")
+                    .style("font-size", 10)
+                    .style("fill", "#0163ac");
             
             var y = d3.scaleLinear()
                 .domain([minSentiment,maxSentiment])
@@ -868,7 +873,12 @@ function createLineGraph(data) {
         xAxis = svg.append("g")
             .attr("transform", "translate(0," + height + ")")
             .attr("stroke-width", "2")
-            .call(d3.axisBottom(x).ticks(d3.timeMonth.every(3)));
+            .call(d3.axisBottom(x).ticks(d3.timeMonth.every(3)))
+        .selectAll("text")
+            .attr("transform", "translate(-6, 0)rotate(-25)")
+            .style("text-anchor", "end")
+            .style("font-size", 10)
+            .style("fill", "#0163ac");
 
 
         line.append("path")
